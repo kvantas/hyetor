@@ -2,7 +2,7 @@
 % Please edit documentation in R/hyet_erosivity.R
 \name{hyet_erosivity}
 \alias{hyet_erosivity}
-\title{Compute raifall erosivity from an hyetograph}
+\title{Compute rainfall erosivity from an hyetograph}
 \usage{
 hyet_erosivity(hyet, time_step, en_equation = "brown_foster")
 }

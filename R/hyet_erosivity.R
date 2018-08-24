@@ -1,4 +1,4 @@
-#' @title  Compute raifall erosivity from an hyetograph
+#' @title  Compute rainfall erosivity from an hyetograph
 #'
 #' @description \code{hyet_erosivity}  uses an hyetograph, single or grouped
 #' (i.e. from \code{hyet_split}) and computes the rainfall erosivity.

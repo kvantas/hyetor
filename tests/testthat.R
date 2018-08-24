@@ -1,4 +1,4 @@
 library(testthat)
-library(hyetographs)
+library(hyetor)
 
 test_check("hyetor")

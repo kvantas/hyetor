@@ -18,17 +18,18 @@ Depends:
     R (>= 3.5.0)
 Imports: 
     assertthat (>= 0.2.0),
-    dplyr (>= 0.7.6),
-    lubridate (>= 1.7.4),
+    dplyr (>= 0.7),
+    lubridate (>= 1.7),
     magrittr (>= 1.5),
     RcppRoll (>= 0.3.0),
-    rlang (>= 0.2.1),
-    tibble (>= 1.4.2)
+    rlang (>= 0.2),
+    tibble (>= 1.4)
 Suggests: 
     covr (>= 3.1.0),
     knitr (>= 1.20),
     rmarkdown (>= 1.10),
-    testthat (>= 2.0.0)
+    testthat (>= 2.0.0),
+    hydroscoper (>= 0.1)
 VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true

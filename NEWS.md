@@ -1,3 +1,3 @@
-# hyetographs 0.0.0.9000
+# hyetor 0.0.0.9000
 
 * Initial version

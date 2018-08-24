@@ -2,25 +2,27 @@
 % Please edit documentation in R/hyet_fill.R
 \name{hyet_fill}
 \alias{hyet_fill}
-\title{Fill a hyetograph with missing date values}
+\title{Fill an hyetograph with missing date values}
 \usage{
 hyet_fill(hyet, time_step = 5, ts_unit = "mins")
 }
 \arguments{
-\item{hyet}{a hyetograph from \code{hyet_create} function}
+\item{hyet}{an hyetograph from \code{hyet_create} function.}
 
-\item{time_step}{an integer that represents hyetograph's time-step.}
+\item{time_step}{a numeric value that represents the time-step.}
 
-\item{ts_unit}{a character string specifying a time unit. Valid units are
-"mins" and "hours".}
+\item{ts_unit}{a character string specifying the time unit. Valid values
+are "mins", "hours", "days", "months", "quarter" or "year".}
 }
 \value{
-a tibble with the variables \code{date} and \code{prec}
+a tibble with the variables \code{date} and \code{prec} of the filled
+hyetograph.
 }
 \description{
-\code{hyet_fill} fills missing date values in a hyetograph
-with NA values.  Returns an error if \code{hyet} is not a valid hyetograph or
-\code{time_step} is a not a numeric value.
+\code{hyet_fill} fills missing date values in an hyetograph
+with NA values. This function can be used when missing values in time series
+are marked implicitly using missing dates. Returns an error if \code{hyet} is
+not a valid hyetograph.
 }
 \examples{
 
@@ -34,9 +36,10 @@ prec_values <-round(runif(100,0,10),1)
 # create hyetograph
 hyet <- hyet_create(prec_date, prec_values)
 
-# remove some random values from hyetograph
+# remove some random values from the hyetograph
 hyet_miss <- hyet[-sample(100,30), ]
 
 # fill hyetograph
-hyet_fill(hyet_miss, 5, "mins")
+hyet_fill <- hyet_miss \%>\%
+  hyet_fill(5, "mins")
 }

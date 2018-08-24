@@ -19,7 +19,7 @@ vector_check <- function(time_step) {
   }
 }
 
-#' return error if units are not hours or minutes
+#' return error if units are valid
 #'
 #' @noRd
 units_check <- function(x, minhour = TRUE) {

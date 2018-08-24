@@ -45,7 +45,7 @@ test_that("hyet_erosivity works with grouped hyetographs", {
   hyet$prec[110:182] <- 0.01
 
   # create grouped hyet
-  storms <- hyet_split(hyet, 5)
+  storms <- hyet_split(hyet, 5, "mins")
 
   # copmute ei_values
   ei_values <- hyet_erosivity(storms, time_step, en_equation)

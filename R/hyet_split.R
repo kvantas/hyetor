@@ -1,15 +1,25 @@
-#' Split an hyetograph to rainstorms using a fixed critical time duration of
-#' no precipitation
+#' Split an hyetograph to independent rainstorms
 #'
-#' @param hyet hyet an hyetograph from \code{hyet_create} function.
-#' @param time_step an integer that represents hyetograph's time-step.
-#' @param ts_unit a character string specifying a time unit. Valid units are
-#' "mins" and "hours".
-#' @param crit_dur an integer or a vector of 12 integers that represent the
-#' critical time duration of no precipitation that is used to separate the
-#' hyetograph to independent rainstorms.
+#' @description \code{hyet_split} uses a predefined vector with monthly values
+#' of fixed critical time duration of no precipitation to split an hyetograph
+#' to independent rainstorms.
+#' Returns an error if \code{hyet} is not a valid hyetograph.
 #'
-#' @return a grouped dataframe
+#' @param hyet an hyetograph from \code{hyet_create} function.
+#' @param time_step a numeric value that represents the time-step.
+#' @param ts_unit a character string specifying the time unit. Valid values
+#' are "mins" and "hours".
+#' @param crit_dur a vector of 12 numeric values in hours. This vector
+#' represents the monthly critical time duration of no precipitation that is
+#' used to separate the hyetograph to independent rainstorms. Default value for
+#' all months is six hours.
+#'
+#' @return a grouped dataframe with independent rainstorms.
+#'
+#' @references
+#' Restrepo-Posada, Pedro J., and Peter S. Eagleson. "Identification of
+#' independent rainstorms." Journal of Hydrology 55.1-4 (1982): 303-319.
+#'
 #' @export hyet_split
 #'
 #' @examples
@@ -31,11 +41,11 @@
 #' hyet$prec[10:23] <- 0
 #' hyet$prec[41:54] <- 0
 #'
-#' # split hyet
-#' storms <- hyet_split(hyet, time_step, ts_unit, crit_dur)
+#' # split hyetograph to storms
+#' storms <- hyet %>%
+#'   hyet_split(time_step, ts_unit, crit_dur)
 #'
-hyet_split <- function(hyet, time_step = 5, ts_unit = "mins",
-                       crit_dur = rep(6, 12)) {
+hyet_split <- function(hyet, time_step, ts_unit, crit_dur = rep(6, 12)) {
 
   # check input values ---------------------------------------------------------
   hyet_check(hyet)

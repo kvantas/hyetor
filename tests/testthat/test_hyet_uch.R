@@ -42,7 +42,7 @@ test_that("hyet_uch works with grouped hyetographs", {
   hyet$prec[10:82] <- 0.
 
   # create grouped hyet
-  storms <- hyet_split(hyet, 5)
+  storms <- hyet_split(hyet, 5, "mins")
 
   # copmute UCHs
   uch_values <- hyet_uch(storms, time_step, ts_unit)

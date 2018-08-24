@@ -1,15 +1,17 @@
-#' @title Fill a hyetograph with missing date values
+#' @title Fill an hyetograph with missing date values
 #'
-#' @description  \code{hyet_fill} fills missing date values in a hyetograph
-#' with NA values.  Returns an error if \code{hyet} is not a valid hyetograph or
-#' \code{time_step} is a not a numeric value.
+#' @description  \code{hyet_fill} fills missing date values in an hyetograph
+#' with NA values. This function can be used when missing values in time series
+#' are marked implicitly using missing dates. Returns an error if \code{hyet} is
+#' not a valid hyetograph.
 #'
-#' @param hyet a hyetograph from \code{hyet_create} function
-#' @param time_step an integer that represents hyetograph's time-step.
-#' @param ts_unit a character string specifying a time unit. Valid units are
-#' "mins" and "hours".
+#' @param hyet an hyetograph from \code{hyet_create} function.
+#' @param time_step a numeric value that represents the time-step.
+#' @param ts_unit a character string specifying the time unit. Valid values
+#' are "mins", "hours", "days", "months", "quarter" or "year".
 #'
-#' @return a tibble with the variables \code{date} and \code{prec}
+#' @return a tibble with the variables \code{date} and \code{prec} of the filled
+#' hyetograph.
 #' @export hyet_fill
 #'
 #' @examples
@@ -24,18 +26,19 @@
 #' # create hyetograph
 #' hyet <- hyet_create(prec_date, prec_values)
 #'
-#' # remove some random values from hyetograph
+#' # remove some random values from the hyetograph
 #' hyet_miss <- hyet[-sample(100,30), ]
 #'
 #' # fill hyetograph
-#' hyet_fill(hyet_miss, 5, "mins")
+#' hyet_fill <- hyet_miss %>%
+#'   hyet_fill(5, "mins")
 
 hyet_fill <- function(hyet, time_step = 5, ts_unit = "mins") {
 
   # check parameters
   hyet_check(hyet)
   count_check(time_step)
-  units_check(ts_unit)
+  units_check(ts_unit, minhour = FALSE)
 
   # fill
   util_fill(hyet, time_step, ts_unit)

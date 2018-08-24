@@ -2,30 +2,31 @@
 % Please edit documentation in R/hyet_split.R
 \name{hyet_split}
 \alias{hyet_split}
-\title{Split an hyetograph to rainstorms using a fixed critical time duration of
-no precipitation}
+\title{Split an hyetograph to independent rainstorms}
 \usage{
-hyet_split(hyet, time_step = 5, ts_unit = "mins", crit_dur = rep(6,
-  12))
+hyet_split(hyet, time_step, ts_unit, crit_dur = rep(6, 12))
 }
 \arguments{
-\item{hyet}{hyet an hyetograph from \code{hyet_create} function.}
+\item{hyet}{an hyetograph from \code{hyet_create} function.}
 
-\item{time_step}{an integer that represents hyetograph's time-step.}
+\item{time_step}{a numeric value that represents the time-step.}
 
-\item{ts_unit}{a character string specifying a time unit. Valid units are
-"mins" and "hours".}
+\item{ts_unit}{a character string specifying the time unit. Valid values
+are "mins" and "hours".}
 
-\item{crit_dur}{an integer or a vector of 12 integers that represent the
-critical time duration of no precipitation that is used to separate the
-hyetograph to independent rainstorms.}
+\item{crit_dur}{a vector of 12 numeric values in hours. This vector
+represents the monthly critical time duration of no precipitation that is
+used to separate the hyetograph to independent rainstorms. Default value for
+all months is six hours.}
 }
 \value{
-a grouped dataframe
+a grouped dataframe with independent rainstorms.
 }
 \description{
-Split an hyetograph to rainstorms using a fixed critical time duration of
-no precipitation
+\code{hyet_split} uses a predefined vector with monthly values
+of fixed critical time duration of no precipitation to split an hyetograph
+to independent rainstorms.
+Returns an error if \code{hyet} is not a valid hyetograph.
 }
 \examples{
 
@@ -44,7 +45,12 @@ hyet <- tibble::tibble(
 hyet$prec[10:23] <- 0
 hyet$prec[41:54] <- 0
 
-# split hyet
-storms <- hyet_split(hyet, time_step, ts_unit, crit_dur)
+# split hyetograph to storms
+storms <- hyet \%>\%
+  hyet_split(time_step, ts_unit, crit_dur)
 
+}
+\references{
+Restrepo-Posada, Pedro J., and Peter S. Eagleson. "Identification of
+independent rainstorms." Journal of Hydrology 55.1-4 (1982): 303-319.
 }

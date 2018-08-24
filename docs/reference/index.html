@@ -80,7 +80,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/kvantas/hyetographs">
+  <a href="https://github.com/kvantas/hyetor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -111,17 +111,25 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-package" class="hasAnchor"><a href="#section-package" class="anchor"></a>Package</h2>
+          <p class="section-desc"><p>Package details</p></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="hyet_aggregate.html">hyet_aggregate()</a></code> </p>
+          <p><code><a href="hyetor.html">hyetor</a></code> </p>
         </td>
-        <td><p>Aggregate a hyetograph using a time step</p></td>
-      </tr><tr>
+        <td><p>hyetor: Analyzes fixed interval precipitation records.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-preprocessing" class="hasAnchor"><a href="#section-preprocessing" class="anchor"></a>Preprocessing</h2>
+          <p class="section-desc"><p>Functions that can be used to preprocess precipitation timeseries</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="hyet_create.html">hyet_create()</a></code> </p>
@@ -130,15 +138,35 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="hyet_erosivity.html">hyet_erosivity()</a></code> </p>
+          <p><code><a href="hyet_fill.html">hyet_fill()</a></code> </p>
         </td>
-        <td><p>Compute raifall erosivity from an hyetograph</p></td>
+        <td><p>Fill an hyetograph with missing date values</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="hyet_fill.html">hyet_fill()</a></code> </p>
+          <p><code><a href="hyet_aggregate.html">hyet_aggregate()</a></code> </p>
         </td>
-        <td><p>Fill a hyetograph with missing date values</p></td>
+        <td><p>Aggregate an hyetograph using a predefined time-step</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="hyet_split.html">hyet_split()</a></code> </p>
+        </td>
+        <td><p>Split an hyetograph to independent rainstorms</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-analysis" class="hasAnchor"><a href="#section-analysis" class="anchor"></a>Analysis</h2>
+          <p class="section-desc"><p>Funtions that analyze precipitation timeseries</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="hyet_erosivity.html">hyet_erosivity()</a></code> </p>
+        </td>
+        <td><p>Compute rainfall erosivity from an hyetograph</p></td>
       </tr><tr>
         
         <td>
@@ -154,28 +182,23 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="hyet_split.html">hyet_split()</a></code> </p>
-        </td>
-        <td><p>Split an hyetograph to rainstorms using a fixed critical time duration of
-no precipitation</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="hyet_uch.html">hyet_uch()</a></code> </p>
         </td>
         <td><p>Create Unitless Cumulative Hyetographs (UCH)</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-datasets" class="hasAnchor"><a href="#section-datasets" class="anchor"></a>Datasets</h2>
+          <p class="section-desc"><p>The internal datasets of the package</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="prec5min.html">prec5min</a></code> </p>
         </td>
         <td><p>Five minutes precipitation time series</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rainstorms.html">rainstorms</a></code> </p>
-        </td>
-        <td><p>hyetor: Analyzes fixed interval precipitation records.</p></td>
       </tr>
     </tbody>
     </table>
@@ -184,7 +207,10 @@ no precipitation</p></td>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-package">Package</a></li>
+      <li><a href="#section-preprocessing">Preprocessing</a></li>
+      <li><a href="#section-analysis">Analysis</a></li>
+      <li><a href="#section-datasets">Datasets</a></li>
     </ul>
   </div>
 </div>

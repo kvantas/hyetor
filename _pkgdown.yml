@@ -1,0 +1,25 @@
+title: hyetor
+
+reference:
+  - title: Package
+    desc: Package details
+    contents:
+    - hyetor
+  - title: Preprocessing
+    desc: Functions that can be used to preprocess precipitation timeseries
+    contents:
+    - hyet_create
+    - hyet_fill
+    - hyet_aggregate
+    - hyet_split
+  - title: Analysis
+    desc: Funtions that analyze precipitation timeseries
+    contents:
+    - hyet_erosivity
+    - hyet_intensities
+    - hyet_missing
+    - hyet_uch
+  - title: Datasets
+    desc: The internal datasets of the package
+    contents:
+    - prec5min

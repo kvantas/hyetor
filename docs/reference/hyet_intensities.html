@@ -34,7 +34,8 @@
 
 <meta property="og:description" content="hyet_intensities uses an hyetograph, single or grouped
 (i.e. from hyet_split) and computes characteristic maximum rolling
-precipitation intensities." />
+precipitation intensities. Returns an error if hyet is not a valid
+hyetograph." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -85,7 +86,7 @@ precipitation intensities." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/kvantas/hyetographs">
+  <a href="https://github.com/kvantas/hyetor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -103,7 +104,7 @@ precipitation intensities." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute maximum rolling intensities from an hyetograph</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetographs/blob/master/R/hyet_intensities.R'><code>R/hyet_intensities.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetor/blob/master/R/hyet_intensities.R'><code>R/hyet_intensities.R</code></a></small>
     <div class="hidden name"><code>hyet_intensities.Rd</code></div>
     </div>
 
@@ -111,7 +112,8 @@ precipitation intensities." />
     
     <p><code>hyet_intensities</code> uses an hyetograph, single or grouped
 (i.e. from <code>hyet_split</code>) and computes characteristic maximum rolling
-precipitation intensities.</p>
+precipitation intensities. Returns an error if <code>hyet</code> is not a valid
+hyetograph.</p>
     
     </div>
 
@@ -122,17 +124,16 @@ precipitation intensities.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>hyet</th>
-      <td><p>a hyetograph from <code>hyet_create</code> function.</p></td>
+      <td><p>an hyetograph from <code>hyet_create</code> function.</p></td>
     </tr>
     <tr>
       <th>time_step</th>
-      <td><p>an integer specifying the time step value of the aggregated
-hyetograph.</p></td>
+      <td><p>a numeric value that represents the time-step.</p></td>
     </tr>
     <tr>
       <th>ts_unit</th>
-      <td><p>a character string specifying the time unit of the aggregated
-hyetograph. Valid units are "mins" and "hours"</p></td>
+      <td><p>a character string specifying the time unit. Valid values
+are "mins" and "hours".</p></td>
     </tr>
     </table>
     
@@ -168,9 +169,10 @@ storms.</p>
 <span class='co'># add a dry period</span>
 <span class='no'>hyet</span>$<span class='no'>prec</span>[<span class='fl'>5</span>:<span class='fl'>10</span>] <span class='kw'>&lt;-</span> <span class='fl'>0</span>
 
-<span class='co'># split to storms and calculate intensities</span>
-<span class='no'>storms</span> <span class='kw'>&lt;-</span> <span class='fu'>hyet_split</span>(<span class='no'>hyet</span>, <span class='no'>time_step</span>, <span class='no'>ts_unit</span>)
-<span class='no'>intens</span> <span class='kw'>&lt;-</span> <span class='fu'>hyet_intensities</span>(<span class='no'>storms</span>, <span class='no'>time_step</span>, <span class='no'>ts_unit</span>)</div></pre>
+<span class='co'># split to storms and calculate intensities per storm</span>
+<span class='no'>intens</span> <span class='kw'>&lt;-</span> <span class='no'>hyet</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>hyet_split</span>(<span class='no'>time_step</span>, <span class='no'>ts_unit</span>)
+  <span class='fu'>hyet_intensities</span>(<span class='no'>time_step</span>, <span class='no'>ts_unit</span>)</div><div class='output co'>#&gt; <span class='error'>Error in hyet$date: $ operator is invalid for atomic vectors</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

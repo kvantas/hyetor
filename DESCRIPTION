@@ -12,7 +12,8 @@ Description: Provides a collection of tools that analyze fixed interval precipit
   intensities for various time steps, calculates rainfall erosivity values and 
   creates missing values summaries.
 License: MIT + file LICENSE
-URL: https://github.com/kvantas/hyetor
+URL: https://github.com/kvantas/hyetor,
+  https://kvantas.github.io/hyetor/
 BugReports: https://github.com/kvantas/hyetor/issues             
 Depends: 
     R (>= 3.5.0)

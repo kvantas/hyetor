@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Aggregate a hyetograph using a time step — hyet_aggregate • hyetor</title>
+<title>Aggregate an hyetograph using a predefined time-step — hyet_aggregate • hyetor</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,11 @@
 
 
 
-<meta property="og:title" content="Aggregate a hyetograph using a time step — hyet_aggregate" />
+<meta property="og:title" content="Aggregate an hyetograph using a predefined time-step — hyet_aggregate" />
 
-<meta property="og:description" content="hyet_aggregate uses a predefined time step value to
-aggregate precipitation records in an hyetograph." />
+<meta property="og:description" content="hyet_aggregate uses a predefined time-step to
+aggregate precipitation records in an hyetograph. Returns an error if
+hyet is not a valid hyetograph." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -84,7 +85,7 @@ aggregate precipitation records in an hyetograph." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/kvantas/hyetographs">
+  <a href="https://github.com/kvantas/hyetor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -101,15 +102,16 @@ aggregate precipitation records in an hyetograph." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Aggregate a hyetograph using a time step</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetographs/blob/master/R/hyet_aggregate.R'><code>R/hyet_aggregate.R</code></a></small>
+    <h1>Aggregate an hyetograph using a predefined time-step</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetor/blob/master/R/hyet_aggregate.R'><code>R/hyet_aggregate.R</code></a></small>
     <div class="hidden name"><code>hyet_aggregate.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>hyet_aggregate</code> uses a predefined time step value to
-aggregate precipitation records in an hyetograph.</p>
+    <p><code>hyet_aggregate</code> uses a predefined time-step to
+aggregate precipitation records in an hyetograph. Returns an error if
+<code>hyet</code> is not a valid hyetograph.</p>
     
     </div>
 
@@ -120,18 +122,16 @@ aggregate precipitation records in an hyetograph.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>hyet</th>
-      <td><p>a hyetograph from <code>hyet_create</code> function.</p></td>
+      <td><p>an hyetograph from <code>hyet_create</code> function.</p></td>
     </tr>
     <tr>
       <th>time_step</th>
-      <td><p>an integer specifying the time step value of the aggregated
-hyetograph.</p></td>
+      <td><p>a numeric value that represents the time-step.</p></td>
     </tr>
     <tr>
       <th>ts_unit</th>
-      <td><p>a character string specifying the time unit of the aggregated
-hyetograph. Valid units are "mins", "hours", "days", "months", "quarter" or
-"year".</p></td>
+      <td><p>a character string specifying the time unit. Valid values
+are "mins", "hours", "days", "months", "quarter" or "year".</p></td>
     </tr>
     </table>
     
@@ -142,7 +142,8 @@ hyetograph. Valid units are "mins", "hours", "days", "months", "quarter" or
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>prec30min</span> <span class='kw'>&lt;-</span> <span class='fu'>hyet_aggregate</span>(<span class='no'>prec5min</span>, <span class='fl'>30</span>, <span class='st'>"mins"</span>)</div></pre>
+<span class='no'>prec30min</span> <span class='kw'>&lt;-</span> <span class='no'>prec5min</span> <span class='kw'>%&gt;%</span>
+ <span class='fu'>hyet_aggregate</span>(<span class='fl'>30</span>, <span class='st'>"mins"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

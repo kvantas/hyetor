@@ -2,29 +2,29 @@
 % Please edit documentation in R/hyet_aggregate.R
 \name{hyet_aggregate}
 \alias{hyet_aggregate}
-\title{Aggregate a hyetograph using a time step}
+\title{Aggregate an hyetograph using a predefined time-step}
 \usage{
 hyet_aggregate(hyet, time_step, ts_unit)
 }
 \arguments{
-\item{hyet}{a hyetograph from \code{hyet_create} function.}
+\item{hyet}{an hyetograph from \code{hyet_create} function.}
 
-\item{time_step}{an integer specifying the time step value of the aggregated
-hyetograph.}
+\item{time_step}{a numeric value that represents the time-step.}
 
-\item{ts_unit}{a character string specifying the time unit of the aggregated
-hyetograph. Valid units are "mins", "hours", "days", "months", "quarter" or
-"year".}
+\item{ts_unit}{a character string specifying the time unit. Valid values
+are "mins", "hours", "days", "months", "quarter" or "year".}
 }
 \value{
 a tibble with the aggregated hyetograph.
 }
 \description{
-\code{hyet_aggregate} uses a predefined time step value to
-aggregate precipitation records in an hyetograph.
+\code{hyet_aggregate} uses a predefined time-step to
+aggregate precipitation records in an hyetograph. Returns an error if
+\code{hyet} is not a valid hyetograph.
 }
 \examples{
 
-prec30min <- hyet_aggregate(prec5min, 30, "mins")
+prec30min <- prec5min \%>\%
+ hyet_aggregate(30, "mins")
 
 }

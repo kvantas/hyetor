@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Split an hyetograph to rainstorms using a fixed critical time duration of
-no precipitation — hyet_split • hyetor</title>
+<title>Split an hyetograph to independent rainstorms — hyet_split • hyetor</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,11 +30,12 @@ no precipitation — hyet_split • hyetor</title>
 
 
 
-<meta property="og:title" content="Split an hyetograph to rainstorms using a fixed critical time duration of
-no precipitation — hyet_split" />
+<meta property="og:title" content="Split an hyetograph to independent rainstorms — hyet_split" />
 
-<meta property="og:description" content="Split an hyetograph to rainstorms using a fixed critical time duration of
-no precipitation" />
+<meta property="og:description" content="hyet_split uses a predefined vector with monthly values
+of fixed critical time duration of no precipitation to split an hyetograph
+to independent rainstorms.
+Returns an error if hyet is not a valid hyetograph." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -86,7 +86,7 @@ no precipitation" />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/kvantas/hyetographs">
+  <a href="https://github.com/kvantas/hyetor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -103,49 +103,55 @@ no precipitation" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Split an hyetograph to rainstorms using a fixed critical time duration of
-no precipitation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetographs/blob/master/R/hyet_split.R'><code>R/hyet_split.R</code></a></small>
+    <h1>Split an hyetograph to independent rainstorms</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetor/blob/master/R/hyet_split.R'><code>R/hyet_split.R</code></a></small>
     <div class="hidden name"><code>hyet_split.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Split an hyetograph to rainstorms using a fixed critical time duration of
-no precipitation</p>
+    <p><code>hyet_split</code> uses a predefined vector with monthly values
+of fixed critical time duration of no precipitation to split an hyetograph
+to independent rainstorms.
+Returns an error if <code>hyet</code> is not a valid hyetograph.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>hyet_split</span>(<span class='no'>hyet</span>, <span class='kw'>time_step</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>ts_unit</span> <span class='kw'>=</span> <span class='st'>"mins"</span>, <span class='kw'>crit_dur</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fl'>6</span>,
-  <span class='fl'>12</span>))</pre>
+    <pre class="usage"><span class='fu'>hyet_split</span>(<span class='no'>hyet</span>, <span class='no'>time_step</span>, <span class='no'>ts_unit</span>, <span class='kw'>crit_dur</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fl'>6</span>, <span class='fl'>12</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>hyet</th>
-      <td><p>hyet an hyetograph from <code>hyet_create</code> function.</p></td>
+      <td><p>an hyetograph from <code>hyet_create</code> function.</p></td>
     </tr>
     <tr>
       <th>time_step</th>
-      <td><p>an integer that represents hyetograph's time-step.</p></td>
+      <td><p>a numeric value that represents the time-step.</p></td>
     </tr>
     <tr>
       <th>ts_unit</th>
-      <td><p>a character string specifying a time unit. Valid units are
-"mins" and "hours".</p></td>
+      <td><p>a character string specifying the time unit. Valid values
+are "mins" and "hours".</p></td>
     </tr>
     <tr>
       <th>crit_dur</th>
-      <td><p>an integer or a vector of 12 integers that represent the
-critical time duration of no precipitation that is used to separate the
-hyetograph to independent rainstorms.</p></td>
+      <td><p>a vector of 12 numeric values in hours. This vector
+represents the monthly critical time duration of no precipitation that is
+used to separate the hyetograph to independent rainstorms. Default value for
+all months is six hours.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a grouped dataframe</p>
+    <p>a grouped dataframe with independent rainstorms.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Restrepo-Posada, Pedro J., and Peter S. Eagleson. "Identification of
+independent rainstorms." Journal of Hydrology 55.1-4 (1982): 303-319.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -165,8 +171,9 @@ hyetograph to independent rainstorms.</p></td>
 <span class='no'>hyet</span>$<span class='no'>prec</span>[<span class='fl'>10</span>:<span class='fl'>23</span>] <span class='kw'>&lt;-</span> <span class='fl'>0</span>
 <span class='no'>hyet</span>$<span class='no'>prec</span>[<span class='fl'>41</span>:<span class='fl'>54</span>] <span class='kw'>&lt;-</span> <span class='fl'>0</span>
 
-<span class='co'># split hyet</span>
-<span class='no'>storms</span> <span class='kw'>&lt;-</span> <span class='fu'>hyet_split</span>(<span class='no'>hyet</span>, <span class='no'>time_step</span>, <span class='no'>ts_unit</span>, <span class='no'>crit_dur</span>)</div></pre>
+<span class='co'># split hyetograph to storms</span>
+<span class='no'>storms</span> <span class='kw'>&lt;-</span> <span class='no'>hyet</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>hyet_split</span>(<span class='no'>time_step</span>, <span class='no'>ts_unit</span>, <span class='no'>crit_dur</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -174,6 +181,8 @@ hyetograph to independent rainstorms.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

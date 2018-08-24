@@ -7,13 +7,12 @@
 hyet_intensities(hyet, time_step, ts_unit)
 }
 \arguments{
-\item{hyet}{a hyetograph from \code{hyet_create} function.}
+\item{hyet}{an hyetograph from \code{hyet_create} function.}
 
-\item{time_step}{an integer specifying the time step value of the aggregated
-hyetograph.}
+\item{time_step}{a numeric value that represents the time-step.}
 
-\item{ts_unit}{a character string specifying the time unit of the aggregated
-hyetograph. Valid units are "mins" and "hours"}
+\item{ts_unit}{a character string specifying the time unit. Valid values
+are "mins" and "hours".}
 }
 \value{
 a tibble with the calculated total precipitation height, duration
@@ -23,7 +22,8 @@ and maximum rolling rainfall intensities for 5, 10, 15, 30 minutes and 1, 2,
 \description{
 \code{hyet_intensities} uses an hyetograph, single or grouped
 (i.e. from \code{hyet_split}) and computes characteristic maximum rolling
-precipitation intensities.
+precipitation intensities. Returns an error if \code{hyet} is not a valid
+hyetograph.
 }
 \note{
 missing date values must be set explicit using the \code{hyet_fill}
@@ -49,7 +49,8 @@ from = as.POSIXct(0, origin = "2018-01-01"), length.out = len,
 # add a dry period
 hyet$prec[5:10] <- 0
 
-# split to storms and calculate intensities
-storms <- hyet_split(hyet, time_step, ts_unit)
-intens <- hyet_intensities(storms, time_step, ts_unit)
+# split to storms and calculate intensities per storm
+intens <- hyet \%>\%
+  hyet_split(time_step, ts_unit)
+  hyet_intensities(time_step, ts_unit)
 }

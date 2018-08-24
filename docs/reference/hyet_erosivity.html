@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute raifall erosivity from an hyetograph — hyet_erosivity • hyetor</title>
+<title>Compute rainfall erosivity from an hyetograph — hyet_erosivity • hyetor</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Compute raifall erosivity from an hyetograph — hyet_erosivity" />
+<meta property="og:title" content="Compute rainfall erosivity from an hyetograph — hyet_erosivity" />
 
 <meta property="og:description" content="hyet_erosivity  uses an hyetograph, single or grouped
 (i.e. from hyet_split) and computes the rainfall erosivity." />
@@ -84,7 +84,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/kvantas/hyetographs">
+  <a href="https://github.com/kvantas/hyetor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -101,8 +101,8 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute raifall erosivity from an hyetograph</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetographs/blob/master/R/hyet_erosivity.R'><code>R/hyet_erosivity.R</code></a></small>
+    <h1>Compute rainfall erosivity from an hyetograph</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetor/blob/master/R/hyet_erosivity.R'><code>R/hyet_erosivity.R</code></a></small>
     <div class="hidden name"><code>hyet_erosivity.Rd</code></div>
     </div>
 
@@ -121,12 +121,12 @@
     <tr>
       <th>hyet</th>
       <td><p>an hyetograph from <code>hyet_create</code> function. Precipitation
-values must be in (mm).</p></td>
+values must be in millimeters (mm).</p></td>
     </tr>
     <tr>
       <th>time_step</th>
-      <td><p>hyetograph's time-step in minutes. Must have one of the
-values: <code>[5, 10, 15, 30]</code>.</p></td>
+      <td><p>hyetograph's time-step in minutes. Valid value is on of
+<code>[5, 10, 15, 30]</code>.</p></td>
     </tr>
     <tr>
       <th>en_equation</th>
@@ -137,13 +137,13 @@ Default value is <code>"brown_foster"</code>.</p>
 <p>The rainfall's kinetic energy equations are:</p><ul>
 <li><p><em>Brown and Foster (1987)</em>,
 
-      \(e = 0.29(1 - 0.72  exp(-0.05i))\)</p></li>
+      \(e = 0.29(1 - 0.72  e^{-0.05i})\)</p></li>
 <li><p><em>McGregor and Mutchler (1976)</em>,
 
-      \(e = 0.273 + 0.2168exp(-0.048i) - 0.4126exp(-0.072i)\)</p></li>
+      \(e = 0.273 + 0.2168e^{-0.048i} - 0.4126e^{-0.072i}\)</p></li>
 <li><p><em>Wischmeier and Smith (1958)</em>,
 
-      \(e = 0.119 + 0.0873 * log10(i)\),
+      \(e = 0.119 + 0.0873log_{10}(i)\),
 
       with the upper limit of 0.283  MJ/ha/mm if \(i\) &gt; 76 mm/h.</p></li>
 </ul><p>In the above equations \(i\) is rainfall intensity (mm/hr) and \(e\) is
@@ -192,7 +192,6 @@ relationship to soil loss. Eos, Transactions American Geophysical Union,
 )
 
 <span class='co'># compute erosivity</span>
-
 <span class='no'>hyet</span> <span class='kw'>%&gt;%</span>
 <span class='fu'>hyet_erosivity</span>(<span class='no'>time_step</span>, <span class='no'>en_equation</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 7
 #&gt;   begin               end                 cum_prec duration max_i15 max_i30

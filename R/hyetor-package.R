@@ -6,7 +6,7 @@
 #'    \item {Aggregate precipitation time series values.}
 #'    \item {Split precipitation records to independent rainstorms.}
 #'    \item {Compile Unitless Cumulative Hyetographs.}
-#'    \item {Find maximum rainfall intensities for various common time steps.}
+#'    \item {Find maximum rainfall intensities for various time steps.}
 #'    \item {Calculate rainfall erosivity values.}
 #'    \item {Create missing values summaries.}
 #'    }
@@ -16,8 +16,8 @@
 #' The data are retrieved from:
 #'  \url{http://www.hydroscope.gr/}
 #'
-#' @name rainstorms
-#' @aliases rainstorms-package
+#' @name hyetor
+#' @aliases hyetor-package
 #' @docType package
 #'
 #' @importFrom rlang .data

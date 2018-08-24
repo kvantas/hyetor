@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fill a hyetograph with missing date values — hyet_fill • hyetor</title>
+<title>Fill an hyetograph with missing date values — hyet_fill • hyetor</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,12 @@
 
 
 
-<meta property="og:title" content="Fill a hyetograph with missing date values — hyet_fill" />
+<meta property="og:title" content="Fill an hyetograph with missing date values — hyet_fill" />
 
-<meta property="og:description" content="hyet_fill fills missing date values in a hyetograph
-with NA values.  Returns an error if hyet is not a valid hyetograph or
-time_step is a not a numeric value." />
+<meta property="og:description" content="hyet_fill fills missing date values in an hyetograph
+with NA values. This function can be used when missing values in time series
+are marked implicitly using missing dates. Returns an error if hyet is
+not a valid hyetograph." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -85,7 +86,7 @@ time_step is a not a numeric value." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/kvantas/hyetographs">
+  <a href="https://github.com/kvantas/hyetor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -102,16 +103,17 @@ time_step is a not a numeric value." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fill a hyetograph with missing date values</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetographs/blob/master/R/hyet_fill.R'><code>R/hyet_fill.R</code></a></small>
+    <h1>Fill an hyetograph with missing date values</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetor/blob/master/R/hyet_fill.R'><code>R/hyet_fill.R</code></a></small>
     <div class="hidden name"><code>hyet_fill.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>hyet_fill</code> fills missing date values in a hyetograph
-with NA values.  Returns an error if <code>hyet</code> is not a valid hyetograph or
-<code>time_step</code> is a not a numeric value.</p>
+    <p><code>hyet_fill</code> fills missing date values in an hyetograph
+with NA values. This function can be used when missing values in time series
+are marked implicitly using missing dates. Returns an error if <code>hyet</code> is
+not a valid hyetograph.</p>
     
     </div>
 
@@ -122,22 +124,23 @@ with NA values.  Returns an error if <code>hyet</code> is not a valid hyetograph
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>hyet</th>
-      <td><p>a hyetograph from <code>hyet_create</code> function</p></td>
+      <td><p>an hyetograph from <code>hyet_create</code> function.</p></td>
     </tr>
     <tr>
       <th>time_step</th>
-      <td><p>an integer that represents hyetograph's time-step.</p></td>
+      <td><p>a numeric value that represents the time-step.</p></td>
     </tr>
     <tr>
       <th>ts_unit</th>
-      <td><p>a character string specifying a time unit. Valid units are
-"mins" and "hours".</p></td>
+      <td><p>a character string specifying the time unit. Valid values
+are "mins", "hours", "days", "months", "quarter" or "year".</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a tibble with the variables <code>date</code> and <code>prec</code></p>
+    <p>a tibble with the variables <code>date</code> and <code>prec</code> of the filled
+hyetograph.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -152,24 +155,12 @@ with NA values.  Returns an error if <code>hyet</code> is not a valid hyetograph
 <span class='co'># create hyetograph</span>
 <span class='no'>hyet</span> <span class='kw'>&lt;-</span> <span class='fu'>hyet_create</span>(<span class='no'>prec_date</span>, <span class='no'>prec_values</span>)
 
-<span class='co'># remove some random values from hyetograph</span>
+<span class='co'># remove some random values from the hyetograph</span>
 <span class='no'>hyet_miss</span> <span class='kw'>&lt;-</span> <span class='no'>hyet</span>[-<span class='fu'>sample</span>(<span class='fl'>100</span>,<span class='fl'>30</span>), ]
 
 <span class='co'># fill hyetograph</span>
-<span class='fu'>hyet_fill</span>(<span class='no'>hyet_miss</span>, <span class='fl'>5</span>, <span class='st'>"mins"</span>)</div><div class='output co'>#&gt; # A tibble: 98 x 2
-#&gt;    date                 prec
-#&gt;    &lt;dttm&gt;              &lt;dbl&gt;
-#&gt;  1 2018-01-01 02:00:00   2.7
-#&gt;  2 2018-01-01 02:05:00  NA  
-#&gt;  3 2018-01-01 02:10:00   5.7
-#&gt;  4 2018-01-01 02:15:00   9.1
-#&gt;  5 2018-01-01 02:20:00   2  
-#&gt;  6 2018-01-01 02:25:00   9  
-#&gt;  7 2018-01-01 02:30:00   9.4
-#&gt;  8 2018-01-01 02:35:00   6.6
-#&gt;  9 2018-01-01 02:40:00  NA  
-#&gt; 10 2018-01-01 02:45:00   0.6
-#&gt; # ... with 88 more rows</div></pre>
+<span class='no'>hyet_fill</span> <span class='kw'>&lt;-</span> <span class='no'>hyet_miss</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>hyet_fill</span>(<span class='fl'>5</span>, <span class='st'>"mins"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -4,9 +4,9 @@
 #' (i.e. from \code{hyet_split}) and computes the rainfall erosivity.
 #'
 #' @param hyet an hyetograph from \code{hyet_create} function. Precipitation
-#' values must be in (mm).
-#' @param time_step hyetograph's time-step in minutes. Must have one of the
-#' values: \code{[5, 10, 15, 30]}.
+#' values must be in millimeters (mm).
+#' @param time_step hyetograph's time-step in minutes. Valid value is on of
+#' \code{[5, 10, 15, 30]}.
 #' @param en_equation a character string specifying the equation to be used
 #' for calculating kinetic energy of rainfall. Must have one of the values:
 #' \code{"brown_foster", "mcgregor_mutch", "wisch_smith"}.
@@ -16,13 +16,13 @@
 #' \itemize{
 #' \item{\emph{Brown and Foster (1987)},
 #'
-#'       \eqn{e = 0.29(1 - 0.72  exp(-0.05i))}}
+#'       \eqn{e = 0.29(1 - 0.72  e^{-0.05i})}}
 #' \item{\emph{McGregor and Mutchler (1976)},
 #'
-#'       \eqn{e = 0.273 + 0.2168exp(-0.048i) - 0.4126exp(-0.072i)}}
+#'       \eqn{e = 0.273 + 0.2168e^{-0.048i} - 0.4126e^{-0.072i}}}
 #' \item{\emph{Wischmeier and Smith (1958)},
 #'
-#'       \eqn{e = 0.119 + 0.0873 * log10(i)},
+#'       \eqn{e = 0.119 + 0.0873log_{10}(i)},
 #'
 #'       with the upper limit of 0.283  MJ/ha/mm if \eqn{i} > 76 mm/h.}
 #' }
@@ -70,7 +70,6 @@
 #' )
 #'
 #' # compute erosivity
-#'
 #' hyet %>%
 #' hyet_erosivity(time_step, en_equation)
 

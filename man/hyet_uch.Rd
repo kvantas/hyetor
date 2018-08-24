@@ -53,6 +53,7 @@ uch <- hyet \%>\%
 Bonta, J. V. (2004). Development and utility of Huff curves for
 disaggregating precipitation amounts. Applied Engineering in Agriculture,
 20(5), 641.
+
 Huff, F. A. (1967). Time distribution of rainfall in heavy storms. Water
 Resources Research, 3(4), 1007-1019.
 }

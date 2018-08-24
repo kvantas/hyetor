@@ -9,8 +9,8 @@
 #' \code{[5, 10, 15, 30]}.
 #' @param en_equation a character string specifying the equation to be used
 #' for calculating kinetic energy of rainfall. Must have one of the values:
-#' \code{"brown_foster", "mcgregor_mutch", "wisch_smith"}.
-#' Default value is \code{"brown_foster"}.
+#' "brown_foster", "mcgregor_mutch" or "wisch_smith".
+#' Default value is "brown_foster".
 #'
 #' The rainfall's kinetic energy equations are:
 #' \itemize{

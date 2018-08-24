@@ -1,0 +1,35 @@
+Type: Package
+Package: hyetor
+Title: Analyzes fixed interval precipitation time series
+Version: 0.0.0.9000
+Authors@R: person("Konstantinos", "Vantas", role = c("aut", "cre"),
+  email = "kon.vantas@gmail.com",
+  comment = c(ORCID = "0000-0001-6387-8791"))
+Maintainer: Konstantinos Vantas <kon.vantas@gmail.com>
+Description: Provides a collection of tools that analyze fixed interval precipitation
+  time series: Aggregates precipitation records, splits these records to independent
+  rainstorms, compiles Unitless Cumulative Hyetographs, finds maximum rainfall 
+  intensities for various time steps, calculates rainfall erosivity values and 
+  creates missing values summaries.
+License: MIT + file LICENSE
+URL: https://github.com/kvantas/hyetographs
+BugReports: https://github.com/kvantas/hyetographs/issues             
+Depends: 
+    R (>= 3.5.0)
+Imports: 
+    assertthat (>= 0.2.0),
+    dplyr (>= 0.7.6),
+    lubridate (>= 1.7.4),
+    magrittr (>= 1.5),
+    RcppRoll (>= 0.3.0),
+    rlang (>= 0.2.1),
+    tibble (>= 1.4.2)
+Suggests: 
+    covr (>= 3.1.0),
+    knitr (>= 1.20),
+    rmarkdown (>= 1.10),
+    testthat (>= 2.0.0)
+VignetteBuilder: knitr
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0

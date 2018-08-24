@@ -1,0 +1,55 @@
+context("hyet_erosivity related tests")
+
+test_that("hyet_erosivity works with simple hyetographs", {
+
+  # create time series with 30 mins time step
+  time_step <- 30
+  len <- 12
+  en_equation <- "brown_foster"
+
+  hyet <- tibble::tibble(
+    date = seq(
+      from = as.POSIXct(0, origin = "2018-01-01 00:00:00", tz = "UTC"),
+      length.out = len,
+      by = paste(time_step, "mins")
+    ),
+    prec = c(1.1, 2.3, 3.2, 1.9, 4.1, 5.9, 2.5, 3.1, 2.9, 1.2, 0.5, 0.2)
+  )
+
+  ei_values <- hyet_erosivity(hyet, time_step, en_equation)
+
+  # expect to return a single erosivity event
+  expect_equal(NROW(ei_values), 1)
+})
+
+test_that("hyet_erosivity works with grouped hyetographs", {
+
+  # create time series with 30 mins time step
+  time_step <- 5
+  len <- 190
+  en_equation <- "brown_foster"
+
+  hyet <- tibble::tibble(
+    date = seq(
+      from = as.POSIXct(0, origin = "2018-01-01 00:00:00", tz = "UTC"),
+      length.out = len,
+      by = paste(time_step, "mins")
+    ),
+    prec = rep(2, len)
+  )
+
+  # add a six-hour break
+  hyet$prec[10:82] <- 0.
+
+  # add a period of six hours with cum_prec < 1.27 mm
+  hyet$prec[110:182] <- 0.01
+
+  # create grouped hyet
+  storms <- hyet_split(hyet, 5)
+
+  # copmute ei_values
+  ei_values <- hyet_erosivity(storms, time_step, en_equation)
+
+  # expect to return three erosivity events
+  expect_equal(nrow(ei_values), 3)
+})

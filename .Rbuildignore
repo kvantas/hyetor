@@ -1,0 +1,13 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^CODE_OF_CONDUCT\.md$
+^README\.Rmd$
+^README-.*\.png$
+^bibliography.bib$
+^LICENSE\.md$
+^appveyor\.yml$
+^\.travis\.yml$
+^codecov\.yml$
+^data-raw$
+^docs$
+^_pkgdown\.yml$

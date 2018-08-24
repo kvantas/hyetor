@@ -153,7 +153,7 @@ hyetograph.</p>
 <span class='no'>prec_values</span> <span class='kw'>&lt;-</span><span class='fu'>round</span>(<span class='fu'>runif</span>(<span class='fl'>100</span>,<span class='fl'>0</span>,<span class='fl'>10</span>),<span class='fl'>1</span>)
 
 <span class='co'># create hyetograph</span>
-<span class='no'>hyet</span> <span class='kw'>&lt;-</span> <span class='fu'>hyet_create</span>(<span class='no'>prec_date</span>, <span class='no'>prec_values</span>)
+<span class='no'>hyet</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='hyet_create.html'>hyet_create</a></span>(<span class='no'>prec_date</span>, <span class='no'>prec_values</span>)
 
 <span class='co'># remove some random values from the hyetograph</span>
 <span class='no'>hyet_miss</span> <span class='kw'>&lt;-</span> <span class='no'>hyet</span>[-<span class='fu'>sample</span>(<span class='fl'>100</span>,<span class='fl'>30</span>), ]

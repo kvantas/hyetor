@@ -1,6 +1,6 @@
 Type: Package
 Package: hyetor
-Title: Analyzes fixed interval precipitation time series
+Title: Analyze fixed interval precipitation time series
 Version: 0.0.0.9000
 Authors@R: person("Konstantinos", "Vantas", role = c("aut", "cre"),
   email = "kon.vantas@gmail.com",

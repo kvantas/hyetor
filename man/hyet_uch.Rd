@@ -15,7 +15,8 @@ hyet_uch(hyet, time_step, ts_unit)
 are "mins" and "hours".}
 }
 \value{
-a tibble with unitless cumulative precipitation for every 1%.
+a tibble with unitless cumulative precipitation for every 1% using
+linear interpolation.
 }
 \description{
 \code{hyet_uch} uses an hyetograph, single or grouped

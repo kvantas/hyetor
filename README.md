@@ -2,7 +2,7 @@
 hyetor
 ======
 
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/kvantas/hyetor?branch=master&svg=true)](https://ci.appveyor.com/project/kvantas/hyetor) [![Travis build status](https://travis-ci.org/kvantas/hyetor.svg?branch=master)](https://travis-ci.org/kvantas/hyetor) [![Coverage status](https://codecov.io/gh/kvantas/hyetor/branch/master/graph/badge.svg)](https://codecov.io/github/kvantas/hyetor?branch=master) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/kvantas/hyetor?branch=master&svg=true)](https://ci.appveyor.com/project/kvantas/hyetor) [![Travis build status](https://travis-ci.org/kvantas/hyetor.svg?branch=master)](https://travis-ci.org/kvantas/hyetor) [![Coverage status](https://codecov.io/gh/kvantas/hyetor/branch/master/graph/badge.svg)](https://codecov.io/github/kvantas/hyetor?branch=master) [![DOI](https://zenodo.org/badge/145962234.svg)](https://zenodo.org/badge/latestdoi/145962234) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 `hyetor` is an R package that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:
 

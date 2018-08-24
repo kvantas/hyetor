@@ -9,7 +9,8 @@
 #' @param ts_unit a character string specifying the time unit. Valid values
 #' are "mins" and "hours".
 #'
-#' @return a tibble with unitless cumulative precipitation for every 1%.
+#' @return a tibble with unitless cumulative precipitation for every 1% using
+#' linear interpolation.
 #'
 #' @note missing date values must be set explicit using the \code{hyet_fill}
 #' function if a single hyetograph is used. \code{hyet_split} returns filled

@@ -41,7 +41,7 @@
 #'
 #' # split to storms and calculate intensities per storm
 #' intens <- hyet %>%
-#'   hyet_split(time_step, ts_unit)
+#'   hyet_split(time_step, ts_unit) %>%
 #'   hyet_intensities(time_step, ts_unit)
 
 hyet_intensities <- function(hyet, time_step, ts_unit) {

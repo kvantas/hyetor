@@ -51,6 +51,6 @@ hyet$prec[5:10] <- 0
 
 # split to storms and calculate intensities per storm
 intens <- hyet \%>\%
-  hyet_split(time_step, ts_unit)
+  hyet_split(time_step, ts_unit) \%>\%
   hyet_intensities(time_step, ts_unit)
 }

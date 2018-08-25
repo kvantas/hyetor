@@ -29,8 +29,9 @@ knitr::opts_chunk$set(
  2. Split precipitation time series to independent rainstorms using the maximum dry period duration of no precipitation.
  3. Compile Unitless Cumulative Hyetographs.
  4. Find maximum rainfall intensities.
- 5. Calculate rainfall erosivity values
- 6. Creates missing values summaries.
+ 5. Categorize rainstorms using Huff's quartile classification.
+ 6. Calculate rainfall erosivity values
+ 7. Create missing values summaries.
 
 For more details checkout the package's [ website](https://kvantas.github.io/hyetor/) and the
 vignettes:
@@ -49,8 +50,8 @@ devtools::install_github("kvantas/hyetor")
 
 The functions that are provided by `hyetor` are:
 
-* Functions that can be used to preprocess precipitation timeseries: `hyet_create`, `hyet_fill`, `hyet_aggregate` and `hyet_split`.
-* Funtions that analyze precipitation timeseries: `hyet_erosivity`, `hyet_intensities`, `hyet_missing` and `hyet_uch`.
+* Functions that can be used to preprocess precipitation time-series: `hyet_create`, `hyet_fill`, `hyet_aggregate` and `hyet_split`.
+* Functions that analyze precipitation time-series: `hyet_erosivity`, `hyet_intensities`, `hyet_missing` and `hyet_uch`.
 
 The data sets that are provided by `hyetor` are:
 

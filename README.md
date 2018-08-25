@@ -2,18 +2,29 @@
 hyetor
 ======
 
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/kvantas/hyetor?branch=master&svg=true)](https://ci.appveyor.com/project/kvantas/hyetor) [![Travis build status](https://travis-ci.org/kvantas/hyetor.svg?branch=master)](https://travis-ci.org/kvantas/hyetor) [![Coverage status](https://codecov.io/gh/kvantas/hyetor/branch/master/graph/badge.svg)](https://codecov.io/github/kvantas/hyetor?branch=master) [![DOI](https://zenodo.org/badge/145962234.svg)](https://zenodo.org/badge/latestdoi/145962234) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/kvantas/hyetor?branch=master&svg=true)](https://ci.appveyor.com/project/kvantas/hyetor)
+[![Travis build
+status](https://travis-ci.org/kvantas/hyetor.svg?branch=master)](https://travis-ci.org/kvantas/hyetor)
+[![Coverage
+status](https://codecov.io/gh/kvantas/hyetor/branch/master/graph/badge.svg)](https://codecov.io/github/kvantas/hyetor?branch=master)
+[![DOI](https://zenodo.org/badge/145962234.svg)](https://zenodo.org/badge/latestdoi/145962234)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-`hyetor` is an R package that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:
+`hyetor` is an R package that provides a collection of tools that
+analyze fixed interval precipitation records. It can be used to:
 
 1.  Aggregate precipitation values.
-2.  Split precipitation time series to independent rainstorms using the maximum dry period duration of no precipitation.
+2.  Split precipitation time series to independent rainstorms using the
+    maximum dry period duration of no precipitation.
 3.  Compile Unitless Cumulative Hyetographs.
 4.  Find maximum rainfall intensities.
-5.  Calculate rainfall erosivity values
-6.  Creates missing values summaries.
+5.  Categorize rainstorms using Huff’s quartile classification.
+6.  Calculate rainfall erosivity values
+7.  Create missing values summaries.
 
-For more details checkout the package's [website](https://kvantas.github.io/hyetor/) and the vignettes:
+For more details checkout the package’s
+[website](https://kvantas.github.io/hyetor/) and the vignettes:
 
 Installation
 ------------
@@ -30,17 +41,23 @@ Using hyetor
 
 The functions that are provided by `hyetor` are:
 
--   Functions that can be used to preprocess precipitation timeseries: `hyet_create`, `hyet_fill`, `hyet_aggregate` and `hyet_split`.
--   Funtions that analyze precipitation timeseries: `hyet_erosivity`, `hyet_intensities`, `hyet_missing` and `hyet_uch`.
+-   Functions that can be used to preprocess precipitation time-series:
+    `hyet_create`, `hyet_fill`, `hyet_aggregate` and `hyet_split`.
+-   Functions that analyze precipitation time-series: `hyet_erosivity`,
+    `hyet_intensities`, `hyet_missing` and `hyet_uch`.
 
 The data sets that are provided by `hyetor` are:
 
--   `prec5min`, This time series comes from the weather station 'Arna' in Greece. The owner of that weather station is the Ministry of Environment and Energy. The time series period is from 12/1954 to 05/1956 and the time-step is 5 minutes.
+-   `prec5min`, This time series comes from the weather station ‘Arna’
+    in Greece. The owner of that weather station is the Ministry of
+    Environment and Energy. The time series period is from 12/1954 to
+    05/1956 and the time-step is 5 minutes.
 
 Example
 -------
 
-This is a minimal example which shows how to use the package's functions to analyze the internal data set and compute erosivity values.
+This is a minimal example which shows how to use the package’s functions
+to analyze the internal data set and compute erosivity values.
 
 Load libraries and view data:
 
@@ -83,7 +100,8 @@ prec5min %>%
 #> 3  1956    0.619
 ```
 
-Split to independent rainstorms and calculate erosivity values with cumulative precipitation greater than 12,7 mm:
+Split to independent rainstorms and calculate erosivity values with
+cumulative precipitation greater than 12,7 mm:
 
 ``` r
 prec5min %>%
@@ -111,10 +129,12 @@ prec5min %>%
 Meta
 ----
 
--   Bug reports, suggestions, and code are welcome. Please see [Contributing](/CONTRIBUTING.md).
+-   Bug reports, suggestions, and code are welcome. Please see
+    [Contributing](/CONTRIBUTING.md).
 -   Licence:
     -   All code is licensed MIT.
-    -   All data are from the public data sources in <http://www.hydroscope.gr/>.
+    -   All data are from the public data sources in
+        <http://www.hydroscope.gr/>.
 -   To cite `hyetor` please use:
 
 <!-- -->

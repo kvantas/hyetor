@@ -93,8 +93,8 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the development version from Github with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"kvantas/hyetor"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"kvantas/hyetor"</span>)</a></code></pre></div>
 </div>
 <div id="using-hyetor" class="section level2">
 <h2 class="hasAnchor">
@@ -115,59 +115,59 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a minimal example which shows how to use the package’s functions to analyze the internal data set and compute erosivity values.</p>
 <p>Load libraries and view data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(hyetor)
-<span class="kw">library</span>(tibble)
-<span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(lubridate)
-
-prec5min
-<span class="co">#&gt; # A tibble: 48,209 x 2</span>
-<span class="co">#&gt;    date                 prec</span>
-<span class="co">#&gt;    &lt;dttm&gt;              &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 1954-12-14 07:40:00     0</span>
-<span class="co">#&gt;  2 1954-12-14 07:45:00     0</span>
-<span class="co">#&gt;  3 1954-12-14 07:50:00     0</span>
-<span class="co">#&gt;  4 1954-12-14 07:55:00     0</span>
-<span class="co">#&gt;  5 1954-12-14 08:00:00     0</span>
-<span class="co">#&gt;  6 1954-12-14 08:05:00     0</span>
-<span class="co">#&gt;  7 1954-12-14 08:10:00     0</span>
-<span class="co">#&gt;  8 1954-12-14 08:15:00     0</span>
-<span class="co">#&gt;  9 1954-12-14 08:20:00     0</span>
-<span class="co">#&gt; 10 1954-12-14 08:25:00     0</span>
-<span class="co">#&gt; # ... with 48,199 more rows</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(hyetor)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(tibble)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">library</span>(lubridate)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">prec5min</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; # A tibble: 48,209 x 2</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;    date                 prec</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;    &lt;dttm&gt;              &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;  1 1954-12-14 07:40:00     0</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  2 1954-12-14 07:45:00     0</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  3 1954-12-14 07:50:00     0</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  4 1954-12-14 07:55:00     0</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;  5 1954-12-14 08:00:00     0</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;  6 1954-12-14 08:05:00     0</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt;  7 1954-12-14 08:10:00     0</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;  8 1954-12-14 08:15:00     0</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;  9 1954-12-14 08:20:00     0</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; 10 1954-12-14 08:25:00     0</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; # ... with 48,199 more rows</span></a></code></pre></div>
 <p>Compute the missing values ratio per year:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec5min <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/hyet_fill.html">hyet_fill</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/hyet_missing.html">hyet_missing</a></span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">na_ratio =</span> <span class="kw">mean</span>(na_ratio))
-<span class="co">#&gt; # A tibble: 3 x 2</span>
-<span class="co">#&gt;    year na_ratio</span>
-<span class="co">#&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  1954    0.493</span>
-<span class="co">#&gt; 2  1955    0.723</span>
-<span class="co">#&gt; 3  1956    0.619</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">prec5min <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/hyet_fill.html">hyet_fill</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/hyet_missing.html">hyet_missing</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">na_ratio =</span> <span class="kw">mean</span>(na_ratio))</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; # A tibble: 3 x 2</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;    year na_ratio</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 1  1954    0.493</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 2  1955    0.723</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 3  1956    0.619</span></a></code></pre></div>
 <p>Split to independent rainstorms and calculate erosivity values with cumulative precipitation greater than 12,7 mm:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec5min <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/hyet_split.html">hyet_split</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/hyet_erosivity.html">hyet_erosivity</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(cum_prec <span class="op">&gt;</span><span class="st"> </span><span class="fl">12.7</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(begin, duration, cum_prec, erosivity)
-<span class="co">#&gt; # A tibble: 29 x 4</span>
-<span class="co">#&gt;    begin               duration    cum_prec erosivity</span>
-<span class="co">#&gt;    &lt;dttm&gt;              &lt;time&gt;         &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 1955-03-03 10:05:00 " 780 mins"     13.0      7.33</span>
-<span class="co">#&gt;  2 1955-04-14 14:15:00 " 620 mins"     38.7    130.  </span>
-<span class="co">#&gt;  3 1955-04-15 11:15:00 1235 mins       24.7     30.4 </span>
-<span class="co">#&gt;  4 1955-05-11 13:30:00 " 375 mins"     28.2    123.  </span>
-<span class="co">#&gt;  5 1955-07-15 14:50:00 " 125 mins"     19.4    162.  </span>
-<span class="co">#&gt;  6 1955-08-30 14:30:00 " 150 mins"     23.8    115.  </span>
-<span class="co">#&gt;  7 1955-09-02 12:05:00 " 360 mins"     25.2    124.  </span>
-<span class="co">#&gt;  8 1955-09-04 13:10:00 " 170 mins"     20.4     52.5 </span>
-<span class="co">#&gt;  9 1955-09-28 18:05:00 " 100 mins"     35.6    366.  </span>
-<span class="co">#&gt; 10 1955-10-01 01:50:00 1115 mins       29.6     47.4 </span>
-<span class="co">#&gt; # ... with 19 more rows</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">prec5min <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/hyet_split.html">hyet_split</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/hyet_erosivity.html">hyet_erosivity</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(cum_prec <span class="op">&gt;</span><span class="st"> </span><span class="fl">12.7</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(begin, duration, cum_prec, erosivity)</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; # A tibble: 29 x 4</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt;    begin               duration    cum_prec erosivity</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;    &lt;dttm&gt;              &lt;time&gt;         &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;  1 1955-03-03 10:05:00 " 780 mins"     13.0      7.33</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt;  2 1955-04-14 14:15:00 " 620 mins"     38.7    130.  </span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;  3 1955-04-15 11:15:00 1235 mins       24.7     30.4 </span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt;  4 1955-05-11 13:30:00 " 375 mins"     28.2    123.  </span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt;  5 1955-07-15 14:50:00 " 125 mins"     19.4    162.  </span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt;  6 1955-08-30 14:30:00 " 150 mins"     23.8    115.  </span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt;  7 1955-09-02 12:05:00 " 360 mins"     25.2    124.  </span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;  8 1955-09-04 13:10:00 " 170 mins"     20.4     52.5 </span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt;  9 1955-09-28 18:05:00 " 100 mins"     35.6    366.  </span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 10 1955-10-01 01:50:00 1115 mins       29.6     47.4 </span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; # ... with 19 more rows</span></a></code></pre></div>
 </div>
 <div id="meta" class="section level2">
 <h2 class="hasAnchor">

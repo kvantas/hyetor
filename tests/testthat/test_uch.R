@@ -28,3 +28,23 @@ test_that("uch returns correct values", {
     all(uch_list$hyet_approx$unit_prec <= 1))
   expect_equal(nrow(uch_list$hyet_approx), nvalues)
 })
+
+test_that("huff_class returns correct values", {
+
+  # first quartile
+  x <- c(0.5, 0.1, 0.2, 0.2)
+  expect_equal(huff_class(c(0, cumsum(na.omit(x)))), 1)
+
+  # second quartile
+  x <- c(0.1, 0.5, 0.2, 0.2)
+  expect_equal(huff_class(c(0, cumsum(na.omit(x)))), 2)
+
+  # third quartile
+  x <- c(0.1, 0.1, 0.7, 0.1)
+  expect_equal(huff_class(c(0, cumsum(na.omit(x)))), 3)
+
+  # fourth quartile
+  x <- c(0.1, 0.1, 0.2, 0.6)
+  expect_equal(huff_class(c(0, cumsum(na.omit(x)))), 4)
+
+})

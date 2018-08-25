@@ -19,5 +19,5 @@ test_that("rain_intensities works for 5 minute time step", {
 
   expect_equal(as.numeric(intens$duration), 12 * 24)
   expect_equal(intens$cum_prec, nrow(hyet))
-  expect_true(all(intens[, 5:9] == 12))
+  expect_true(all(intens[, 6:10] == 12))
 })

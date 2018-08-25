@@ -10,7 +10,8 @@
 #' @param ts_unit a character string specifying the time unit. Valid values
 #' are "mins" and "hours".
 #'
-#' @return a tibble with the calculated total precipitation height, duration
+#' @return a tibble with the calculated total precipitation height, duration,
+#' mean intensity, Huff's quartile classification
 #' and maximum rolling rainfall intensities for 5, 10, 15, 30 minutes and 1, 2,
 #' 3, 6, 12, 24 and 48 hours
 #'

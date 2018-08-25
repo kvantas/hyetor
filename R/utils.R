@@ -135,6 +135,7 @@ rain_intensities <- function(hyet, time_step, ts_unit) {
       units = "hours"
     ),
     cum_prec = sum(hyet$prec, na.rm = TRUE),
+    quartile = huff_class(c(0, cumsum(na.omit(hyet$prec)))),
     int_mean = .data$cum_prec / as.numeric(.data$duration),
     int_5min = max_roll_sum(hyet, from_dur, "5 mins") * 12,
     int_10min = max_roll_sum(hyet, from_dur, "10 mins") * 6,

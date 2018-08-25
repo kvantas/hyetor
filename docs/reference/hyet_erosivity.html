@@ -62,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyetor</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0.9002</span>
       </span>
     </div>
 
@@ -155,8 +155,10 @@ the kinetic energy per unit of rainfall (MJ/ha/mm).</p></td>
 
     <p>a tibble with erosivity events related values: staring and ending
 date, cumulative precipitation, maximum rolling intensity values of 15 and
-30 minutes and erosivity. If time step if 30 minutes then 15 minutes maximum
-intensity is zero.</p>
+30 minutes and erosivity. Only events with cumulative precipitation greater
+than 1.27 mm and duration greater than 30 minutes are returned.
+ If time step is 30 minutes then 15 minutes maximum
+intensity is set to zero.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 

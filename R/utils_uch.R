@@ -58,6 +58,8 @@ uch <- function(hyet, time_step, ts_unit, nvalues, .simple = FALSE) {
 #' Huff's quartile classification
 #'
 #' x is an unitless cumulative hyetograph
+#'
+#' @noRd
 huff_class <- function(x) {
   unname(which.max(diff(quantile(x))))
 }

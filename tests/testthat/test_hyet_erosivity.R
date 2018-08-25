@@ -35,7 +35,7 @@ test_that("hyet_erosivity works with grouped hyetographs", {
       length.out = len,
       by = paste(time_step, "mins")
     ),
-    prec = rep(2, len)
+    prec = rep(5, len)
   )
 
   # add a six-hour break

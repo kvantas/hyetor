@@ -108,5 +108,5 @@ erosivity <- function(hyet, time_step, en_equation) {
   EI$extract_storm <- NULL
 
   # remove events with cum_prec < 1.27 mm or duration less than 30 minutes
-  dplyr::filter(EI, .data$cum_prec > 1.27 | .data$duration <= 30)
+  dplyr::filter(EI, .data$cum_prec > 1.27 & .data$duration >= 30)
 }

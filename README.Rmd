@@ -1,7 +1,7 @@
 ---
 output:
   md_document:
-    variant: markdown_github
+    variant: gfm
   bibliography: ./bibliography.bib
 ---
 
@@ -23,14 +23,14 @@ knitr::opts_chunk$set(
   [![DOI](https://zenodo.org/badge/145962234.svg)](https://zenodo.org/badge/latestdoi/145962234)
   [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-`hyetor` is an R  package that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:
+`hyetor` [@vantas2018] is an R  package [@CRAN] that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:
 
  1. Aggregate precipitation values.
- 2. Split precipitation time series to independent rainstorms using the maximum dry period duration of no precipitation.
- 3. Compile Unitless Cumulative Hyetographs.
+ 2. Split precipitation time series to independent rainstorms using predifined monthly maximum dry period duration of no precipitation [@restitepo1982identification].
+ 3. Compile Unitless Cumulative Hyetographs [@bonta2004development].
  4. Find maximum rainfall intensities.
- 5. Categorize rainstorms using Huff's quartile classification.
- 6. Calculate rainfall erosivity values
+ 5. Categorize rainstorms using Huff's quartile classification [@huff1967time].
+ 6. Calculate rainfall erosivity values [@wischmeier1958rainfall, @brown1987storm and @McGregor1995].
  7. Create missing values summaries.
 
 For more details checkout the package's [ website](https://kvantas.github.io/hyetor/) and the
@@ -55,7 +55,7 @@ The functions that are provided by `hyetor` are:
 
 The data sets that are provided by `hyetor` are:
 
-* `prec5min`, This time series comes from the weather station 'Arna' in Greece. The owner of that weather station is the Ministry of Environment and Energy. The time series period is from 12/1954 to 05/1956 and the time-step is 5 minutes.
+* `prec5min`, time series that comes from the weather station 'Arna' in Greece. The owner of that weather station is the Ministry of Environment and Energy. The time series period is from 12/1954 to 05/1956 and the time-step is 5 minutes.
 
 ## Example
 
@@ -117,3 +117,4 @@ A BibTeX entry for LaTeX users is
     url = {https://kvantas.github.io/hyetor/},
   }
 ```
+## References

@@ -2,7 +2,7 @@
 output:
   md_document:
     variant: gfm
-  bibliography: ./bibliography.bib
+bibliography: ./bibliography.bib
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -23,14 +23,14 @@ knitr::opts_chunk$set(
   [![DOI](https://zenodo.org/badge/145962234.svg)](https://zenodo.org/badge/latestdoi/145962234)
   [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-`hyetor` [@vantas2018] is an R  package [@CRAN] that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:
+`hyetor` [@vantas2018hyetor] is an R  package [@CRAN] that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:
 
  1. Aggregate precipitation values.
- 2. Split precipitation time series to independent rainstorms using predifined monthly maximum dry period duration of no precipitation [@restitepo1982identification].
+ 2. Split precipitation time series to independent rainstorms using predefined monthly maximum dry period duration of no precipitation [@restrepo1982identification].
  3. Compile Unitless Cumulative Hyetographs [@bonta2004development].
  4. Find maximum rainfall intensities.
  5. Categorize rainstorms using Huff's quartile classification [@huff1967time].
- 6. Calculate rainfall erosivity values [@wischmeier1958rainfall, @brown1987storm and @McGregor1995].
+ 6. Calculate rainfall erosivity values using a number of energy equations [@wischmeier1958rainfall; @brown1987storm; @McGregor1995].
  7. Create missing values summaries.
 
 For more details checkout the package's [ website](https://kvantas.github.io/hyetor/) and the

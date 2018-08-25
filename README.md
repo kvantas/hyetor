@@ -11,20 +11,21 @@ status](https://codecov.io/gh/kvantas/hyetor/branch/master/graph/badge.svg)](htt
 [![DOI](https://zenodo.org/badge/145962234.svg)](https://zenodo.org/badge/latestdoi/145962234)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-`hyetor` \[@vantas2018\] is an R package \[@CRAN\] that provides a
-collection of tools that analyze fixed interval precipitation records.
+`hyetor` (Vantas 2018) is an R package (R Core Team 2018) that provides
+a collection of tools that analyze fixed interval precipitation records.
 It can be used to:
 
 1.  Aggregate precipitation values.
 2.  Split precipitation time series to independent rainstorms using
-    predifined monthly maximum dry period duration of no precipitation
-    \[@restitepo1982identification\].
-3.  Compile Unitless Cumulative Hyetographs \[@bonta2004development\].
+    predefined monthly maximum dry period duration of no precipitation
+    (Restrepo-Posada and Eagleson 1982).
+3.  Compile Unitless Cumulative Hyetographs (Bonta 2004).
 4.  Find maximum rainfall intensities.
-5.  Categorize rainstorms using Huff’s quartile classification
-    \[@huff1967time\].
-6.  Calculate rainfall erosivity values \[@wischmeier1958rainfall,
-    @brown1987storm and @McGregor1995\].
+5.  Categorize rainstorms using Huff’s quartile classification (Huff
+    1967).
+6.  Calculate rainfall erosivity values using a number of energy
+    equations (Wischmeier and Smith 1958; Brown and Foster 1987;
+    McGregor et al. 1995).
 7.  Create missing values summaries.
 
 For more details checkout the package’s
@@ -157,3 +158,70 @@ A BibTeX entry for LaTeX users is
       }
 
 ## References
+
+<div id="refs" class="references">
+
+<div id="ref-bonta2004development">
+
+Bonta, JV. 2004. “Development and Utility of Huff Curves for
+Disaggregating Precipitation Amounts.” *Applied Engineering in
+Agriculture* 20 (5). American Society of Agricultural; Biological
+Engineers: 641.
+
+</div>
+
+<div id="ref-brown1987storm">
+
+Brown, LC, and GR Foster. 1987. “Storm Erosivity Using Idealized
+Intensity Distributions.” *Transactions of the ASAE* 30 (2). American
+Society of Agricultural; Biological Engineers: 379–0386.
+
+</div>
+
+<div id="ref-huff1967time">
+
+Huff, Floyd A. 1967. “Time Distribution of Rainfall in Heavy Storms.”
+*Water Resources Research* 3 (4). Wiley Online Library: 1007–19.
+
+</div>
+
+<div id="ref-McGregor1995">
+
+McGregor, K.C., Ron Bingner, A.J. Bowie, and G.R. Foster. 1995.
+“Erosivity Index Values for Northern Mississippi” 38 (January):
+1039–47.
+
+</div>
+
+<div id="ref-CRAN">
+
+R Core Team. 2018. *R: A Language and Environment for Statistical
+Computing*. Vienna, Austria: R Foundation for Statistical Computing.
+
+</div>
+
+<div id="ref-restrepo1982identification">
+
+Restrepo-Posada, Pedro J, and Peter S Eagleson. 1982. “Identification of
+Independent Rainstorms.” *Journal of Hydrology* 55 (1-4). Elsevier:
+303–19.
+
+</div>
+
+<div id="ref-vantas2018hyetor">
+
+Vantas, Konstantinos. 2018. *hyetor: R Package to Analyze Fixed Interval
+Precipitation Time Series*.
+<https://doi.org/http://doi.org/10.5281/zenodo.1403156>.
+
+</div>
+
+<div id="ref-wischmeier1958rainfall">
+
+Wischmeier, Walter H, and Dwight D Smith. 1958. “Rainfall Energy and Its
+Relationship to Soil Loss.” *EOS, Transactions American Geophysical
+Union* 39 (2). Wiley Online Library: 285–91.
+
+</div>
+
+</div>

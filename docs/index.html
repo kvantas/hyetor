@@ -79,14 +79,15 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#hyetor" class="anchor"></a>hyetor</h1></div>
 
-<p><code>hyetor</code> is an R package that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:</p>
+<p><code>hyetor</code> <span class="citation">(Vantas 2018)</span> is an R package <span class="citation">(R Core Team 2018)</span> that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:</p>
 <ol style="list-style-type: decimal">
 <li>Aggregate precipitation values.</li>
-<li>Split precipitation time series to independent rainstorms using the maximum dry period duration of no precipitation.</li>
-<li>Compile Unitless Cumulative Hyetographs.</li>
+<li>Split precipitation time series to independent rainstorms using predefined monthly maximum dry period duration of no precipitation <span class="citation">(Restrepo-Posada and Eagleson 1982)</span>.</li>
+<li>Compile Unitless Cumulative Hyetographs <span class="citation">(Bonta 2004)</span>.</li>
 <li>Find maximum rainfall intensities.</li>
-<li>Calculate rainfall erosivity values</li>
-<li>Creates missing values summaries.</li>
+<li>Categorize rainstorms using Huff’s quartile classification <span class="citation">(Huff 1967)</span>.</li>
+<li>Calculate rainfall erosivity values using a number of energy equations <span class="citation">(Wischmeier and Smith 1958; Brown and Foster 1987; McGregor et al. 1995)</span>.</li>
+<li>Create missing values summaries.</li>
 </ol>
 <p>For more details checkout the package’s <a href="https://kvantas.github.io/hyetor/">website</a> and the vignettes:</p>
 <div id="installation" class="section level2">
@@ -101,13 +102,13 @@
 <a href="#using-hyetor" class="anchor"></a>Using hyetor</h2>
 <p>The functions that are provided by <code>hyetor</code> are:</p>
 <ul>
-<li>Functions that can be used to preprocess precipitation timeseries: <code>hyet_create</code>, <code>hyet_fill</code>, <code>hyet_aggregate</code> and <code>hyet_split</code>.</li>
-<li>Funtions that analyze precipitation timeseries: <code>hyet_erosivity</code>, <code>hyet_intensities</code>, <code>hyet_missing</code> and <code>hyet_uch</code>.</li>
+<li>Functions that can be used to preprocess precipitation time-series: <code>hyet_create</code>, <code>hyet_fill</code>, <code>hyet_aggregate</code> and <code>hyet_split</code>.</li>
+<li>Functions that analyze precipitation time-series: <code>hyet_erosivity</code>, <code>hyet_intensities</code>, <code>hyet_missing</code> and <code>hyet_uch</code>.</li>
 </ul>
 <p>The data sets that are provided by <code>hyetor</code> are:</p>
 <ul>
 <li>
-<code>prec5min</code>, This time series comes from the weather station ‘Arna’ in Greece. The owner of that weather station is the Ministry of Environment and Energy. The time series period is from 12/1954 to 05/1956 and the time-step is 5 minutes.</li>
+<code>prec5min</code>, time series that comes from the weather station ‘Arna’ in Greece. The owner of that weather station is the Ministry of Environment and Energy. The time series period is from 12/1954 to 05/1956 and the time-step is 5 minutes.</li>
 </ul>
 </div>
 <div id="example" class="section level2">
@@ -193,6 +194,36 @@
     note = {R package},
     url = {https://kvantas.github.io/hyetor/},
   }</code></pre>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<div id="refs" class="references">
+<div id="ref-bonta2004development">
+<p>Bonta, JV. 2004. “Development and Utility of Huff Curves for Disaggregating Precipitation Amounts.” <em>Applied Engineering in Agriculture</em> 20 (5). American Society of Agricultural; Biological Engineers: 641.</p>
+</div>
+<div id="ref-brown1987storm">
+<p>Brown, LC, and GR Foster. 1987. “Storm Erosivity Using Idealized Intensity Distributions.” <em>Transactions of the ASAE</em> 30 (2). American Society of Agricultural; Biological Engineers: 379–0386.</p>
+</div>
+<div id="ref-huff1967time">
+<p>Huff, Floyd A. 1967. “Time Distribution of Rainfall in Heavy Storms.” <em>Water Resources Research</em> 3 (4). Wiley Online Library: 1007–19.</p>
+</div>
+<div id="ref-McGregor1995">
+<p>McGregor, K.C., Ron Bingner, A.J. Bowie, and G.R. Foster. 1995. “Erosivity Index Values for Northern Mississippi” 38 (January): 1039–47.</p>
+</div>
+<div id="ref-CRAN">
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing.</p>
+</div>
+<div id="ref-restrepo1982identification">
+<p>Restrepo-Posada, Pedro J, and Peter S Eagleson. 1982. “Identification of Independent Rainstorms.” <em>Journal of Hydrology</em> 55 (1-4). Elsevier: 303–19.</p>
+</div>
+<div id="ref-vantas2018hyetor">
+<p>Vantas, Konstantinos. 2018. <em>hyetor: R Package to Analyze Fixed Interval Precipitation Time Series</em>. <a href="https://doi.org/http://doi.org/10.5281/zenodo.1403156" class="uri">https://doi.org/http://doi.org/10.5281/zenodo.1403156</a>.</p>
+</div>
+<div id="ref-wischmeier1958rainfall">
+<p>Wischmeier, Walter H, and Dwight D Smith. 1958. “Rainfall Energy and Its Relationship to Soil Loss.” <em>EOS, Transactions American Geophysical Union</em> 39 (2). Wiley Online Library: 285–91.</p>
+</div>
+</div>
 </div>
 </div>
   </div>

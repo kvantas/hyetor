@@ -1,8 +1,10 @@
 #' @title Aggregate an hyetograph using a predefined time-step
 #'
-#' @description \code{hyet_aggregate} uses a predefined time-step to
-#' aggregate precipitation records in an hyetograph. Returns an error if
-#' \code{hyet} is not a valid hyetograph.
+#' @description \code{hyet_aggregate} uses an hyetograph, single or grouped
+#' (i.e. from \code{hyet_split}) and a predefined time-step to aggregate
+#' precipitation records. Returns an error if \code{hyet} is not a valid
+#' hyetograph.
+
 #'
 #' @param hyet an hyetograph from \code{hyet_create} function.
 #' @param time_step a numeric value that represents the time-step.
@@ -25,5 +27,13 @@ hyet_aggregate <- function(hyet, time_step, ts_unit) {
   units_check(ts_unit, minhour = FALSE)
 
   # call utility function
-  util_aggr(hyet, time_step, ts_unit)
+
+  # check for grouped_df
+  if ("grouped_df" %in% class(hyet)) {
+    dplyr::do(hyet, util_aggr(.data, time_step, ts_unit))
+  } else {
+    util_aggr(hyet, time_step, ts_unit)
+  }
+
+
 }

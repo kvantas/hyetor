@@ -18,9 +18,10 @@ are "mins", "hours", "days", "months", "quarter" or "year".}
 a tibble with the aggregated hyetograph.
 }
 \description{
-\code{hyet_aggregate} uses a predefined time-step to
-aggregate precipitation records in an hyetograph. Returns an error if
-\code{hyet} is not a valid hyetograph.
+\code{hyet_aggregate} uses an hyetograph, single or grouped
+(i.e. from \code{hyet_split}) and a predefined time-step to aggregate
+precipitation records. Returns an error if \code{hyet} is not a valid
+hyetograph.
 }
 \examples{
 

@@ -115,7 +115,7 @@ util_aggr <- function(hyet, time_step, ts_unit = "mins") {
 #' @noRd
 util_roll_sum <- function(hyet, win_size) {
   hyet$prec <- RcppRoll::roll_sum(hyet$prec,
-    n = win_size, fill = NA,
+    n = win_size, fill = 0,
     align = "left", na.rm = TRUE
   )
   hyet

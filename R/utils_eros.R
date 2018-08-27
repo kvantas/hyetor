@@ -29,24 +29,31 @@ erosivity <- function(hyet, time_step, en_equation) {
   step_per30 <- 30 / time_step
   step_per15 <- 15 / time_step
 
+  # create from duration string
+  from_dur <- paste(time_step, "mins")
+
   # compute time step duration and total duration
   ts_dur <- lubridate::duration(paste(time_step, "mins"))
   total_duration <- difftime(tail(hyet$date, 1), hyet$date[1] - ts_dur,
     units = "mins"
   )
 
-  # compute 30 min and 15 min rolling intensities
-  hyet <- dplyr::mutate(
-    hyet,
-    prec15 = RcppRoll::roll_sum(hyet$prec,
-      n = step_per15, fill = 0,
-      align = "left", na.rm = TRUE
-    ),
-    prec30 = RcppRoll::roll_sum(hyet$prec,
-      n = step_per30, fill = 0,
-      align = "left", na.rm = TRUE
-    )
-  )
+  # compute 30 min and 15 min rolling precipitations
+  if (time_step == 5) {
+    hyet$prec15 <- util_roll_sum(hyet, 3)$prec
+    hyet$prec30 <- util_roll_sum(hyet, 6)$prec
+  } else if(time_step == 10) {
+    hyet$prec15 <- 0
+    hyet$prec30 <- util_roll_sum(hyet, 3)$prec
+
+  } else if(time_step == 15) {
+    hyet$prec15 <- 0
+    hyet$prec30 <- util_roll_sum(hyet, 2)$prec
+  } else if(time_step == 30) {
+    hyet$prec15 <- 0
+    hyet$prec30 <- hyet$prec
+
+  }
 
 
   # break storms if six-hour-cumulative precipitation is < 1.27 mm -------------

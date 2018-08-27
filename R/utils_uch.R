@@ -43,7 +43,7 @@ uch <- function(hyet, time_step, ts_unit, nvalues, .simple = FALSE) {
     tibble::add_column(res, .before = TRUE,
                        "start" = start_date,
                        "end" = end_date,
-                       "duration" = duration,
+                       "duration" = as.numeric(duration)/60,
                        "prec_height" = prec_height,
                        "mean_int" = prec_height / as.numeric(duration),
                        )

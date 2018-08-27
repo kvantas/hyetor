@@ -15,6 +15,7 @@ test_that("util_roll_sum works", {
   # if windows size is greater than records length return all NA
   expect_true(all(is.na(util_roll_sum(hyet, 11)$prec)))
 
-  expect_equal(util_roll_sum(hyet, 2)$prec, c(seq(3, 19, 2), NA))
-  expect_equal(util_roll_sum(hyet, 3)$prec, c(seq(6, 27, 3), NA, NA))
+  # fill with zeros
+  expect_equal(util_roll_sum(hyet, 2)$prec, c(seq(3, 19, 2), 0))
+  expect_equal(util_roll_sum(hyet, 3)$prec, c(seq(6, 27, 3), 0, 0))
 })

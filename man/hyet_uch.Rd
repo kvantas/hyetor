@@ -15,7 +15,8 @@ hyet_uch(hyet, time_step, ts_unit)
 are "mins" and "hours".}
 }
 \value{
-a tibble with start and end time, precipitation time and duration and
+a tibble with start and end time, precipitation height, mean
+intensity and duration, Huff's quartile classification and
 the unitless cumulative precipitation for every 1% of unitless time using
 linear interpolation.
 }

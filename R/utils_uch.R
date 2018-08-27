@@ -37,6 +37,9 @@ uch <- function(hyet, time_step, ts_unit, nvalues, .simple = FALSE) {
     method = "linear", n = nvalues
   )
 
+  # find quartile
+  quartile <- huff_class(c(0, cumsum(na.omit(hyet$prec))))
+
   # use .simple to return a tibble with one row
   if (.simple) {
     res <- tibble::as.tibble(t(approx_hyet$y))
@@ -47,6 +50,7 @@ uch <- function(hyet, time_step, ts_unit, nvalues, .simple = FALSE) {
       "duration" = as.numeric(duration) / 60,
       "prec_height" = prec_height,
       "mean_int" = prec_height / as.numeric(duration),
+      "quartile" = quartile
     )
   } else {
     # create a tibble for aprrox. hyet
@@ -56,7 +60,7 @@ uch <- function(hyet, time_step, ts_unit, nvalues, .simple = FALSE) {
       "duration" = duration,
       "prec_height" = prec_height,
       "mean_int" = prec_height / as.numeric(duration),
-
+      "quartile" = quartile,
       "unit_time" = approx_hyet$x,
       "unit_prec" = approx_hyet$y
     )

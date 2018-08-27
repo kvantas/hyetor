@@ -24,7 +24,7 @@ test_that("hyet_erosivity works with simple hyetographs", {
 
 test_that("hyet_erosivity works with grouped hyetographs", {
 
-  # create time series with 30 mins time step
+  # create time series with 5 mins time step
   time_step <- 5
   len <- 190
   en_equation <- "brown_foster"
@@ -45,7 +45,7 @@ test_that("hyet_erosivity works with grouped hyetographs", {
   hyet$prec[110:182] <- 0.01
 
   # create grouped hyet
-  storms <- hyet_split(hyet, 5, "mins")
+  storms <- hyet_split(hyet, time_step, "mins")
 
   # copmute ei_values
   ei_values <- hyet_erosivity(storms, time_step, en_equation)
@@ -54,7 +54,74 @@ test_that("hyet_erosivity works with grouped hyetographs", {
   expect_equal(nrow(ei_values), 3)
 })
 
-# Sys.setenv(NOT_CRAN="false")
+test_that("hyet_erosivity works for 10 min time step", {
+
+  # create time series with 10 mins time step
+  time_step <- 10
+  len <- 190
+  en_equation <- "brown_foster"
+
+  hyet <- tibble::tibble(
+    date = seq(
+      from = as.POSIXct(0, origin = "2018-01-01 00:00:00", tz = "UTC"),
+      length.out = len,
+      by = paste(time_step, "mins")
+    ),
+    prec = rep(5, len)
+  )
+
+  # add a six-hour break
+  hyet$prec[10:46] <- 0.
+
+  # add a period of six hours with cum_prec < 1.27 mm
+  hyet$prec[110:146] <- 0.01
+
+  # create grouped hyet
+  storms <- hyet_split(hyet, time_step, "mins")
+
+  # copmute ei_values
+  ei_values <- hyet_erosivity(storms, time_step, en_equation)
+
+  # expect to return three erosivity events
+  expect_equal(nrow(ei_values), 3)
+
+
+})
+
+test_that("hyet_erosivity works for 15 min time step", {
+
+  # create time series with 10 mins time step
+  time_step <- 15
+  len <- 190
+  en_equation <- "brown_foster"
+
+  hyet <- tibble::tibble(
+    date = seq(
+      from = as.POSIXct(0, origin = "2018-01-01 00:00:00", tz = "UTC"),
+      length.out = len,
+      by = paste(time_step, "mins")
+    ),
+    prec = rep(5, len)
+  )
+
+  # add a six-hour break
+  hyet$prec[10:34] <- 0.
+
+  # add a period of six hours with cum_prec < 1.27 mm
+  hyet$prec[110:134] <- 0.01
+
+  # create grouped hyet
+  storms <- hyet_split(hyet, time_step, "mins")
+
+  # copmute ei_values
+  ei_values <- hyet_erosivity(storms, time_step, en_equation)
+
+  # expect to return three erosivity events
+  expect_equal(nrow(ei_values), 3)
+
+
+})
+
 
 skip_on_appveyor()
 skip_on_cran()

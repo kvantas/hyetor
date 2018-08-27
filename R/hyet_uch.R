@@ -9,7 +9,8 @@
 #' @param ts_unit a character string specifying the time unit. Valid values
 #' are "mins" and "hours".
 #'
-#' @return a tibble with start and end time, precipitation time and duration and
+#' @return a tibble with start and end time, precipitation height, mean
+#' intensity and duration, Huff's quartile classification and
 #' the unitless cumulative precipitation for every 1% of unitless time using
 #' linear interpolation.
 #'

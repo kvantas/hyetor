@@ -16,7 +16,7 @@ are "mins" and "hours".}
 }
 \value{
 a tibble with the calculated total precipitation height, duration,
-mean intensity, Huff's quartile classification
+mean intensity
 and maximum rolling rainfall intensities for 5, 10, 15, 30 minutes and 1, 2,
 3, 6, 12, 24 and 48 hours
 }

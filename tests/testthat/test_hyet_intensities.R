@@ -53,3 +53,29 @@ test_that("hyet_intensities works with grouped hyetographs", {
   # two storms exist
   expect_equal(nrow(intens), 2)
 })
+
+skip_on_appveyor()
+skip_on_cran()
+skip_on_travis()
+test_that("hyet_intensities push", {
+
+  time_step <- 5
+  ts_unit <- "mins"
+  len <- 12 * 24 * 365 * 100
+
+  hyet <- tibble::tibble(
+    date = seq(
+      from = as.POSIXct(0, origin = "1918-01-01"), length.out = len,
+      by = paste(time_step, ts_unit)
+    ),
+    prec = runif(len)
+  )
+
+  hyet$year <- lubridate::year(hyet$date)
+
+  hyet <- dplyr::group_by(hyet, year)
+
+  expect_equal(nrow(hyet_intensities(hyet, time_step, ts_unit )), 100)
+
+
+})

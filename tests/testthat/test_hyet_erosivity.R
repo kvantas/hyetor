@@ -53,3 +53,51 @@ test_that("hyet_erosivity works with grouped hyetographs", {
   # expect to return three erosivity events
   expect_equal(nrow(ei_values), 3)
 })
+
+skip_on_appveyor()
+skip_on_cran()
+skip_on_travis()
+test_that("push hyet_erosivity, 5 mins time-step" {
+
+  time_step <- 5
+  ts_unit <- "mins"
+  len <- 12 * 24 * 365 * 100
+
+  hyet <- tibble::tibble(
+    date = seq(
+      from = as.POSIXct(0, origin = "1918-01-01"), length.out = len,
+      by = paste(time_step, ts_unit)
+    ),
+    prec = runif(len)
+  )
+
+  # set to zero 90 % of prec
+  hyet$prec[sample(1:len, len * 0.9)] = 0
+
+  expect_true( "tbl_df" %in% class(hyet_erosivity(hyet, time_step )))
+
+})
+
+skip_on_appveyor()
+skip_on_cran()
+skip_on_travis()
+test_that("push hyet_erosivity, 30 mins time-step" {
+
+  time_step <- 30
+  ts_unit <- "mins"
+  len <- 2 * 24 * 365 * 100
+
+  hyet <- tibble::tibble(
+    date = seq(
+      from = as.POSIXct(0, origin = "1918-01-01"), length.out = len,
+      by = paste(time_step, ts_unit)
+    ),
+    prec = runif(len)
+  )
+
+  # set to zero 90 % of prec
+  hyet$prec[sample(1:len, len * 0.9)] = 0
+
+  expect_true( "tbl_df" %in% class(hyet_erosivity(hyet, time_step)))
+
+})

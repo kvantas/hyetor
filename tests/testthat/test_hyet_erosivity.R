@@ -54,10 +54,12 @@ test_that("hyet_erosivity works with grouped hyetographs", {
   expect_equal(nrow(ei_values), 3)
 })
 
+# Sys.setenv(NOT_CRAN="false")
+
 skip_on_appveyor()
 skip_on_cran()
 skip_on_travis()
-test_that("push hyet_erosivity, 5 mins time-step" {
+test_that("push hyet_erosivity, 5 mins time-step", {
 
   time_step <- 5
   ts_unit <- "mins"
@@ -81,7 +83,7 @@ test_that("push hyet_erosivity, 5 mins time-step" {
 skip_on_appveyor()
 skip_on_cran()
 skip_on_travis()
-test_that("push hyet_erosivity, 30 mins time-step" {
+test_that("push hyet_erosivity, 30 mins time-step", {
 
   time_step <- 30
   ts_unit <- "mins"

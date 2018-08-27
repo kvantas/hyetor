@@ -38,10 +38,10 @@ the kinetic energy per unit of rainfall (MJ/ha/mm).}
 \value{
 a tibble with erosivity events related values: staring and ending
 date, cumulative precipitation, maximum rolling intensity values of 15 and
-30 minutes and erosivity. Only events with cumulative precipitation greater
-than 1.27 mm and duration greater than 30 minutes are returned.
- If time step is 30 minutes then 15 minutes maximum
-intensity is set to zero.
+30 minutes, total energy, erosivity and erosivity density. Only the events
+with cumulative precipitation greater than 1.27 mm and duration greater than
+30 minutes are returned. If time step is 30 minutes then the 15 minutes
+maximum intensity is set to zero.
 }
 \description{
 \code{hyet_erosivity}  uses an hyetograph, single or grouped

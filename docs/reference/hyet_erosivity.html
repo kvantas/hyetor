@@ -155,10 +155,10 @@ the kinetic energy per unit of rainfall (MJ/ha/mm).</p></td>
 
     <p>a tibble with erosivity events related values: staring and ending
 date, cumulative precipitation, maximum rolling intensity values of 15 and
-30 minutes and erosivity. Only events with cumulative precipitation greater
-than 1.27 mm and duration greater than 30 minutes are returned.
- If time step is 30 minutes then 15 minutes maximum
-intensity is set to zero.</p>
+30 minutes, total energy, erosivity and erosivity density. Only the events
+with cumulative precipitation greater than 1.27 mm and duration greater than
+30 minutes are returned. If time step is 30 minutes then the 15 minutes
+maximum intensity is set to zero.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
@@ -195,11 +195,12 @@ relationship to soil loss. Eos, Transactions American Geophysical Union,
 
 <span class='co'># compute erosivity</span>
 <span class='no'>hyet</span> <span class='kw'>%&gt;%</span>
-<span class='fu'>hyet_erosivity</span>(<span class='no'>time_step</span>, <span class='no'>en_equation</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 7
+<span class='fu'>hyet_erosivity</span>(<span class='no'>time_step</span>, <span class='no'>en_equation</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 9
 #&gt;   begin               end                 cum_prec duration max_i15 max_i30
 #&gt;   &lt;dttm&gt;              &lt;dttm&gt;                 &lt;dbl&gt; &lt;time&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 #&gt; 1 2018-01-01 00:00:00 2018-01-01 05:30:00     28.9 360 mins       0    11.8
-#&gt; # ... with 1 more variable: erosivity &lt;dbl&gt;</div></pre>
+#&gt; # ... with 3 more variables: total_energy &lt;dbl&gt;, erosivity &lt;dbl&gt;,
+#&gt; #   eros_density &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

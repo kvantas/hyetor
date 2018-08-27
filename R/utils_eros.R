@@ -102,7 +102,9 @@ erosivity <- function(hyet, time_step, en_equation) {
     duration = difftime(.data$end, (.data$begin - ts_dur), units = "mins"),
     max_i15 = max(.data$prec15) * 4,
     max_i30 = max(.data$prec30) * 2,
-    erosivity = sum(.data$energy * .data$prec, na.rm = TRUE) * .data$max_i30
+    total_energy = sum(.data$energy, na.rm = TRUE),
+    erosivity = sum(.data$energy * .data$prec, na.rm = TRUE) * .data$max_i30,
+    eros_density = .data$erosivity / .data$cum_prec
   )
   # remove extract_storm
   EI$extract_storm <- NULL

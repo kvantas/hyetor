@@ -6,7 +6,9 @@ uch <- function(hyet, time_step, ts_unit, nvalues, .simple = FALSE) {
 
   # compute duration and total precipitation height
   ts_dur <- lubridate::duration(paste(time_step, ts_unit), units = "mins")
-  duration <- difftime(tail(hyet$date, 1), hyet$date[1] - ts_dur,
+  start_date <- hyet$date[1]
+  end_date <- tail(hyet$date, 1)
+  duration <- difftime(end_date, start_date - ts_dur,
     units = "mins"
   )
 
@@ -41,13 +43,22 @@ uch <- function(hyet, time_step, ts_unit, nvalues, .simple = FALSE) {
   } else {
     # create a tibble for aprrox. hyet
     hyet_approx <- tibble::tibble(
+      "start" = start_date,
+      "end" = end_date,
+      "duration" = duration,
+      "prec_height" = prec_height,
+      "mean_int" = prec_height / as.numeric(duration),
+
       "unit_time" = approx_hyet$x,
       "unit_prec" = approx_hyet$y
     )
     # return results
     list(
+      "start" =start_date,
+      "end" = end_date,
       "duration" = duration,
       "prec_height" = prec_height,
+      "mean_int" = prec_height / as.numeric(duration),
       "hyet" = dplyr::select(hyet, -c("date_diff")),
       "hyet_approx" = hyet_approx
     )

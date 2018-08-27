@@ -15,7 +15,8 @@ hyet_uch(hyet, time_step, ts_unit)
 are "mins" and "hours".}
 }
 \value{
-a tibble with unitless cumulative precipitation for every 1% using
+a tibble with start and end time, precipitation time and duration and
+the unitless cumulative precipitation for every 1% of unitless time using
 linear interpolation.
 }
 \description{

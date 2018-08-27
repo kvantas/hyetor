@@ -58,7 +58,6 @@ skip_on_appveyor()
 skip_on_cran()
 skip_on_travis()
 test_that("hyet_intensities push", {
-
   time_step <- 5
   ts_unit <- "mins"
   len <- 12 * 24 * 365 * 100
@@ -75,7 +74,5 @@ test_that("hyet_intensities push", {
 
   hyet <- dplyr::group_by(hyet, year)
 
-  expect_equal(nrow(hyet_intensities(hyet, time_step, ts_unit )), 100)
-
-
+  expect_equal(nrow(hyet_intensities(hyet, time_step, ts_unit)), 100)
 })

@@ -46,5 +46,4 @@ test_that("huff_class returns correct values", {
   # fourth quartile
   x <- c(0.1, 0.1, 0.2, 0.6)
   expect_equal(huff_class(c(0, cumsum(na.omit(x)))), 4)
-
 })

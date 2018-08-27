@@ -34,6 +34,4 @@ hyet_aggregate <- function(hyet, time_step, ts_unit) {
   } else {
     util_aggr(hyet, time_step, ts_unit)
   }
-
-
 }

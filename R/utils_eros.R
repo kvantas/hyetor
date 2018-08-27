@@ -42,17 +42,15 @@ erosivity <- function(hyet, time_step, en_equation) {
   if (time_step == 5) {
     hyet$prec15 <- util_roll_sum(hyet, 3)$prec
     hyet$prec30 <- util_roll_sum(hyet, 6)$prec
-  } else if(time_step == 10) {
+  } else if (time_step == 10) {
     hyet$prec15 <- 0
     hyet$prec30 <- util_roll_sum(hyet, 3)$prec
-
-  } else if(time_step == 15) {
+  } else if (time_step == 15) {
     hyet$prec15 <- 0
     hyet$prec30 <- util_roll_sum(hyet, 2)$prec
-  } else if(time_step == 30) {
+  } else if (time_step == 30) {
     hyet$prec15 <- 0
     hyet$prec30 <- hyet$prec
-
   }
 
 

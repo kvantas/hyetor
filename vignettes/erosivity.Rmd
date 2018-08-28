@@ -1,0 +1,61 @@
+---
+title: "Rainfall erosivity calculation"
+author: "Konstantinos Vantas"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+bibliography: ../bibliography.bib
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+## Introduction
+
+The R coefficient (MJ.mm/ha/h/yr) is defined as the long-term average of the product of the kinetic energy of a storm and the maximum 30 min intensity [@renard1991rusle]:
+
+$$R = \frac{1}{n} \sum_{j=1}^{n} \sum_{k=1}^{m_j} (EI_{30})_{k}$$
+
+where $n$ is the number of years with rainfall records, $m_j$ the number of storms during year $j$ and $EI_{30}$
+the erosivity of storm $k$. The erosivity $EI_{30}$ (MJ.mm/ha/h) is equal to:
+
+$$EI_{30} = \left( \sum_{r=1}^{m} e_r \cdot v_{r} \right) \cdot I_{30}$$
+
+where $e_r$ is the energy of rainfall (MJ/ha/mm), $v_r$ the rainfall depth (mm) for the time interval $r$ of the hyetograph, which has been divided into $r = 1, 2, ..., m$ sub-intervals, such that each one of these is characterized by constant rainfall intensity and $I_{30}$ is the maximum rainfall intensity for a 30 minutes duration. 
+
+The quantity $e_r$ can be calculated for each $r$ using one of the kinetic energy equations:
+
+#### Wischmeier and Smith
+$e_r = 0.119 + 0.0873log_{10}(i)$ with the upper limit of 0.283  MJ/ha/mm if ${i} > 76$ mm/h. [@wischmeier1958rainfall].
+
+#### Brown and Foster
+$e_r = 0.29(1 - 0.72  e^{-0.05i})$ [@brown1987storm].
+
+#### McGregor et al.
+$e_r = 0.273 + 0.2168e^{-0.048i} - 0.4126e^{-0.072i}$ [@McGregor1995].
+
+In the above equations $i_r$ is rainfall intensity (mm/hr) and $e_r$ is the kinetic energy per unit of rainfall (MJ/ha/mm) for the interval $r$.
+
+
+The rules that apply in order to single out the storms causing erosion and to divide rainfalls of large duration are:
+
+1. A rainfall event is divided into two parts, if its cumulative depth for duration of 6 hours at a certain location is less than 1.27 mm.
+2. A rainfall is considered erosive:
+   * if it has a cumulative value greater than 12.7 mm or
+   * during a time period of 15 mins a cumulative value of precipitation of at least 6.4 mm is recorded.
+
+## Example
+
+This is an example aboout using the internal data set to compute the rainfall erosivity.
+
+
+
+## References
+
+

@@ -48,8 +48,7 @@
 #' date, cumulative precipitation, maximum rolling intensity values of 15 and
 #' 30 minutes, total energy, erosivity and erosivity density. Only the events
 #' with cumulative precipitation greater than 1.27 mm and duration greater than
-#' 30 minutes are returned. If time step is 30 minutes then the 15 minutes
-#' maximum intensity is set to zero.
+#' 30 minutes are returned.
 #'
 #' @export hyet_erosivity
 #'

@@ -29,9 +29,6 @@ erosivity <- function(hyet, time_step, en_equation) {
   step_per30 <- 30 / time_step
   step_per15 <- 15 / time_step
 
-  # create from duration string
-  from_dur <- paste(time_step, "mins")
-
   # compute time step duration and total duration
   ts_dur <- lubridate::duration(paste(time_step, "mins"))
   total_duration <- difftime(tail(hyet$date, 1), hyet$date[1] - ts_dur,
@@ -103,8 +100,8 @@ erosivity <- function(hyet, time_step, en_equation) {
     hyet,
     begin = .data$date[1],
     end = tail(.data$date, 1),
-    cum_prec = sum(.data$prec),
     duration = difftime(.data$end, (.data$begin - ts_dur), units = "mins"),
+    cum_prec = sum(.data$prec),
     max_i15 = max(.data$prec15) * 4,
     max_i30 = max(.data$prec30) * 2,
     total_energy = sum(.data$energy, na.rm = TRUE),

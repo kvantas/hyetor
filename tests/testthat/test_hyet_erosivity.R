@@ -84,8 +84,6 @@ test_that("hyet_erosivity works for 10 min time step", {
 
   # expect to return three erosivity events
   expect_equal(nrow(ei_values), 3)
-
-
 })
 
 test_that("hyet_erosivity works for 15 min time step", {
@@ -118,8 +116,6 @@ test_that("hyet_erosivity works for 15 min time step", {
 
   # expect to return three erosivity events
   expect_equal(nrow(ei_values), 3)
-
-
 })
 
 

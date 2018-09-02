@@ -107,7 +107,7 @@ util_aggr <- function(hyet, time_step, ts_unit = "mins") {
   hyet <- dplyr::group_by(hyet, .data$date)
 
   # summarise values
-  dplyr::summarise(hyet, prec = sum(.data$prec))
+  dplyr::summarise(hyet, prec = sum(.data$prec, na.rm = TRUE))
 }
 
 #' Utility function for hyetographs rolling sum

@@ -11,21 +11,17 @@ status](https://codecov.io/gh/kvantas/hyetor/branch/master/graph/badge.svg)](htt
 [![DOI](https://zenodo.org/badge/145962234.svg)](https://zenodo.org/badge/latestdoi/145962234)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-`hyetor` (Vantas 2018) is an R package (R Core Team 2018) that provides
-a collection of tools that analyze fixed interval precipitation records.
-It can be used to:
+`hyetor` is an R package that provides a collection of tools that
+analyze fixed interval precipitation records. It can be used to:
 
 1.  Aggregate precipitation values.
 2.  Split precipitation time series to independent rainstorms using
-    predefined monthly maximum dry period duration of no precipitation
-    (Restrepo-Posada and Eagleson 1982).
-3.  Compile Unitless Cumulative Hyetographs (Bonta 2004).
+    predefined monthly maximum dry period duration of no precipitation.
+3.  Compile Unitless Cumulative Hyetographs.
 4.  Find maximum rainfall intensities.
-5.  Categorize rainstorms using Huff’s quartile classification (Huff
-    1967).
+5.  Categorize rainstorms using Huff’s quartile classification.
 6.  Calculate rainfall erosivity values using a number of energy
-    equations (Wischmeier and Smith 1958; Brown and Foster 1987;
-    McGregor et al. 1995).
+    equations.
 7.  Create missing values summaries.
 
 For more details checkout the package’s
@@ -59,74 +55,33 @@ The data sets that are provided by `hyetor` are:
 ## Example
 
 This is a minimal example which shows how to use the package’s functions
-to analyze the internal data set and compute erosivity values.
-
-Load libraries and view data:
+to compute rainfall erosivity values.
 
 ``` r
 library(hyetor)
+library(ggplot2)
 library(tibble)
-library(dplyr)
-library(lubridate)
 
-prec5min
-#> # A tibble: 48,209 x 2
-#>    date                 prec
-#>    <dttm>              <dbl>
-#>  1 1954-12-14 07:40:00     0
-#>  2 1954-12-14 07:45:00     0
-#>  3 1954-12-14 07:50:00     0
-#>  4 1954-12-14 07:55:00     0
-#>  5 1954-12-14 08:00:00     0
-#>  6 1954-12-14 08:05:00     0
-#>  7 1954-12-14 08:10:00     0
-#>  8 1954-12-14 08:15:00     0
-#>  9 1954-12-14 08:20:00     0
-#> 10 1954-12-14 08:25:00     0
-#> # ... with 48,199 more rows
-```
-
-Compute the missing values ratio per year:
-
-``` r
-prec5min %>%
+ei_values <- prec5min %>%
   hyet_fill(time_step = 5, ts_unit = "mins") %>%
-  hyet_missing() %>%
-  group_by(year) %>%
-  summarise(na_ratio = mean(na_ratio))
-#> # A tibble: 3 x 2
-#>    year na_ratio
-#>   <dbl>    <dbl>
-#> 1  1954    0.493
-#> 2  1955    0.723
-#> 3  1956    0.619
+  hyet_erosivity(time_step = 5)
 ```
 
-Split to independent rainstorms and calculate erosivity values with
-cumulative precipitation greater than 12,7 mm:
+Let’s create a plot with erosivity values and total precipitation
+height.
 
 ``` r
-prec5min %>%
-  hyet_split(time_step = 5, ts_unit = "mins") %>%
-  hyet_erosivity(time_step = 5) %>%
-  ungroup() %>%
-  filter(cum_prec > 12.7) %>%
-  select(begin, duration, cum_prec, erosivity)
-#> # A tibble: 29 x 4
-#>    begin               duration    cum_prec erosivity
-#>    <dttm>              <time>         <dbl>     <dbl>
-#>  1 1955-03-03 10:05:00 " 780 mins"     13.0      7.33
-#>  2 1955-04-14 14:15:00 " 620 mins"     38.7    130.  
-#>  3 1955-04-15 11:15:00 1235 mins       24.7     30.4 
-#>  4 1955-05-11 13:30:00 " 375 mins"     28.2    123.  
-#>  5 1955-07-15 14:50:00 " 125 mins"     19.4    162.  
-#>  6 1955-08-30 14:30:00 " 150 mins"     23.8    115.  
-#>  7 1955-09-02 12:05:00 " 360 mins"     25.2    124.  
-#>  8 1955-09-04 13:10:00 " 170 mins"     20.4     52.5 
-#>  9 1955-09-28 18:05:00 " 100 mins"     35.6    366.  
-#> 10 1955-10-01 01:50:00 1115 mins       29.6     47.4 
-#> # ... with 19 more rows
+ei_values %>%
+  ggplot(aes(x = cum_prec, y = erosivity)) +
+  geom_point() +
+  geom_smooth(method = "loess") +
+  ylab("Erosivity (MJ.mm/ha/h)") +
+  scale_x_log10("Precipitation (mm)") +
+  scale_y_log10("EI30 (MJ.mm/ha/h)") +
+  theme_bw()
 ```
+
+![](README-unnamed-chunk-2-1.png)<!-- -->
 
 ## Meta
 
@@ -156,72 +111,3 @@ A BibTeX entry for LaTeX users is
         note = {R package},
         url = {https://kvantas.github.io/hyetor/},
       }
-
-## References
-
-<div id="refs" class="references">
-
-<div id="ref-bonta2004development">
-
-Bonta, JV. 2004. “Development and Utility of Huff Curves for
-Disaggregating Precipitation Amounts.” *Applied Engineering in
-Agriculture* 20 (5). American Society of Agricultural; Biological
-Engineers: 641.
-
-</div>
-
-<div id="ref-brown1987storm">
-
-Brown, LC, and GR Foster. 1987. “Storm Erosivity Using Idealized
-Intensity Distributions.” *Transactions of the ASAE* 30 (2). American
-Society of Agricultural; Biological Engineers: 379–0386.
-
-</div>
-
-<div id="ref-huff1967time">
-
-Huff, Floyd A. 1967. “Time Distribution of Rainfall in Heavy Storms.”
-*Water Resources Research* 3 (4). Wiley Online Library: 1007–19.
-
-</div>
-
-<div id="ref-McGregor1995">
-
-McGregor, K.C., Ron Bingner, A.J. Bowie, and G.R. Foster. 1995.
-“Erosivity Index Values for Northern Mississippi” 38 (January):
-1039–47.
-
-</div>
-
-<div id="ref-CRAN">
-
-R Core Team. 2018. *R: A Language and Environment for Statistical
-Computing*. Vienna, Austria: R Foundation for Statistical Computing.
-
-</div>
-
-<div id="ref-restrepo1982identification">
-
-Restrepo-Posada, Pedro J, and Peter S Eagleson. 1982. “Identification of
-Independent Rainstorms.” *Journal of Hydrology* 55 (1-4). Elsevier:
-303–19.
-
-</div>
-
-<div id="ref-vantas2018hyetor">
-
-Vantas, Konstantinos. 2018. *hyetor: R Package to Analyze Fixed Interval
-Precipitation Time Series*.
-<https://doi.org/http://doi.org/10.5281/zenodo.1403156>.
-
-</div>
-
-<div id="ref-wischmeier1958rainfall">
-
-Wischmeier, Walter H, and Dwight D Smith. 1958. “Rainfall Energy and Its
-Relationship to Soil Loss.” *EOS, Transactions American Geophysical
-Union* 39 (2). Wiley Online Library: 285–91.
-
-</div>
-
-</div>

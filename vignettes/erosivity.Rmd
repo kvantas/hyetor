@@ -31,17 +31,11 @@ where $e_r$ is the energy of rainfall (MJ/ha/mm), $v_r$ the rainfall depth (mm) 
 
 The quantity $e_r$ can be calculated for each $r$ using one of the kinetic energy equations:
 
-#### Wischmeier and Smith
-$e_r = 0.119 + 0.0873log_{10}(i)$ with the upper limit of 0.283  MJ/ha/mm if ${i} > 76$ mm/h. [@wischmeier1958rainfall].
-
-#### Brown and Foster
-$e_r = 0.29(1 - 0.72  e^{-0.05i})$ [@brown1987storm].
-
-#### McGregor et al.
-$e_r = 0.273 + 0.2168e^{-0.048i} - 0.4126e^{-0.072i}$ [@McGregor1995].
+1. `Wischmeier and Smith` $e_r = 0.119 + 0.0873log_{10}(i)$ with the upper limit of 0.283  MJ/ha/mm if ${i} > 76$ mm/h. [@wischmeier1958rainfall].
+2. `Brown and Foster` $e_r = 0.29(1 - 0.72  e^{-0.05i})$ [@brown1987storm].
+3. `McGregor et al.` $e_r = 0.273 + 0.2168e^{-0.048i} - 0.4126e^{-0.072i}$ [@McGregor1995].
 
 In the above equations $i_r$ is rainfall intensity (mm/hr) and $e_r$ is the kinetic energy per unit of rainfall (MJ/ha/mm) for the interval $r$.
-
 
 The rules that apply in order to single out the storms causing erosion and to divide rainfalls of large duration are:
 
@@ -52,8 +46,53 @@ The rules that apply in order to single out the storms causing erosion and to di
 
 ## Example
 
-This is an example aboout using the internal data set to compute the rainfall erosivity.
+This is an example about using the internal data set to compute rainfall erosivity values.
 
+```{r, "load libraries", message=FALSE}
+library(hyetor)
+library(tibble)
+library(dplyr)
+library(lubridate)
+
+# view data
+prec5min
+```
+
+The following code can be used to: 
+
+a) Split the time-series to independent storms using the value of 6 hours as the  monthly critical time duration of no precipitation. 
+b) Compute the rainfall erosivity values per storm.
+c) Filter the above values using only which of them are considered erosive.
+
+```{r "compute erosivity"}
+ei_values <- prec5min %>%
+  hyet_split(time_step = 5, ts_unit = "mins", crit_dur = rep(6, 12)) %>%
+  hyet_erosivity(time_step = 5) %>%
+  filter(cum_prec > 12.7 | max_i15 > 4 * 6.4)
+
+ei_values
+  
+```
+
+After the calculation of erosivity values, the annual value and  of the R coefficient can be computed with:
+
+```{r compute R values}
+
+# add years and months variables
+ei_values <- ei_values %>%
+  mutate( year = year(begin))
+
+# compute R
+R_coeff <- ei_values %>%
+  group_by(year) %>%
+  summarise(R = sum(erosivity)) %>%
+  ungroup() %>%
+  summarise(R = mean(R)) %>%
+  unlist()
+
+R_coeff
+
+```
 
 
 ## References

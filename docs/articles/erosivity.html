@@ -54,6 +54,9 @@
 <li>
       <a href="../articles/erosivity.html">Rainfall erosivity calculation</a>
     </li>
+    <li>
+      <a href="../articles/intro_hyetor.html">An introduction to `hyetor`</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -82,7 +85,7 @@
       <h1>Rainfall erosivity calculation</h1>
                         <h4 class="author">Konstantinos Vantas</h4>
             
-            <h4 class="date">2018-09-02</h4>
+            <h4 class="date">2018-09-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/kvantas/hyetor/blob/master/vignettes/erosivity.Rmd"><code>vignettes/erosivity.Rmd</code></a></small>
       <div class="hidden name"><code>erosivity.Rmd</code></div>
@@ -100,20 +103,14 @@
 <p><span class="math display">\[EI_{30} = \left( \sum_{r=1}^{m} e_r \cdot v_{r} \right) \cdot I_{30}\]</span></p>
 <p>where <span class="math inline">\(e_r\)</span> is the energy of rainfall (MJ/ha/mm), <span class="math inline">\(v_r\)</span> the rainfall depth (mm) for the time interval <span class="math inline">\(r\)</span> of the hyetograph, which has been divided into <span class="math inline">\(r = 1, 2, ..., m\)</span> sub-intervals, such that each one of these is characterized by constant rainfall intensity and <span class="math inline">\(I_{30}\)</span> is the maximum rainfall intensity for a 30 minutes duration.</p>
 <p>The quantity <span class="math inline">\(e_r\)</span> can be calculated for each <span class="math inline">\(r\)</span> using one of the kinetic energy equations:</p>
-<div id="wischmeier-and-smith" class="section level4">
-<h4 class="hasAnchor">
-<a href="#wischmeier-and-smith" class="anchor"></a>Wischmeier and Smith</h4>
-<p><span class="math inline">\(e_r = 0.119 + 0.0873log_{10}(i)\)</span> with the upper limit of 0.283 MJ/ha/mm if <span class="math inline">\({i} &gt; 76\)</span> mm/h. <span class="citation">(Wischmeier and Smith 1958)</span>.</p>
-</div>
-<div id="brown-and-foster" class="section level4">
-<h4 class="hasAnchor">
-<a href="#brown-and-foster" class="anchor"></a>Brown and Foster</h4>
-<p><span class="math inline">\(e_r = 0.29(1 - 0.72 e^{-0.05i})\)</span> <span class="citation">(Brown and Foster 1987)</span>.</p>
-</div>
-<div id="mcgregor-et-al-" class="section level4">
-<h4 class="hasAnchor">
-<a href="#mcgregor-et-al-" class="anchor"></a>McGregor et al.</h4>
-<p><span class="math inline">\(e_r = 0.273 + 0.2168e^{-0.048i} - 0.4126e^{-0.072i}\)</span> <span class="citation">(McGregor et al. 1995)</span>.</p>
+<ol style="list-style-type: decimal">
+<li>
+<code>Wischmeier and Smith</code> <span class="math inline">\(e_r = 0.119 + 0.0873log_{10}(i)\)</span> with the upper limit of 0.283 MJ/ha/mm if <span class="math inline">\({i} &gt; 76\)</span> mm/h. <span class="citation">(Wischmeier and Smith 1958)</span>.</li>
+<li>
+<code>Brown and Foster</code> <span class="math inline">\(e_r = 0.29(1 - 0.72 e^{-0.05i})\)</span> <span class="citation">(Brown and Foster 1987)</span>.</li>
+<li>
+<code>McGregor et al.</code> <span class="math inline">\(e_r = 0.273 + 0.2168e^{-0.048i} - 0.4126e^{-0.072i}\)</span> <span class="citation">(McGregor et al. 1995)</span>.</li>
+</ol>
 <p>In the above equations <span class="math inline">\(i_r\)</span> is rainfall intensity (mm/hr) and <span class="math inline">\(e_r\)</span> is the kinetic energy per unit of rainfall (MJ/ha/mm) for the interval <span class="math inline">\(r\)</span>.</p>
 <p>The rules that apply in order to single out the storms causing erosion and to divide rainfalls of large duration are:</p>
 <ol style="list-style-type: decimal">
@@ -126,11 +123,76 @@
 </li>
 </ol>
 </div>
-</div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>This is an example aboout using the internal data set to compute the rainfall erosivity.</p>
+<p>This is an example about using the internal data set to compute rainfall erosivity values.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(hyetor)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tibble)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(lubridate)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># view data</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">prec5min</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; # A tibble: 48,209 x 2</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt;    date                 prec</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt;    &lt;dttm&gt;              &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt;  1 1954-12-14 07:40:00     0</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt;  2 1954-12-14 07:45:00     0</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt;  3 1954-12-14 07:50:00     0</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt;  4 1954-12-14 07:55:00     0</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt;  5 1954-12-14 08:00:00     0</span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt;  6 1954-12-14 08:05:00     0</span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt;  7 1954-12-14 08:10:00     0</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt;  8 1954-12-14 08:15:00     0</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co">#&gt;  9 1954-12-14 08:20:00     0</span></a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt; 10 1954-12-14 08:25:00     0</span></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co">#&gt; # ... with 48,199 more rows</span></a></code></pre></div>
+<p>The following code can be used to:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Split the time-series to independent storms using the value of 6 hours as the monthly critical time duration of no precipitation.</li>
+<li>Compute the rainfall erosivity values per storm.</li>
+<li>Filter the above values using only which of them are considered erosive.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">ei_values &lt;-<span class="st"> </span>prec5min <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/hyet_split.html">hyet_split</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>, <span class="dt">crit_dur =</span> <span class="kw">rep</span>(<span class="dv">6</span>, <span class="dv">12</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/hyet_erosivity.html">hyet_erosivity</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(cum_prec <span class="op">&gt;</span><span class="st"> </span><span class="fl">12.7</span> <span class="op">|</span><span class="st"> </span>max_i15 <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="fl">6.4</span>)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">ei_values</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; # A tibble: 31 x 10</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; # Groups:   storm [31]</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;    storm begin               end                 duration cum_prec max_i15</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;    &lt;int&gt; &lt;dttm&gt;              &lt;dttm&gt;              &lt;time&gt;      &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  1    37 1955-03-03 10:05:00 1955-03-03 23:00:00 " 780 m…     13.0    6.44</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  2    55 1955-04-14 14:15:00 1955-04-15 00:30:00 " 620 m…     38.7   24.2 </span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  3    56 1955-04-15 11:15:00 1955-04-16 07:45:00 1235 mi…     24.7   10.9 </span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;  4    62 1955-05-11 13:30:00 1955-05-11 19:40:00 " 375 m…     28.2   25.6 </span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;  5    66 1955-07-15 14:50:00 1955-07-15 16:50:00 " 125 m…     19.4   52.3 </span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt;  6    73 1955-08-30 14:30:00 1955-08-30 16:55:00 " 150 m…     23.8   30.7 </span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;  7    74 1955-09-01 12:55:00 1955-09-01 14:50:00 " 120 m…     11.5   31.2 </span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;  8    75 1955-09-02 12:05:00 1955-09-02 18:00:00 " 360 m…     25.2   38.4 </span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt;  9    78 1955-09-04 13:10:00 1955-09-04 15:55:00 " 170 m…     20.4   17.6 </span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; 10    83 1955-09-28 18:05:00 1955-09-28 19:40:00 " 100 m…     35.6   59.9 </span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; # ... with 21 more rows, and 4 more variables: max_i30 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt; #   total_energy &lt;dbl&gt;, erosivity &lt;dbl&gt;, eros_density &lt;dbl&gt;</span></a></code></pre></div>
+<p>After the calculation of erosivity values, the annual value and of the R coefficient can be computed with:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co"># add years and months variables</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">ei_values &lt;-<span class="st"> </span>ei_values <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>( <span class="dt">year =</span> <span class="kw"><a href="http://lubridate.tidyverse.org/reference/year.html">year</a></span>(begin))</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co"># compute R</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">R_coeff &lt;-<span class="st"> </span>ei_values <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">R =</span> <span class="kw">sum</span>(erosivity)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">R =</span> <span class="kw">mean</span>(R)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="st">  </span><span class="kw">unlist</span>()</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">R_coeff</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt;        R </span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; 1112.367</span></a></code></pre></div>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2 class="hasAnchor">

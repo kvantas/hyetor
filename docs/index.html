@@ -59,6 +59,9 @@
 <li>
       <a href="articles/erosivity.html">Rainfall erosivity calculation</a>
     </li>
+    <li>
+      <a href="articles/intro_hyetor.html">An introduction to `hyetor`</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -92,14 +95,14 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#hyetor" class="anchor"></a>hyetor</h1></div>
 
-<p><code>hyetor</code> <span class="citation">(Vantas 2018)</span> is an R package <span class="citation">(R Core Team 2018)</span> that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:</p>
+<p><code>hyetor</code> is an R package that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:</p>
 <ol style="list-style-type: decimal">
 <li>Aggregate precipitation values.</li>
-<li>Split precipitation time series to independent rainstorms using predefined monthly maximum dry period duration of no precipitation <span class="citation">(Restrepo-Posada and Eagleson 1982)</span>.</li>
-<li>Compile Unitless Cumulative Hyetographs <span class="citation">(Bonta 2004)</span>.</li>
+<li>Split precipitation time series to independent rainstorms using predefined monthly maximum dry period duration of no precipitation.</li>
+<li>Compile Unitless Cumulative Hyetographs.</li>
 <li>Find maximum rainfall intensities.</li>
-<li>Categorize rainstorms using Huff’s quartile classification <span class="citation">(Huff 1967)</span>.</li>
-<li>Calculate rainfall erosivity values using a number of energy equations <span class="citation">(Wischmeier and Smith 1958; Brown and Foster 1987; McGregor et al. 1995)</span>.</li>
+<li>Categorize rainstorms using Huff’s quartile classification.</li>
+<li>Calculate rainfall erosivity values using a number of energy equations.</li>
 <li>Create missing values summaries.</li>
 </ol>
 <p>For more details checkout the package’s <a href="https://kvantas.github.io/hyetor/">website</a> and the vignettes:</p>
@@ -127,61 +130,24 @@
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>This is a minimal example which shows how to use the package’s functions to analyze the internal data set and compute erosivity values.</p>
-<p>Load libraries and view data:</p>
+<p>This is a minimal example which shows how to use the package’s functions to compute rainfall erosivity values.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(hyetor)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(tibble)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">library</span>(lubridate)</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">prec5min</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; # A tibble: 48,209 x 2</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;    date                 prec</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;    &lt;dttm&gt;              &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;  1 1954-12-14 07:40:00     0</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  2 1954-12-14 07:45:00     0</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  3 1954-12-14 07:50:00     0</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  4 1954-12-14 07:55:00     0</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;  5 1954-12-14 08:00:00     0</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;  6 1954-12-14 08:05:00     0</span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt;  7 1954-12-14 08:10:00     0</span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;  8 1954-12-14 08:15:00     0</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;  9 1954-12-14 08:20:00     0</span></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; 10 1954-12-14 08:25:00     0</span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; # ... with 48,199 more rows</span></a></code></pre></div>
-<p>Compute the missing values ratio per year:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">prec5min <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/hyet_fill.html">hyet_fill</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/hyet_missing.html">hyet_missing</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">na_ratio =</span> <span class="kw">mean</span>(na_ratio))</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; # A tibble: 3 x 2</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;    year na_ratio</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 1  1954    0.493</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 2  1955    0.723</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 3  1956    0.619</span></a></code></pre></div>
-<p>Split to independent rainstorms and calculate erosivity values with cumulative precipitation greater than 12,7 mm:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">prec5min <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/hyet_split.html">hyet_split</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/hyet_erosivity.html">hyet_erosivity</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(cum_prec <span class="op">&gt;</span><span class="st"> </span><span class="fl">12.7</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(begin, duration, cum_prec, erosivity)</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; # A tibble: 29 x 4</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt;    begin               duration    cum_prec erosivity</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;    &lt;dttm&gt;              &lt;time&gt;         &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;  1 1955-03-03 10:05:00 " 780 mins"     13.0      7.33</span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt;  2 1955-04-14 14:15:00 " 620 mins"     38.7    130.  </span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;  3 1955-04-15 11:15:00 1235 mins       24.7     30.4 </span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt;  4 1955-05-11 13:30:00 " 375 mins"     28.2    123.  </span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt;  5 1955-07-15 14:50:00 " 125 mins"     19.4    162.  </span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt;  6 1955-08-30 14:30:00 " 150 mins"     23.8    115.  </span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt;  7 1955-09-02 12:05:00 " 360 mins"     25.2    124.  </span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;  8 1955-09-04 13:10:00 " 170 mins"     20.4     52.5 </span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt;  9 1955-09-28 18:05:00 " 100 mins"     35.6    366.  </span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 10 1955-10-01 01:50:00 1115 mins       29.6     47.4 </span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; # ... with 19 more rows</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">library</span>(tibble)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">ei_values &lt;-<span class="st"> </span>prec5min <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="reference/hyet_fill.html">hyet_fill</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="reference/hyet_erosivity.html">hyet_erosivity</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>)</a></code></pre></div>
+<p>Let’s create a plot with erosivity values and total precipitation height.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ei_values <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> cum_prec, <span class="dt">y =</span> erosivity)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_smooth">geom_smooth</a></span>(<span class="dt">method =</span> <span class="st">"loess"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Erosivity (MJ.mm/ha/h)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_log10</a></span>(<span class="st">"Precipitation (mm)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_log10</a></span>(<span class="st">"EI30 (MJ.mm/ha/h)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>()</a></code></pre></div>
+<p><img src="README-unnamed-chunk-2-1.png" width="700"></p>
 </div>
 <div id="meta" class="section level2">
 <h2 class="hasAnchor">
@@ -207,36 +173,6 @@
     note = {R package},
     url = {https://kvantas.github.io/hyetor/},
   }</code></pre>
-</div>
-<div id="references" class="section level2 unnumbered">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
-<div id="refs" class="references">
-<div id="ref-bonta2004development">
-<p>Bonta, JV. 2004. “Development and Utility of Huff Curves for Disaggregating Precipitation Amounts.” <em>Applied Engineering in Agriculture</em> 20 (5). American Society of Agricultural; Biological Engineers: 641.</p>
-</div>
-<div id="ref-brown1987storm">
-<p>Brown, LC, and GR Foster. 1987. “Storm Erosivity Using Idealized Intensity Distributions.” <em>Transactions of the ASAE</em> 30 (2). American Society of Agricultural; Biological Engineers: 379–0386.</p>
-</div>
-<div id="ref-huff1967time">
-<p>Huff, Floyd A. 1967. “Time Distribution of Rainfall in Heavy Storms.” <em>Water Resources Research</em> 3 (4). Wiley Online Library: 1007–19.</p>
-</div>
-<div id="ref-McGregor1995">
-<p>McGregor, K.C., Ron Bingner, A.J. Bowie, and G.R. Foster. 1995. “Erosivity Index Values for Northern Mississippi” 38 (January): 1039–47.</p>
-</div>
-<div id="ref-CRAN">
-<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing.</p>
-</div>
-<div id="ref-restrepo1982identification">
-<p>Restrepo-Posada, Pedro J, and Peter S Eagleson. 1982. “Identification of Independent Rainstorms.” <em>Journal of Hydrology</em> 55 (1-4). Elsevier: 303–19.</p>
-</div>
-<div id="ref-vantas2018hyetor">
-<p>Vantas, Konstantinos. 2018. <em>hyetor: R Package to Analyze Fixed Interval Precipitation Time Series</em>. <a href="https://doi.org/http://doi.org/10.5281/zenodo.1403156" class="uri">https://doi.org/http://doi.org/10.5281/zenodo.1403156</a>.</p>
-</div>
-<div id="ref-wischmeier1958rainfall">
-<p>Wischmeier, Walter H, and Dwight D Smith. 1958. “Rainfall Energy and Its Relationship to Soil Loss.” <em>EOS, Transactions American Geophysical Union</em> 39 (2). Wiley Online Library: 285–91.</p>
-</div>
-</div>
 </div>
 </div>
   </div>

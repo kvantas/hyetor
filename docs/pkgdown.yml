@@ -3,4 +3,5 @@ pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
   erosivity: erosivity.html
+  intro_hyetor: intro_hyetor.html
 

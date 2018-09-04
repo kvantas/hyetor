@@ -2,7 +2,6 @@
 output:
   md_document:
     variant: gfm
-bibliography: ./bibliography.bib
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -23,14 +22,14 @@ knitr::opts_chunk$set(
   [![DOI](https://zenodo.org/badge/145962234.svg)](https://zenodo.org/badge/latestdoi/145962234)
   [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-`hyetor` [@vantas2018hyetor] is an R  package [@CRAN] that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:
+`hyetor` is an R  package that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:
 
  1. Aggregate precipitation values.
- 2. Split precipitation time series to independent rainstorms using predefined monthly maximum dry period duration of no precipitation [@restrepo1982identification].
- 3. Compile Unitless Cumulative Hyetographs [@bonta2004development].
+ 2. Split precipitation time series to independent rainstorms using predefined monthly maximum dry period duration of no precipitation.
+ 3. Compile Unitless Cumulative Hyetographs.
  4. Find maximum rainfall intensities.
- 5. Categorize rainstorms using Huff's quartile classification [@huff1967time].
- 6. Calculate rainfall erosivity values using a number of energy equations [@wischmeier1958rainfall; @brown1987storm; @McGregor1995].
+ 5. Categorize rainstorms using Huff's quartile classification.
+ 6. Calculate rainfall erosivity values using a number of energy equations.
  7. Create missing values summaries.
 
 For more details checkout the package's [ website](https://kvantas.github.io/hyetor/) and the
@@ -59,39 +58,31 @@ The data sets that are provided by `hyetor` are:
 
 ## Example
 
-This is a minimal example which shows how to use the package's functions to analyze the internal data set and compute erosivity values.
+This is a minimal example which shows how to use the package's functions to compute rainfall erosivity values.
 
-Load libraries and view data:
-```{r, "load libraries", message=FALSE}
+```{r example, message=FALSE}
 library(hyetor)
+library(ggplot2)
 library(tibble)
-library(dplyr)
-library(lubridate)
 
-prec5min
-```
-
-Compute the missing values ratio per year:
-```{r "missing values report"}
-prec5min %>%
+ei_values <- prec5min %>%
   hyet_fill(time_step = 5, ts_unit = "mins") %>%
-  hyet_missing() %>%
-  group_by(year) %>%
-  summarise(na_ratio = mean(na_ratio))
+  hyet_erosivity(time_step = 5)
+
 ```
 
-Split to independent rainstorms and calculate erosivity values with cumulative precipitation greater than 12,7 mm:
+Let's create a plot with erosivity values and total precipitation height.
 
-```{r "compute erosivity"}
-prec5min %>%
-  hyet_split(time_step = 5, ts_unit = "mins") %>%
-  hyet_erosivity(time_step = 5) %>%
-  ungroup() %>%
-  filter(cum_prec > 12.7) %>%
-  select(begin, duration, cum_prec, erosivity)
-  
+```{r}
+ei_values %>%
+  ggplot(aes(x = cum_prec, y = erosivity)) +
+  geom_point() +
+  geom_smooth(method = "loess") +
+  ylab("Erosivity (MJ.mm/ha/h)") +
+  scale_x_log10("Precipitation (mm)") +
+  scale_y_log10("EI30 (MJ.mm/ha/h)") +
+  theme_bw()
 ```
-
 
 
 ## Meta
@@ -117,4 +108,3 @@ A BibTeX entry for LaTeX users is
     url = {https://kvantas.github.io/hyetor/},
   }
 ```
-## References

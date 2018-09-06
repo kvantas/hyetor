@@ -86,7 +86,7 @@
 </h1>
                         <h4 class="author">Konstantinos Vantas</h4>
             
-            <h4 class="date">2018-09-04</h4>
+            <h4 class="date">2018-09-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/kvantas/hyetor/blob/master/vignettes/intro_hyetor.Rmd"><code>vignettes/intro_hyetor.Rmd</code></a></small>
       <div class="hidden name"><code>intro_hyetor.Rmd</code></div>
@@ -100,15 +100,16 @@
 <a href="#what-does-hyetor" class="anchor"></a>What does <code>hyetor</code>
 </h2>
 <p><code>hyetor</code> provides functionality to analyze fixed interval precipitation records. The functions that are provided are the family of functions: <code><a href="../reference/hyet_create.html">hyet_create()</a></code>, <code>hyet_fill</code>, <code>hyet_aggregate</code>, etc., to easily preprocess and analyze precipitation time-series. All these functions return their results as <a href="http://tibble.tidyverse.org/">tibbles</a> and make use of <a href="https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html">magrittr’s</a> the pipe operator <code>%&gt;%</code> to improve readability and maintainability of code.</p>
-<div id="internal-datasets" class="section level4">
+<div id="internal-data-sets" class="section level4">
 <h4 class="hasAnchor">
-<a href="#internal-datasets" class="anchor"></a>Internal datasets</h4>
+<a href="#internal-data-sets" class="anchor"></a>Internal data-sets</h4>
+<p>This time series comes from the weather station ‘Arna’ in Greece with coordinates <code>36.88002, 22.41292</code> (ETRS89) and altitude 779 m. The owner of that weather station is the Ministry of Environment and Energy. Precipitation’s units of measurement is in mm and the time step is five minutes.</p>
 </div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>This is a minimal example which shows how to use the package’s functions to analyze the internal data set and compute erosivity values.</p>
+<p>This is a minimal example which shows how to use the package’s functions to analyze the internal data set.</p>
 <p>Load libraries and view data:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(hyetor)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tibble)</a>
@@ -130,7 +131,11 @@
 <a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt;  9 1954-12-14 08:20:00     0</span></a>
 <a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co">#&gt; 10 1954-12-14 08:25:00     0</span></a>
 <a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt; # ... with 48,199 more rows</span></a></code></pre></div>
-<p>Compute the missing values ratio per year:</p>
+<div id="preprocessing" class="section level3">
+<h3 class="hasAnchor">
+<a href="#preprocessing" class="anchor"></a>Preprocessing</h3>
+<p>The <code>hyet_fill</code> function is used to fill missing date values with NA values. This function can be used when missing values in time series are marked implicitly using missing dates.</p>
+<p>Then, the <code>hyet_missing</code> function is used on the filled data to report the annual missing values ratio.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">prec5min <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/hyet_fill.html">hyet_fill</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/hyet_missing.html">hyet_missing</a></span>() <span class="op">%&gt;%</span></a>
@@ -142,6 +147,10 @@
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; 1  1954    0.493</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; 2  1955    0.723</span></a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; 3  1956    0.619</span></a></code></pre></div>
+</div>
+<div id="analysis" class="section level3">
+<h3 class="hasAnchor">
+<a href="#analysis" class="anchor"></a>Analysis</h3>
 <p>Split to independent rainstorms and calculate erosivity values with cumulative precipitation greater than 12,7 mm:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">prec5min <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/hyet_split.html">hyet_split</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>) <span class="op">%&gt;%</span></a>
@@ -163,6 +172,7 @@
 <a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt;  9 1955-09-28 18:05:00 " 100 mins"     35.6    366.  </span></a>
 <a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; 10 1955-10-01 01:50:00 1115 mins       29.6     47.4 </span></a>
 <a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; # ... with 19 more rows</span></a></code></pre></div>
+</div>
 </div>
   </div>
 

@@ -81,7 +81,7 @@ ei_values %>%
   theme_bw()
 ```
 
-![](README-unnamed-chunk-2-1.png)<!-- -->
+![](man/figures/README-plot%20prec%20versus%20ei30-1.png)<!-- -->
 
 ## Meta
 

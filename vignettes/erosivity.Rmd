@@ -62,11 +62,11 @@ The following code can be used to:
 
 a) Split the time-series to independent storms using the value of 6 hours as the  monthly critical time duration of no precipitation. 
 b) Compute the rainfall erosivity values per storm.
-c) Filter the above values using only which of them are considered erosive.
+c) Filter the above values using which of them are considered erosive.
 
 ```{r "compute erosivity"}
 ei_values <- prec5min %>%
-  hyet_split(time_step = 5, ts_unit = "mins", crit_dur = rep(6, 12)) %>%
+  hyet_fill(time_step = 5, ts_unit = "mins") %>%
   hyet_erosivity(time_step = 5) %>%
   filter(cum_prec > 12.7 | max_i15 > 4 * 6.4)
 
@@ -74,7 +74,7 @@ ei_values
   
 ```
 
-After the calculation of erosivity values, the annual value and  of the R coefficient can be computed with:
+After the calculation of erosivity values the R coefficient can be computed with:
 
 ```{r compute R values}
 

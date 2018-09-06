@@ -10,7 +10,7 @@ output:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-"
 )
 ```
 
@@ -60,7 +60,7 @@ The data sets that are provided by `hyetor` are:
 
 This is a minimal example which shows how to use the package's functions to compute rainfall erosivity values.
 
-```{r example, message=FALSE}
+```{r "compute ei30 values", message=FALSE}
 library(hyetor)
 library(ggplot2)
 library(tibble)
@@ -73,7 +73,7 @@ ei_values <- prec5min %>%
 
 Let's create a plot with erosivity values and total precipitation height.
 
-```{r}
+```{r "plot prec versus ei30"}
 ei_values %>%
   ggplot(aes(x = cum_prec, y = erosivity)) +
   geom_point() +

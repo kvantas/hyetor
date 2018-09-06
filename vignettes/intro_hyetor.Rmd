@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 `hyetor` provides functionality to analyze fixed interval precipitation records. The functions that are provided are the family of functions: `hyet_create()`, `hyet_fill`, `hyet_aggregate`, etc., to easily preprocess and analyze precipitation time-series. All these functions return their results as [tibbles](http://tibble.tidyverse.org/) and make use of [magrittr's](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) the pipe operator `%>%` to improve readability and maintainability of code.
 
-#### Internal datasets
+#### Internal data-sets
 
 This time series comes from the weather station 'Arna' in Greece with coordinates `36.88002, 22.41292` (ETRS89) and altitude 779 m. The owner of that weather station is the Ministry of Environment and Energy. Precipitation's units of measurement is in mm and the time step is five minutes.
 
@@ -39,7 +39,13 @@ library(lubridate)
 prec5min
 ```
 
-Compute the missing values ratio per year:
+### Preprocessing
+
+The `hyet_fill` function is used to fill missing date values with NA values. This function can be used when missing values in time series are marked implicitly using missing dates.
+
+Then, the `hyet_missing` function is used on the filled data to report the annual missing values ratio.
+
+
 ```{r "missing values report"}
 prec5min %>%
   hyet_fill(time_step = 5, ts_unit = "mins") %>%
@@ -48,7 +54,7 @@ prec5min %>%
   summarise(na_ratio = mean(na_ratio))
 ```
 
-
+### Analysis
 
 Split to independent rainstorms and calculate erosivity values with cumulative precipitation greater than 12,7 mm:
 

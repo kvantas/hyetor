@@ -92,14 +92,12 @@ ei_values %>%
       - All data are from the public data sources in
         <http://www.hydroscope.gr/>.
   - To cite `hyetor` please
-use:
+    use:
 
 <!-- end list -->
 
-``` 
-  Vantas, (2018). hyetor: R package to analyze fixed interval precipitation time series, URL: https://kvantas.github.io/hyetor/,
-  DOI:http://doi.org/10.5281/zenodo.1403156
-```
+    Konstantinos Vantas, (2018). hyetor: R package to analyze fixed interval precipitation time  series, URL: https://kvantas.github.io/hyetor/,
+    DOI:http://doi.org/10.5281/zenodo.1403156
 
 A BibTeX entry for LaTeX users is
 

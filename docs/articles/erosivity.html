@@ -150,9 +150,9 @@
 <a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co">#&gt; # ... with 48,199 more rows</span></a></code></pre></div>
 <p>The following code can be used to:</p>
 <ol style="list-style-type: lower-alpha">
-<li>Split the time-series to independent storms using the value of 6 hours as the monthly critical time duration of no precipitation.</li>
+<li>Fill the time-series.</li>
 <li>Compute the rainfall erosivity values per storm.</li>
-<li>Filter the above values using which of them are considered erosive.</li>
+<li>Filter the above values using cumulative precipitation height and maximum 15 minutes intensity rules.</li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">ei_values &lt;-<span class="st"> </span>prec5min <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/hyet_fill.html">hyet_fill</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>) <span class="op">%&gt;%</span></a>

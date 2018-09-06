@@ -60,9 +60,9 @@ prec5min
 
 The following code can be used to: 
 
-a) Split the time-series to independent storms using the value of 6 hours as the  monthly critical time duration of no precipitation. 
+a) Fill the time-series. 
 b) Compute the rainfall erosivity values per storm.
-c) Filter the above values using which of them are considered erosive.
+c) Filter the above values using cumulative precipitation height and maximum 15 minutes intensity rules.
 
 ```{r "compute erosivity"}
 ei_values <- prec5min %>%

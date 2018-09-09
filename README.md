@@ -55,7 +55,8 @@ The data sets that are provided by `hyetor` are:
 ## Example
 
 This is a minimal example which shows how to use the package’s functions
-to compute rainfall erosivity values.
+to fill the internall precipitation timeseries and compute rainfall
+erosivity values.
 
 ``` r
 library(hyetor)
@@ -81,7 +82,7 @@ ei_values %>%
   theme_bw()
 ```
 
-![](man/figures/README-plot%20prec%20versus%20ei30-1.png)<!-- -->
+![](man/figures/README-prec_ei30-1.png)<!-- -->
 
 ## Meta
 

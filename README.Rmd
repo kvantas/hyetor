@@ -58,7 +58,7 @@ The data sets that are provided by `hyetor` are:
 
 ## Example
 
-This is a minimal example which shows how to use the package's functions to compute rainfall erosivity values.
+This is a minimal example which shows how to use the package's functions to fill the internall precipitation timeseries and compute rainfall erosivity values.
 
 ```{r "compute ei30 values", message=FALSE}
 library(hyetor)
@@ -73,7 +73,7 @@ ei_values <- prec5min %>%
 
 Let's create a plot with erosivity values and total precipitation height.
 
-```{r "plot prec versus ei30"}
+```{r "prec_ei30"}
 ei_values %>%
   ggplot(aes(x = cum_prec, y = erosivity)) +
   geom_point() +

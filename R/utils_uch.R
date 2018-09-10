@@ -62,8 +62,7 @@ uch <- function(hyet, time_step, ts_unit, nvalues, .simple = FALSE) {
       "mean_int" = prec_height / as.numeric(duration),
       "quartile" = quartile,
       "unit_time" = approx_hyet$x,
-      "unit_prec" = approx_hyet$y
-    )
+      "unit_prec" = approx_hyet$y)
     # return results
     list(
       "start" = start_date,

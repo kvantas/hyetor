@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 ## What does `hyetor`
 
-`hyetor` provides functionality to analyze fixed interval precipitation records. The functions that are provided are the family of functions: `hyet_create()`, `hyet_fill`, `hyet_aggregate`, etc., to easily preprocess and analyze precipitation time-series. All these functions return their results as [tibbles](http://tibble.tidyverse.org/) and make use of [magrittr's](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) the pipe operator `%>%` to improve readability and maintainability of code.
+`hyetor` provides functionality to analyze fixed interval precipitation records. The functions that are provided are the family of functions: `hyet_create()`, `hyet_fill`, `hyet_aggregate`, etc., to easily preprocess and analyze precipitation time-series. All these functions return their results as [tibbles](http://tibble.tidyverse.org/) and make use of [magrittr's](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) pipe operator `%>%` to improve the readability and maintainability of code.
 
 #### Internal data-sets
 
@@ -29,29 +29,46 @@ This time series comes from the weather station 'Arna' in Greece with coordinate
 
 This is a minimal example which shows how to use the package's functions to analyze the internal data set.
 
-Load libraries and view data:
-```{r, "load libraries", message=FALSE}
+Load libraries and view the first rows of the internal precipitation time-series:
+```{r, "load_libraries", message=FALSE}
 library(hyetor)
 library(tibble)
 library(dplyr)
 library(lubridate)
+library(ggplot2)
 
 prec5min
 ```
+
+Let's create a plot:
+
+```{r "ts_plot"}
+prec5min %>%
+  ggplot(aes(x = date, y = prec)) +
+  geom_line() +
+  ylab("Precipitation (mm)") +
+  xlab("Date") +
+  theme_bw()
+```
+
 
 ### Preprocessing
 
 The `hyet_fill` function is used to fill missing date values with NA values. This function can be used when missing values in time series are marked implicitly using missing dates.
 
-Then, the `hyet_missing` function is used on the filled data to report the annual missing values ratio.
-
+Let's use the `hyet_fill` function and plot again the data
 
 ```{r "missing values report"}
-prec5min %>%
-  hyet_fill(time_step = 5, ts_unit = "mins") %>%
-  hyet_missing() %>%
-  group_by(year) %>%
-  summarise(na_ratio = mean(na_ratio))
+prec_filled <- prec5min %>%
+  hyet_fill(time_step = 5, ts_unit = "mins")
+
+prec_filled %>%
+  ggplot(aes(x = date, y = prec)) +
+  geom_line() +
+  ylab("Precipitation (mm)") +
+  xlab("Date") +
+  theme_bw()
+
 ```
 
 ### Analysis

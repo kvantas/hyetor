@@ -78,7 +78,6 @@ ei_values %>%
   ggplot(aes(x = cum_prec, y = erosivity)) +
   geom_point() +
   geom_smooth(method = "loess") +
-  ylab("Erosivity (MJ.mm/ha/h)") +
   scale_x_log10("Precipitation (mm)") +
   scale_y_log10("EI30 (MJ.mm/ha/h)") +
   theme_bw()

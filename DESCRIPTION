@@ -34,6 +34,7 @@ Suggests:
     hydroscoper (>= 1.0),
     knitr (>= 1.20),
     rmarkdown (>= 1.10),
+    ggplot2 (>= 2.0),
     testthat (>= 2.0.0)
 VignetteBuilder: 
     knitr

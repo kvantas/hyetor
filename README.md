@@ -55,8 +55,8 @@ The data sets that are provided by `hyetor` are:
 ## Example
 
 This is a minimal example which shows how to use the package’s functions
-to fill the internall precipitation timeseries and compute rainfall
-erosivity values.
+to fill the internall precipitation timeseries, `prec5min`, and compute
+rainfall erosivity values.
 
 ``` r
 library(hyetor)

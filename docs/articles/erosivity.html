@@ -85,7 +85,7 @@
       <h1>Rainfall erosivity calculation</h1>
                         <h4 class="author">Konstantinos Vantas</h4>
             
-            <h4 class="date">2018-09-09</h4>
+            <h4 class="date">2018-09-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/kvantas/hyetor/blob/master/vignettes/erosivity.Rmd"><code>vignettes/erosivity.Rmd</code></a></small>
       <div class="hidden name"><code>erosivity.Rmd</code></div>
@@ -99,9 +99,26 @@
 <a href="#introduction" class="anchor"></a>Introduction</h2>
 <p>The R coefficient (MJ.mm/ha/h/yr) is defined as the long-term average of the product of the kinetic energy of a storm and the maximum 30 min intensity <span class="citation">(Renard et al. 1991)</span>:</p>
 <p><span class="math display">\[R = \frac{1}{n} \sum_{j=1}^{n} \sum_{k=1}^{m_j} (EI_{30})_{k}\]</span></p>
-<p>where <span class="math inline">\(n\)</span> is the number of years with rainfall records, <span class="math inline">\(m_j\)</span> the number of storms during year <span class="math inline">\(j\)</span> and <span class="math inline">\(EI_{30}\)</span> the erosivity of storm <span class="math inline">\(k\)</span>. The erosivity <span class="math inline">\(EI_{30}\)</span> (MJ.mm/ha/h) is equal to:</p>
+<p>where</p>
+<ul>
+<li>
+<span class="math inline">\(n\)</span> is the number of years with rainfall records,</li>
+<li>
+<span class="math inline">\(m_j\)</span> is the number of storms during year <span class="math inline">\(j\)</span> and</li>
+<li>
+<span class="math inline">\(EI_{30}\)</span> is the erosivity of storm <span class="math inline">\(k\)</span>.</li>
+</ul>
+<p>The erosivity <span class="math inline">\(EI_{30}\)</span> (MJ.mm/ha/h) is equal to:</p>
 <p><span class="math display">\[EI_{30} = \left( \sum_{r=1}^{m} e_r \cdot v_{r} \right) \cdot I_{30}\]</span></p>
-<p>where <span class="math inline">\(e_r\)</span> is the energy of rainfall (MJ/ha/mm), <span class="math inline">\(v_r\)</span> the rainfall depth (mm) for the time interval <span class="math inline">\(r\)</span> of the hyetograph, which has been divided into <span class="math inline">\(r = 1, 2, ..., m\)</span> sub-intervals, such that each one of these is characterized by constant rainfall intensity and <span class="math inline">\(I_{30}\)</span> is the maximum rainfall intensity for a 30 minutes duration.</p>
+<p>where:</p>
+<ul>
+<li>
+<span class="math inline">\(e_r\)</span> is the energy of rainfall (MJ/ha/mm),</li>
+<li>
+<span class="math inline">\(v_r\)</span> is the rainfall depth (mm) for the time interval <span class="math inline">\(r\)</span> of the hyetograph, which has been divided into <span class="math inline">\(r = 1, 2, ..., m\)</span> sub-intervals, such that each one of these is characterized by constant rainfall intensity and</li>
+<li>
+<span class="math inline">\(I_{30}\)</span> is the maximum rainfall intensity for a 30 minutes duration.</li>
+</ul>
 <p>The quantity <span class="math inline">\(e_r\)</span> can be calculated for each <span class="math inline">\(r\)</span> using one of the kinetic energy equations:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -111,7 +128,7 @@
 <li>
 <code>McGregor et al.</code> <span class="math inline">\(e_r = 0.273 + 0.2168e^{-0.048i} - 0.4126e^{-0.072i}\)</span> <span class="citation">(McGregor et al. 1995)</span>.</li>
 </ol>
-<p>In the above equations <span class="math inline">\(i_r\)</span> is rainfall intensity (mm/hr) and <span class="math inline">\(e_r\)</span> is the kinetic energy per unit of rainfall (MJ/ha/mm) for the interval <span class="math inline">\(r\)</span>.</p>
+<p>In the above equations <span class="math inline">\(i_r\)</span> is the rainfall intensity (mm/hr) and <span class="math inline">\(e_r\)</span> is the kinetic energy per unit of rainfall (MJ/ha/mm) for the interval <span class="math inline">\(r\)</span>.</p>
 <p>The rules that apply in order to single out the storms causing erosion and to divide rainfalls of large duration are:</p>
 <ol style="list-style-type: decimal">
 <li>A rainfall event is divided into two parts, if its cumulative depth for duration of 6 hours at a certain location is less than 1.27 mm.</li>
@@ -126,7 +143,7 @@
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>This is an example about using the internal data set to compute rainfall erosivity values.</p>
+<p>This is an example that uses the internal data set in order to compute the corresponding rainfall erosivity values.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(hyetor)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tibble)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(dplyr)</a>
@@ -175,7 +192,7 @@
 <a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; 10 1955-10-07 14:50:00 1955-10-08 06:10:00 925 mins     77.1    26.1</span></a>
 <a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; # ... with 19 more rows, and 4 more variables: max_i30 &lt;dbl&gt;,</span></a>
 <a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; #   total_energy &lt;dbl&gt;, erosivity &lt;dbl&gt;, eros_density &lt;dbl&gt;</span></a></code></pre></div>
-<p>After the calculation of erosivity values the R coefficient can be computed with:</p>
+<p>After the calculation of <span class="math inline">\(EI30\)</span> values the <span class="math inline">\(R\)</span> coefficient can be computed with:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co"># add years and months variables</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">ei_values &lt;-<span class="st"> </span>ei_values <span class="op">%&gt;%</span></a>

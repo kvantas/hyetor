@@ -85,3 +85,19 @@ uch <- function(hyet, time_step, ts_unit, nvalues, .simple = FALSE) {
 huff_class <- function(x) {
   unname(which.max(diff(quantile(x))))
 }
+
+#' Calculate rainfall quartiles using an hyetograph
+#'
+#' @noRd
+rain_quartiles <- function(hyet){
+  tibble::tibble(
+    start = hyet$date[1],
+    end = tail(hyet$date, 1),
+    duration = difftime(tail(hyet$date, 1) + ts_dur, hyet$date[1],
+                        units = "hours"
+    ),
+    cum_prec = sum(hyet$prec, na.rm = TRUE),
+    int_mean = .data$cum_prec / as.numeric(.data$duration),
+    quartile = huff_class(c(0, cumsum(hyet$prec)))
+  )
+}

@@ -10,10 +10,8 @@
 #' @param ts_unit a character string specifying the time unit. Valid values
 #' are "mins" and "hours".
 #'
-#' @return a tibble with the calculated total precipitation height, duration,
-#' mean intensity
-#' and maximum rolling rainfall intensities for 5, 10, 15, 30 minutes and 1, 2,
-#' 3, 6, 12, 24 and 48 hours
+#' @return a tibble with the maximum rolling rainfall intensities for 5, 10, 15,
+#'  30 minutes and 1, 2, 3, 6, 12, 24 and 48 hours
 #'
 #' @note missing date values must be set explicit using the \code{hyet_fill}
 #' function if a single hyetograph is used. \code{hyet_split} returns filled

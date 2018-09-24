@@ -22,12 +22,21 @@ The R coefficient (MJ.mm/ha/h/yr) is defined as the long-term average of the pro
 
 $$R = \frac{1}{n} \sum_{j=1}^{n} \sum_{k=1}^{m_j} (EI_{30})_{k}$$
 
-where $n$ is the number of years with rainfall records, $m_j$ the number of storms during year $j$ and $EI_{30}$
-the erosivity of storm $k$. The erosivity $EI_{30}$ (MJ.mm/ha/h) is equal to:
+where
+
+ * $n$ is the number of years with rainfall records,
+ * $m_j$ is the number of storms during year $j$ and
+ * $EI_{30}$ is the erosivity of storm $k$. 
+ 
+The erosivity $EI_{30}$ (MJ.mm/ha/h) is equal to:
 
 $$EI_{30} = \left( \sum_{r=1}^{m} e_r \cdot v_{r} \right) \cdot I_{30}$$
 
-where $e_r$ is the energy of rainfall (MJ/ha/mm), $v_r$ the rainfall depth (mm) for the time interval $r$ of the hyetograph, which has been divided into $r = 1, 2, ..., m$ sub-intervals, such that each one of these is characterized by constant rainfall intensity and $I_{30}$ is the maximum rainfall intensity for a 30 minutes duration. 
+where:
+
+* $e_r$ is the energy of rainfall (MJ/ha/mm),
+* $v_r$ is the rainfall depth (mm) for the time interval $r$ of the hyetograph, which has been divided into $r = 1, 2, ..., m$ sub-intervals, such that each one of these is characterized by constant rainfall intensity and
+* $I_{30}$ is the maximum rainfall intensity for a 30 minutes duration. 
 
 The quantity $e_r$ can be calculated for each $r$ using one of the kinetic energy equations:
 
@@ -35,7 +44,7 @@ The quantity $e_r$ can be calculated for each $r$ using one of the kinetic energ
 2. `Brown and Foster` $e_r = 0.29(1 - 0.72  e^{-0.05i})$ [@brown1987storm].
 3. `McGregor et al.` $e_r = 0.273 + 0.2168e^{-0.048i} - 0.4126e^{-0.072i}$ [@McGregor1995].
 
-In the above equations $i_r$ is rainfall intensity (mm/hr) and $e_r$ is the kinetic energy per unit of rainfall (MJ/ha/mm) for the interval $r$.
+In the above equations $i_r$ is the rainfall intensity (mm/hr) and $e_r$ is the kinetic energy per unit of rainfall (MJ/ha/mm) for the interval $r$.
 
 The rules that apply in order to single out the storms causing erosion and to divide rainfalls of large duration are:
 
@@ -46,7 +55,7 @@ The rules that apply in order to single out the storms causing erosion and to di
 
 ## Example
 
-This is an example about using the internal data set to compute rainfall erosivity values.
+This is an example that uses the internal data set in order to compute the corresponding rainfall erosivity values.
 
 ```{r, "load libraries", message=FALSE}
 library(hyetor)
@@ -74,7 +83,7 @@ ei_values
   
 ```
 
-After the calculation of erosivity values the R coefficient can be computed with:
+After the calculation of $EI30$ values the $R$ coefficient can be computed with:
 
 ```{r compute R values}
 

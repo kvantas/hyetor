@@ -126,17 +126,11 @@ util_roll_sum <- function(hyet, win_size) {
 #'
 #' @noRd
 rain_intensities <- function(hyet, time_step, ts_unit) {
+
   from_dur <- paste(time_step, ts_unit)
   ts_dur <- lubridate::duration(time_step, ts_unit)
+
   tibble::tibble(
-    start = hyet$date[1],
-    end = tail(hyet$date, 1),
-    duration = difftime(tail(hyet$date, 1) + ts_dur, hyet$date[1],
-      units = "hours"
-    ),
-    cum_prec = sum(hyet$prec, na.rm = TRUE),
-    quartile = huff_class(c(0, cumsum(na.omit(hyet$prec)))),
-    int_mean = .data$cum_prec / as.numeric(.data$duration),
     int_5min = max_roll_sum(hyet, from_dur, "5 mins") * 12,
     int_10min = max_roll_sum(hyet, from_dur, "10 mins") * 6,
     int_15min = max_roll_sum(hyet, from_dur, "15 mins") * 4,

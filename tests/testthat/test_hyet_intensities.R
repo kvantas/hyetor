@@ -15,10 +15,6 @@ test_that("hyet_intensities works with simple hyetographs", {
 
   intens <- hyet_intensities(hyet, time_step, ts_unit)
 
-  expect_equal(as.numeric(intens$duration), 6)
-  expect_equal(intens$cum_prec, sum(hyet$prec))
-  expect_equal(intens$int_mean, sum(hyet$prec) / 6)
-
   # expect NA values
   expect_true(all(is.na(intens[c("int_5min", "int_10min", "int_15min")])))
   expect_true(all(is.na(intens[c("int_24hr", "int_48hr")])))

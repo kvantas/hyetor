@@ -15,10 +15,8 @@ hyet_intensities(hyet, time_step, ts_unit)
 are "mins" and "hours".}
 }
 \value{
-a tibble with the calculated total precipitation height, duration,
-mean intensity
-and maximum rolling rainfall intensities for 5, 10, 15, 30 minutes and 1, 2,
-3, 6, 12, 24 and 48 hours
+a tibble with the maximum rolling rainfall intensities for 5, 10, 15,
+ 30 minutes and 1, 2, 3, 6, 12, 24 and 48 hours
 }
 \description{
 \code{hyet_intensities} uses an hyetograph, single or grouped

@@ -13,7 +13,7 @@ test_that("rain_energy returns correct values", {
   # brown_foster equation
   expect_equal(
     rain_energy(intensity = i1, en_equation = "brown_foster"),
-    0.29 * (1 - 0.72 * exp(-0.05 * i1))
+    0.29 * (1 - 0.72 * exp(-0.082 * i1))
   )
 
   # mc_gregor equation

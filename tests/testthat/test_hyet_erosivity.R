@@ -122,10 +122,10 @@ test_that("hyet_erosivity works for 15 min time step", {
 skip_on_appveyor()
 skip_on_cran()
 skip_on_travis()
-test_that("push hyet_erosivity, 5 mins time-step", {
+test_that("5 mins time-step, 1 year", {
   time_step <- 5
   ts_unit <- "mins"
-  len <- 12 * 24 * 365 * 100
+  len <- 12 * 24 * 365
 
   hyet <- tibble::tibble(
     date = seq(
@@ -144,10 +144,10 @@ test_that("push hyet_erosivity, 5 mins time-step", {
 skip_on_appveyor()
 skip_on_cran()
 skip_on_travis()
-test_that("push hyet_erosivity, 30 mins time-step", {
+test_that(" 30 mins time-step, 1 year", {
   time_step <- 30
   ts_unit <- "mins"
-  len <- 2 * 24 * 365 * 100
+  len <- 2 * 24 * 365
 
   hyet <- tibble::tibble(
     date = seq(

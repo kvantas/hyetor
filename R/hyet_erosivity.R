@@ -10,13 +10,13 @@
 #' @param en_equation a character string specifying the equation to be used
 #' for calculating kinetic energy of rainfall. Must have one of the values:
 #' "brown_foster", "mcgregor_mutch" or "wisch_smith".
-#' Default value is "brown_foster".
+#' Default value is "mcgregor_mutch".
 #'
 #' The rainfall's kinetic energy equations are:
 #' \itemize{
-#' \item{\emph{Brown and Foster (1987)},
+#' \item{\emph{Brown and Foster as altered in RUSLE2 (1987, 2013)},
 #'
-#'       \eqn{e = 0.29(1 - 0.72  e^{-0.05i})}}
+#'       \eqn{e = 0.29(1 - 0.72  e^{-0.082i})}}
 #' \item{\emph{McGregor and Mutchler (1976)},
 #'
 #'       \eqn{e = 0.273 + 0.2168e^{-0.048i} - 0.4126e^{-0.072i}}}
@@ -39,6 +39,9 @@
 #' McGregor, K. C., Bingner, R. L., Bowie, A. J., & Foster, G. R. (1995).
 #' Erosivity index values for northern Mississippi. Transactions of the ASAE,
 #' 38(4), 1039-1047.
+#'
+#' Nearing, Mark A., et al. "Rainfall erosivity: An historical review." Catena
+#' 157 (2017): 357-362.
 #'
 #' Wischmeier, W. H., & Smith, D. D. (1958). Rainfall energy and its
 #' relationship to soil loss. Eos, Transactions American Geophysical Union,

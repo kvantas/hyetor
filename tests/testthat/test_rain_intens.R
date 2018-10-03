@@ -17,5 +17,5 @@ test_that("rain_intensities works for 5 minute time step", {
 
   intens <- rain_intensities(hyet, 5, "mins")
 
-  expect_true(all(intens[1,]  == 12))
+  expect_true(all(intens[1, ] == 12))
 })

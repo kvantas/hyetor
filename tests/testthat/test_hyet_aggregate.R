@@ -60,7 +60,7 @@ test_that("hyet_aggregate works with grouped hyetographs", {
 
   # split and aggregate
   storms <- hyet_split(hyet, time_step, ts_unit)
-  storms_aggr <-  hyet_aggregate(storms, 2, ts_unit)
+  storms_aggr <- hyet_aggregate(storms, 2, ts_unit)
 
   expect_true(NROW(storms_aggr) > 0)
 })

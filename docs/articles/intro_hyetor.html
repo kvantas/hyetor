@@ -86,7 +86,7 @@
 </h1>
                         <h4 class="author">Konstantinos Vantas</h4>
             
-            <h4 class="date">2018-09-30</h4>
+            <h4 class="date">2018-10-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/kvantas/hyetor/blob/master/vignettes/intro_hyetor.Rmd"><code>vignettes/intro_hyetor.Rmd</code></a></small>
       <div class="hidden name"><code>intro_hyetor.Rmd</code></div>
@@ -134,11 +134,11 @@
 <a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co">#&gt; # ... with 48,199 more rows</span></a></code></pre></div>
 <p>Let’s create a plot:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">prec5min <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> prec)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Precipitation (mm)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Date"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> date, <span class="dt">y =</span> prec)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_path">geom_line</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Precipitation (mm)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">xlab</a></span>(<span class="st">"Date"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>()</a></code></pre></div>
 <p><img src="intro_hyetor_files/figure-html/ts_plot-1.png" width="700"></p>
 <div id="preprocessing" class="section level3">
 <h3 class="hasAnchor">
@@ -149,11 +149,11 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/hyet_fill.html">hyet_fill</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">prec_filled <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> prec)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Precipitation (mm)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Date"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> date, <span class="dt">y =</span> prec)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_path">geom_line</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Precipitation (mm)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">xlab</a></span>(<span class="st">"Date"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>()</a></code></pre></div>
 <p><img src="intro_hyetor_files/figure-html/missing%20values%20report-1.png" width="700"></p>
 </div>
 <div id="analysis" class="section level3">
@@ -163,9 +163,9 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">prec5min <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/hyet_split.html">hyet_split</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>, <span class="dt">ts_unit =</span> <span class="st">"mins"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/hyet_erosivity.html">hyet_erosivity</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(cum_prec <span class="op">&gt;</span><span class="st"> </span><span class="fl">12.7</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span><span class="kw">select</span>(begin, duration, cum_prec, erosivity)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(cum_prec <span class="op">&gt;</span><span class="st"> </span><span class="fl">12.7</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(begin, duration, cum_prec, erosivity)</a>
 <a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; # A tibble: 29 x 4</span></a>
 <a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt;    begin               duration    cum_prec erosivity</span></a>
 <a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;    &lt;dttm&gt;              &lt;time&gt;         &lt;dbl&gt;     &lt;dbl&gt;</span></a>

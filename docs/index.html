@@ -106,6 +106,12 @@
 <li>Create missing values summaries.</li>
 </ol>
 <p>For more details checkout the package’s <a href="https://kvantas.github.io/hyetor/">website</a> and the vignettes:</p>
+<ul>
+<li>
+<a href="https://ropensci.github.io/hydroscoper/articles/intro_hydroscoper.html">An introduction to <code>hyetor</code></a> with details about the package’s functions.</li>
+<li>
+<a href="https://kvantas.github.io/hyetor/articles/erosivity.html">Rainfall erosivity calculation</a> with details about the rainfall erosivity, the kinetic energy equations and classification of erosive events.</li>
+</ul>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -140,12 +146,12 @@
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="reference/hyet_erosivity.html">hyet_erosivity</a></span>(<span class="dt">time_step =</span> <span class="dv">5</span>)</a></code></pre></div>
 <p>Let’s create a plot with erosivity values and total precipitation height.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ei_values <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> cum_prec, <span class="dt">y =</span> erosivity)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">"loess"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="st">"Precipitation (mm)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="st">"EI30 (MJ.mm/ha/h)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> cum_prec, <span class="dt">y =</span> erosivity)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_smooth">geom_smooth</a></span>(<span class="dt">method =</span> <span class="st">"loess"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_log10</a></span>(<span class="st">"Precipitation (mm)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_log10</a></span>(<span class="st">"EI30 (MJ.mm/ha/h)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>()</a></code></pre></div>
 <p><img src="reference/figures/README-prec_ei30-1.png" width="700"></p>
 </div>
 <div id="meta" class="section level2">

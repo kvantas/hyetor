@@ -27,6 +27,14 @@ analyze fixed interval precipitation records. It can be used to:
 For more details checkout the package’s
 [website](https://kvantas.github.io/hyetor/) and the vignettes:
 
+  - [An introduction to
+    `hyetor`](https://ropensci.github.io/hydroscoper/articles/intro_hydroscoper.html)
+    with details about the package’s functions.
+  - [Rainfall erosivity
+    calculation](https://kvantas.github.io/hyetor/articles/erosivity.html)
+    with details about the rainfall erosivity, the kinetic energy
+    equations and classification of erosive events.
+
 ## Installation
 
 You can install the development version from Github with:

@@ -62,7 +62,8 @@ uch <- function(hyet, time_step, ts_unit, nvalues, .simple = FALSE) {
       "mean_int" = prec_height / as.numeric(duration),
       "quartile" = quartile,
       "unit_time" = approx_hyet$x,
-      "unit_prec" = approx_hyet$y)
+      "unit_prec" = approx_hyet$y
+    )
     # return results
     list(
       "start" = start_date,
@@ -89,12 +90,14 @@ huff_class <- function(x) {
 #' Calculate rainfall quartiles using an hyetograph
 #'
 #' @noRd
-rain_quartiles <- function(hyet){
+rain_quartiles <- function(hyet, time_step, ts_unit) {
+  ts_dur <- lubridate::duration(paste(time_step, ts_unit), units = "mins")
+
   tibble::tibble(
     start = hyet$date[1],
     end = tail(hyet$date, 1),
     duration = difftime(tail(hyet$date, 1) + ts_dur, hyet$date[1],
-                        units = "hours"
+      units = "hours"
     ),
     cum_prec = sum(hyet$prec, na.rm = TRUE),
     int_mean = .data$cum_prec / as.numeric(.data$duration),

@@ -126,7 +126,6 @@ util_roll_sum <- function(hyet, win_size) {
 #'
 #' @noRd
 rain_intensities <- function(hyet, time_step, ts_unit) {
-
   from_dur <- paste(time_step, ts_unit)
   ts_dur <- lubridate::duration(time_step, ts_unit)
 

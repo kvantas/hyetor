@@ -5,7 +5,7 @@ rain_energy <- function(intensity, en_equation = "brown_foster") {
   if (is.null(intensity)) return(NA)
 
   if (en_equation == "brown_foster") {
-    0.29 * (1 - 0.72 * exp(-0.082 * intensity))
+    0.29 * (1 - 0.72 * exp(-0.05 * intensity))
   } else if (en_equation == "wisch_smith") {
     if (intensity > 76) {
       0.283
@@ -13,7 +13,7 @@ rain_energy <- function(intensity, en_equation = "brown_foster") {
       0.119 + 0.0873 * log10(intensity)
     }
   } else if (en_equation == "mcgregor_mutch") {
-    0.273 + 0.2168 * exp(-0.048 * intensity) - 0.4126 * exp(-0.072 * intensity)
+    0.29 * (1 - 0.72 * exp(-0.082 * intensity))
   }
 }
 

@@ -14,16 +14,14 @@
 #'
 #' The rainfall's kinetic energy equations are:
 #' \itemize{
-#' \item{\emph{Brown and Foster as altered in RUSLE2 (1987, 2013)},
-#'
+#'  \item{\emph{McGregor and Mutchler (1995)},
 #'       \eqn{e = 0.29(1 - 0.72  e^{-0.082i})}}
-#' \item{\emph{McGregor and Mutchler (1976)},
 #'
-#'       \eqn{e = 0.273 + 0.2168e^{-0.048i} - 0.4126e^{-0.072i}}}
+#' \item{\emph{Brown and Foster (1987)},
+#'       \eqn{e = 0.29(1 - 0.72  e^{-0.05i})}}
+#'
 #' \item{\emph{Wischmeier and Smith (1958)},
-#'
 #'       \eqn{e = 0.119 + 0.0873log_{10}(i)},
-#'
 #'       with the upper limit of 0.283  MJ/ha/mm if \eqn{i} > 76 mm/h.}
 #' }
 #' In the above equations \eqn{i} is rainfall intensity (mm/hr) and \eqn{e} is
@@ -77,7 +75,7 @@
 #' hyet %>%
 #' hyet_erosivity(time_step, en_equation)
 
-hyet_erosivity <- function(hyet, time_step, en_equation = "brown_foster") {
+hyet_erosivity <- function(hyet, time_step, en_equation = "mcgregor_mutch") {
 
   # check values
   hyet_check(hyet)

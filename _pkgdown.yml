@@ -15,6 +15,7 @@ reference:
   - title: Analysis
     desc: Funtions that analyze precipitation timeseries
     contents:
+    - hyet_arrive
     - hyet_erosivity
     - hyet_intensities
     - hyet_missing

@@ -2,6 +2,7 @@
 
 export("%>%")
 export(hyet_aggregate)
+export(hyet_arrive)
 export(hyet_create)
 export(hyet_erosivity)
 export(hyet_fill)

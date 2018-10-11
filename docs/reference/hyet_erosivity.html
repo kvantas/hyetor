@@ -128,7 +128,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>hyet_erosivity</span>(<span class='no'>hyet</span>, <span class='no'>time_step</span>, <span class='kw'>en_equation</span> <span class='kw'>=</span> <span class='st'>"mcgregor_mutch"</span>)</pre>
+    <pre class="usage"><span class='fu'>hyet_erosivity</span>(<span class='no'>hyet</span>, <span class='no'>time_step</span>, <span class='kw'>en_equation</span> <span class='kw'>=</span> <span class='st'>"mcgregor_etal"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,14 +147,14 @@ values must be in millimeters (mm).</p></td>
       <th>en_equation</th>
       <td><p>a character string specifying the equation to be used
 for calculating kinetic energy of rainfall. Must have one of the values:
-"brown_foster", "mcgregor_mutch" or "wisch_smith".
-Default value is "mcgregor_mutch".</p>
+"mcgregor_etal", "brown_foster" or "wisch_smith".
+Default value is "mcgregor_etal".</p>
 <p>The rainfall's kinetic energy equations are:</p><ul>
-<li><p><em>McGregor and Mutchler (1995)</em>,
+<li><p><em>McGregor et al. used in RUSLE2 (1995)</em>,
       \(e = 0.29(1 - 0.72  e^{-0.082i})\)</p></li>
-<li><p><em>Brown and Foster (1987)</em>,
+<li><p><em>Brown and Foster used in RUSLE (1987)</em>,
       \(e = 0.29(1 - 0.72  e^{-0.05i})\)</p></li>
-<li><p><em>Wischmeier and Smith (1958)</em>,
+<li><p><em>Wischmeier and Smith used in USLE (1958)</em>,
       \(e = 0.119 + 0.0873log_{10}(i)\),
       with the upper limit of 0.283  MJ/ha/mm if \(i\) &gt; 76 mm/h.</p></li>
 </ul><p>In the above equations \(i\) is rainfall intensity (mm/hr) and \(e\) is

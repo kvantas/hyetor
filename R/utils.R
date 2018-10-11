@@ -51,10 +51,10 @@ crit_dur_check <- function(x) {
 #'
 #' @noRd
 en_eq_check <- function(x) {
-  valid_equat <- c("brown_foster", "mcgregor_mutch", "wisch_smith")
+  valid_equat <- c("brown_foster", "mcgregor_etal", "wisch_smith")
   error_msg <- paste(
     "`en_equation` must be on of:",
-    "`brown_foster`, `mcgregor_mutch`, `wisch_smith`"
+    "`brown_foster`, `mcgregor_etal`, `wisch_smith`"
   )
   if (!(x %in% valid_equat)) {
     stop(error_msg, call. = FALSE)

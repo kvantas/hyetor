@@ -4,7 +4,7 @@
 \alias{hyet_erosivity}
 \title{Compute rainfall erosivity from an hyetograph}
 \usage{
-hyet_erosivity(hyet, time_step, en_equation = "mcgregor_mutch")
+hyet_erosivity(hyet, time_step, en_equation = "mcgregor_etal")
 }
 \arguments{
 \item{hyet}{an hyetograph from \code{hyet_create} function. Precipitation
@@ -15,18 +15,18 @@ values must be in millimeters (mm).}
 
 \item{en_equation}{a character string specifying the equation to be used
 for calculating kinetic energy of rainfall. Must have one of the values:
-"brown_foster", "mcgregor_mutch" or "wisch_smith".
-Default value is "mcgregor_mutch".
+"mcgregor_etal", "brown_foster" or "wisch_smith".
+Default value is "mcgregor_etal".
 
 The rainfall's kinetic energy equations are:
 \itemize{
- \item{\emph{McGregor and Mutchler (1995)},
+ \item{\emph{McGregor et al. used in RUSLE2 (1995)},
       \eqn{e = 0.29(1 - 0.72  e^{-0.082i})}}
 
-\item{\emph{Brown and Foster (1987)},
+\item{\emph{Brown and Foster used in RUSLE (1987)},
       \eqn{e = 0.29(1 - 0.72  e^{-0.05i})}}
 
-\item{\emph{Wischmeier and Smith (1958)},
+\item{\emph{Wischmeier and Smith used in USLE (1958)},
       \eqn{e = 0.119 + 0.0873log_{10}(i)},
       with the upper limit of 0.283  MJ/ha/mm if \eqn{i} > 76 mm/h.}
 }

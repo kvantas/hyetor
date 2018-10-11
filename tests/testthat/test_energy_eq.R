@@ -18,7 +18,7 @@ test_that("rain_energy returns correct values", {
 
   # mc_gregor equation
   expect_equal(
-    rain_energy(intensity = i1, en_equation = "mcgregor_mutch"),
+    rain_energy(intensity = i1, en_equation = "mcgregor_etal"),
     0.29 * (1 - 0.72 * exp(-0.082 * i1))
   )
 

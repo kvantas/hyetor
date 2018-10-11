@@ -5,7 +5,7 @@ test_that("erosivity returns correct values for 30 min time step", {
   # create time series with 30 mins time step
   time_step <- 30
   len <- 12
-  en_equation <- "brown_foster"
+  en_equation <- "mcgregor_etal"
 
   hyet <- tibble::tibble(
     date = seq(
@@ -34,7 +34,7 @@ test_that("erosivity returns correct values for 5 min time step", {
   # create time series with 30 mins time step
   time_step <- 5
   len <- 12
-  en_equation <- "brown_foster"
+  en_equation <- "mcgregor_etal"
 
   hyet <- tibble::tibble(
     date = seq(
@@ -68,7 +68,7 @@ test_that("erosivity breaks storms", {
   # create time series with 30 mins time step
   time_step <- 5
   len <- 100
-  en_equation <- "brown_foster"
+  en_equation <- "mcgregor_etal"
 
   hyet <- tibble::tibble(
     date = seq(

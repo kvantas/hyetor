@@ -1,7 +1,7 @@
 #' Calculate rainfall energy
 #'
 #' @noRd
-rain_energy <- function(intensity, en_equation = "brown_foster") {
+rain_energy <- function(intensity, en_equation = "mcgregor_etal") {
   if (is.null(intensity)) return(NA)
 
   if (en_equation == "brown_foster") {
@@ -12,7 +12,7 @@ rain_energy <- function(intensity, en_equation = "brown_foster") {
     } else {
       0.119 + 0.0873 * log10(intensity)
     }
-  } else if (en_equation == "mcgregor_mutch") {
+  } else if (en_equation == "mcgregor_etal") {
     0.29 * (1 - 0.72 * exp(-0.082 * intensity))
   }
 }
@@ -105,7 +105,7 @@ erosivity <- function(hyet, time_step, en_equation) {
     max_i15 = max(.data$prec15) * 4,
     max_i30 = max(.data$prec30) * 2,
     total_energy = sum(.data$energy * .data$prec, na.rm = TRUE),
-    erosivity = total_energy * .data$max_i30,
+    erosivity = .data$total_energy * .data$max_i30,
     eros_density = .data$erosivity / .data$cum_prec
   )
   # remove extract_storm

@@ -51,8 +51,7 @@ hyet_arrive <- function(storms) {
     interarrival(storms)
   } else {
     stop(paste(" Please use `hyet_split` function to create storms"),
-         call. = FALSE)
-
+      call. = FALSE
+    )
   }
-
 }

@@ -1,5 +1,4 @@
-#' Compute storms interarrival time given and hyetograph and the  critical
-#' duration in minutes
+#' Compute storms interarrival time
 #'
 #' @noRd
 interarrival <- function(storms) {

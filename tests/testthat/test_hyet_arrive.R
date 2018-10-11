@@ -18,7 +18,6 @@ test_that("hyet_arrival returns errors", {
 
   # use non grouped hyet
   expect_error(hyet_arrive(hyet))
-
 })
 
 test_that("hyet_arrival works, units in hours", {

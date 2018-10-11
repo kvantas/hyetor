@@ -1,6 +1,5 @@
 context("hyet_split related tests")
 
-
 test_that("hyet_split splits time series, units in hours", {
 
   # create time series with 1 hours time step
@@ -30,7 +29,6 @@ test_that("hyet_split splits time series, units in hours", {
   # expect 3 storms
   expect_equal(tail(storms$storm, 1), 3)
 })
-
 
 test_that("hyet_split splits time series, units in mins", {
 

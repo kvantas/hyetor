@@ -52,7 +52,7 @@ hyet_uch <- function(hyet, time_step, ts_unit) {
 
   # check values
   hyet_check(hyet)
-  count_check(time_step)
+  count_check(time_step, "time_step")
   units_check(ts_unit, minhour = TRUE)
 
   nvalues <- 100

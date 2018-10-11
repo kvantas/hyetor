@@ -37,7 +37,7 @@ hyet_fill <- function(hyet, time_step = 5, ts_unit = "mins") {
 
   # check parameters
   hyet_check(hyet)
-  count_check(time_step)
+  count_check(time_step, "time_step")
   units_check(ts_unit, minhour = FALSE)
 
   # fill

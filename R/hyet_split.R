@@ -49,7 +49,7 @@ hyet_split <- function(hyet, time_step, ts_unit, crit_dur = rep(6, 12)) {
 
   # check input values ---------------------------------------------------------
   hyet_check(hyet)
-  count_check(time_step)
+  count_check(time_step, "time_step")
   units_check(ts_unit)
   crit_dur_check(crit_dur)
 

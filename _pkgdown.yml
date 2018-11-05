@@ -5,10 +5,12 @@ reference:
     desc: Package details
     contents:
     - hyetor
+  - title: Import Data
+    desc: Functions that can be used to import data
+      - hyet_create
   - title: Preprocessing
     desc: Functions that can be used to preprocess precipitation timeseries
     contents:
-    - hyet_create
     - hyet_fill
     - hyet_aggregate
     - hyet_split

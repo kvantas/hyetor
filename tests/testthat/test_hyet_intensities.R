@@ -16,14 +16,13 @@ test_that("hyet_intensities works with simple hyetographs", {
   intens <- hyet_intensities(hyet, time_step, ts_unit)
 
   # expect NA values
-  expect_true(all(is.na(intens[c("int_5min", "int_10min", "int_15min")])))
-  expect_true(all(is.na(intens[c("int_24hr", "int_48hr")])))
+  expect_true(all(is.na(intens$intensity[1:3])))
 
   # compute max intensities
-  expect_equal(intens$int_30min, max(hyet$prec) * 2)
-  expect_equal(intens$int_1hr, sum(hyet$prec[11:12]))
-  expect_equal(intens$int_3hr, sum(hyet$prec[7:12]) / 3)
-  expect_equal(intens$int_6hr, sum(hyet$prec[1:12]) / 6)
+  expect_equal(intens$intensity[4], max(hyet$prec) * 2)
+  expect_equal(intens$intensity[5], sum(hyet$prec[11:12]))
+  expect_equal(intens$intensity[6], sum(hyet$prec[7:12]) / 3)
+  expect_equal(intens$intensity[7], sum(hyet$prec[1:12]) / 6)
 })
 
 test_that("hyet_intensities works with grouped hyetographs", {
@@ -47,7 +46,7 @@ test_that("hyet_intensities works with grouped hyetographs", {
   intens <- hyet_intensities(storms, time_step, ts_unit)
 
   # two storms exist
-  expect_equal(nrow(intens), 2)
+  expect_equal(tail(intens$storm, 1), 2)
 })
 
 skip_on_appveyor()

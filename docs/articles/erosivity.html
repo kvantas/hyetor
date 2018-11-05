@@ -85,7 +85,7 @@
       <h1>Rainfall erosivity calculation</h1>
                         <h4 class="author">Konstantinos Vantas</h4>
             
-            <h4 class="date">2018-10-11</h4>
+            <h4 class="date">2018-10-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/kvantas/hyetor/blob/master/vignettes/erosivity.Rmd"><code>vignettes/erosivity.Rmd</code></a></small>
       <div class="hidden name"><code>erosivity.Rmd</code></div>
@@ -121,12 +121,9 @@
 </ul>
 <p>The quantity <span class="math inline">\(e_r\)</span> can be calculated for each <span class="math inline">\(r\)</span> using one of the kinetic energy equations:</p>
 <ol style="list-style-type: decimal">
-<li>
-<code>Wischmeier and Smith</code> <span class="math inline">\(e_r = 0.119 + 0.0873log_{10}(i)\)</span> with the upper limit of 0.283 MJ/ha/mm if <span class="math inline">\({i} &gt; 76\)</span> mm/h. <span class="citation">(Wischmeier and Smith 1958)</span>.</li>
-<li>
-<code>Brown and Foster</code> <span class="math inline">\(e_r = 0.29(1 - 0.72 e^{-0.05i})\)</span> <span class="citation">(Brown and Foster 1987)</span>.</li>
-<li>
-<code>McGregor et al.</code> <span class="math inline">\(e_r = 0.29(1 - 0.72 e^{-0.082i})\)</span> <span class="citation">(McGregor et al. 1995)</span>.</li>
+<li>Wischmeier and Smith equation, used in USLE: <span class="math inline">\(e_r = 0.119 + 0.0873log_{10}(i)\)</span> with the upper limit of 0.283 MJ/ha/mm if <span class="math inline">\({i} &gt; 76\)</span> mm/h. <span class="citation">(Wischmeier and Smith 1958)</span>.</li>
+<li>Brown and Foster equation, used in RUSLE <span class="math inline">\(e_r = 0.29(1 - 0.72 e^{-0.05i})\)</span> <span class="citation">(Brown and Foster 1987)</span>.</li>
+<li>McGregor et al. equation used in RUSLE2 <span class="math inline">\(e_r = 0.29(1 - 0.72 e^{-0.082i})\)</span> <span class="citation">(McGregor et al. 1995)</span>.</li>
 </ol>
 <p>In the above equations <span class="math inline">\(i_r\)</span> is the rainfall intensity (mm/hr) and <span class="math inline">\(e_r\)</span> is the kinetic energy per unit of rainfall (MJ/ha/mm) for the interval <span class="math inline">\(r\)</span>.</p>
 <p>The rules that apply in order to single out the storms causing erosion and to divide rainfalls of large duration are:</p>

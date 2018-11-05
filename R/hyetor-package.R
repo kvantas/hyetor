@@ -22,7 +22,7 @@
 #'
 #' @importFrom rlang .data
 #' @importFrom magrittr %>%
-#' @importFrom stats approx na.omit quantile
+#' @importFrom stats approx na.omit quantile optim
 #' @importFrom utils tail head
 #'
 #'

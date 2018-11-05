@@ -4,10 +4,10 @@
 \name{prec5min}
 \alias{prec5min}
 \title{Five minutes precipitation time series}
-\format{A data frame with 48,209 rows and 2 variables:
+\format{A tibble with 48,209 rows and 2 variables:
 \describe{
   \item{date}{The time series' dates}
-  \item{prec}{precipitation, in mm}
+  \item{prec}{Precipitation, in mm}
 }}
 \source{
 http://kyy.hydroscope.gr/timeseries/d/1432/

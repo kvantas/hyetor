@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
   [![Travis build status](https://travis-ci.org/kvantas/hyetor.svg?branch=master)](https://travis-ci.org/kvantas/hyetor)
   [![Coverage status](https://codecov.io/gh/kvantas/hyetor/branch/master/graph/badge.svg)](https://codecov.io/github/kvantas/hyetor?branch=master)
   [![DOI](https://zenodo.org/badge/145962234.svg)](https://zenodo.org/badge/latestdoi/145962234)
+  [![CRAN status](https://www.r-pkg.org/badges/version/hyetor)](https://cran.r-project.org/package=hyetor)
   [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 `hyetor` is an R  package that provides a collection of tools that analyze fixed interval precipitation records. It can be used to:
@@ -35,9 +36,9 @@ knitr::opts_chunk$set(
 For more details checkout the package's [ website](https://kvantas.github.io/hyetor/) and the
 vignettes:
 
- * [An introduction to `hyetor`](https://ropensci.github.io/hydroscoper/articles/intro_hydroscoper.html) with details about the package's functions.
+ * [An introduction to `hyetor`](https://kvantas.github.io/hyetor/articles/intro_hyetor.html) with details about the package's functions.
  * [Rainfall erosivity calculation
-](https://kvantas.github.io/hyetor/articles/erosivity.html) with details about the rainfall erosivity, the kinetic energy equations and classification of erosive events.
+](https://kvantas.github.io/hyetor/articles/erosivity.html) with details about the rainfall erosivity, kinetic energy equations and classification of erosive events.
  
  
 ## Installation

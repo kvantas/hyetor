@@ -40,9 +40,9 @@ where:
 
 The quantity $e_r$ can be calculated for each $r$ using one of the kinetic energy equations:
 
-1. `Wischmeier and Smith` $e_r = 0.119 + 0.0873log_{10}(i)$ with the upper limit of 0.283  MJ/ha/mm if ${i} > 76$ mm/h. [@wischmeier1958rainfall].
-2. `Brown and Foster` $e_r = 0.29(1 - 0.72  e^{-0.05i})$ [@brown1987storm].
-3. `McGregor et al.` $e_r = 0.29(1 - 0.72  e^{-0.082i})$ [@McGregor1995].
+1. Wischmeier and Smith equation, used in USLE: $e_r = 0.119 + 0.0873log_{10}(i)$ with the upper limit of 0.283  MJ/ha/mm if ${i} > 76$ mm/h. [@wischmeier1958rainfall].
+2. Brown and Foster equation, used in RUSLE $e_r = 0.29(1 - 0.72  e^{-0.05i})$ [@brown1987storm].
+3. McGregor et al. equation used in RUSLE2 $e_r = 0.29(1 - 0.72  e^{-0.082i})$ [@McGregor1995].
 
 In the above equations $i_r$ is the rainfall intensity (mm/hr) and $e_r$ is the kinetic energy per unit of rainfall (MJ/ha/mm) for the interval $r$.
 

@@ -2,21 +2,20 @@
 #'
 #' @noRd
 count_check <- function(x, x_name) {
-  if (!assertthat::is.count(x)) {
-    stop(paste(x_name, "must be a positive integer"), call. = FALSE)
-  }
+  assertthat::assert_that(
+    assertthat::is.count(x),
+    msg = paste(x_name, "must be a positive integer"))
 }
 
 #' Return error if x not a vector of values
 #'
 #' @noRd
 vector_check <- function(time_step) {
-  if (!(time_step %in% c(5, 10, 15, 30))) {
-    stop(
-      "`time_step` must have one of the values 1, 5, 10, 15 or 30 minutes.",
-      call. = FALSE
-    )
-  }
+  assertthat::assert_that(
+    time_step %in% c(5, 10, 15, 30),
+    msg =
+      "`time_step` must have one of the values 1, 5, 10, 15 or 30 minutes")
+
 }
 
 #' return error if units are valid
@@ -24,41 +23,39 @@ vector_check <- function(time_step) {
 #' @noRd
 units_check <- function(x, minhour = TRUE) {
   if (minhour) {
-    if (!(x %in% c("mins", "hours"))) {
-      stop(paste("units must be either `mins` or `hours`"), call. = FALSE)
-    }
+    assertthat::assert_that(
+      x %in% c("mins", "hours"),
+      msg = "units must be either `mins` or `hours`"
+    )
   } else {
-    if (!(x %in% c("mins", "hours", "days", "months", "quarter", "year"))) {
-      stop(paste(
-        "units must be on of `mins`, `hours`, `days`, `months`,",
-        "`quarter` or `year`"
-      ), call. = FALSE)
-    }
+    assertthat::assert_that(
+      x %in% c("mins", "hours", "days", "months", "quarter", "year"),
+      msg = paste("units must be on of `mins`, `hours`, `days`, `months`,",
+        "`quarter` or `year`")
+    )
   }
 }
 
 #' return error if crit_dur is not a numeric vector of 12 values
 #' @noRd
 crit_dur_check <- function(x) {
-  if (!is.numeric(x) | (length(x) != 12) | any(x < 0)) {
-    stop(paste("crit_dur must be a numeric vector of 12 values"),
-      call. = FALSE
-    )
-  }
+
+  assertthat::assert_that(
+    is.numeric(x), length(x) == 12, all(x > 0),
+    msg = "`crit_dur`` must be a numeric vector of 12 values"
+  )
 }
 
 #' return error if not valid energyy equation
 #'
 #' @noRd
 en_eq_check <- function(x) {
-  valid_equat <- c("brown_foster", "mcgregor_etal", "wisch_smith")
-  error_msg <- paste(
-    "`en_equation` must be on of:",
-    "`brown_foster`, `mcgregor_etal`, `wisch_smith`"
+  assertthat::assert_that(
+    x %in% c("brown_foster", "mcgregor_etal", "wisch_smith"),
+    msg = paste(
+      "`en_equation` must be on of:",
+      "`brown_foster`, `mcgregor_etal`, `wisch_smith`")
   )
-  if (!(x %in% valid_equat)) {
-    stop(error_msg, call. = FALSE)
-  }
 }
 
 #' Check for a valid hyetograph
@@ -129,18 +126,16 @@ rain_intensities <- function(hyet, time_step, ts_unit) {
   from_dur <- paste(time_step, ts_unit)
   ts_dur <- lubridate::duration(time_step, ts_unit)
 
-  tibble::tibble(
-    int_5min = max_roll_sum(hyet, from_dur, "5 mins") * 12,
-    int_10min = max_roll_sum(hyet, from_dur, "10 mins") * 6,
-    int_15min = max_roll_sum(hyet, from_dur, "15 mins") * 4,
-    int_30min = max_roll_sum(hyet, from_dur, "30 mins") * 2,
-    int_1hr = max_roll_sum(hyet, from_dur, "1 hours"),
-    int_3hr = max_roll_sum(hyet, from_dur, "3 hours") / 3,
-    int_6hr = max_roll_sum(hyet, from_dur, "6 hours") / 6,
-    int_12hr = max_roll_sum(hyet, from_dur, "12 hours") / 12,
-    int_24hr = max_roll_sum(hyet, from_dur, "1 days") / 24,
-    int_48hr = max_roll_sum(hyet, from_dur, "2 days") / 48
-  )
+  durations <- c(5/60, 10/60, 15/60, 30/60, 1, 3, 6, 12, 24, 48)
+  durations_str <- c("5 mins", "10 mins", "15 mins", "30 mins", "1 hours",
+                     "3 hours", "6 hours", "12 hours", "1 days", "2 days")
+  heights <- lapply(durations_str, function(d){
+    max_roll_sum(hyet, from_dur,d)
+  })
+  intens <- unlist(heights) / durations
+
+  tibble::tibble("duration" = durations, "intensity" = intens)
+
 }
 
 #' Find maximum rolling window sum

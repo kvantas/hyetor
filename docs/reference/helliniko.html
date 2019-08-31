@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create an hyetograph — hyet_create • hyetor</title>
+<title>Helliniko maximum intensities — helliniko • hyetor</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,15 +30,11 @@
 
 
 
-<meta property="og:title" content="Create an hyetograph — hyet_create" />
+<meta property="og:title" content="Helliniko maximum intensities — helliniko" />
 
-<meta property="og:description" content="hyet_create uses precipitation and date values to
-create a tibble that represents the distribution of rainfall over time.
-Returns an error if:
-prec and date values don't have the same length.
-prec is not a numeric vector.
-date is not a POSIXct (times) vector.
-" />
+<meta property="og:description" content="A 30 year (1957-58 to 1986-87) data record of the Helliniko recording
+station (located at the Helliniko airport, Athens). The durations range from
+5/60 h  (5 min) to 24 h. Owing to missing values, the sample size for some durations is lower than 30." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,75 +119,45 @@ date is not a POSIXct (times) vector.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create an hyetograph</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetor/blob/master/R/hyet_create.R'><code>R/hyet_create.R</code></a></small>
-    <div class="hidden name"><code>hyet_create.Rd</code></div>
+    <h1>Helliniko maximum intensities</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kvantas/hyetor/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>helliniko.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>hyet_create</code> uses precipitation and date values to
-create a tibble that represents the distribution of rainfall over time.
-Returns an error if:</p><ul>
-<li><p><code>prec</code> and <code>date</code> values don't have the same length.</p></li>
-<li><p><code>prec</code> is not a numeric vector.</p></li>
-<li><p><code>date</code> is not a POSIXct (times) vector.</p></li>
-</ul>
+    <p>A 30 year (1957-58 to 1986-87) data record of the Helliniko recording
+station (located at the Helliniko airport, Athens). The durations range from
+5/60 h  (5 min) to 24 h. Owing to missing values, the sample size for some durations is lower than 30.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>hyet_create</span>(<span class='no'>date</span>, <span class='no'>prec</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>date</th>
-      <td><p>a numeric vector of precipitation values</p></td>
-    </tr>
-    <tr>
-      <th>prec</th>
-      <td><p>a POSIXct vector with date values</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <pre class="usage"><span class='no'>helliniko</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>a tibble with the variables <code>date</code> and <code>prec</code></p>
+    <p>A tibble with 228 rows and 2 variables:</p><dl class='dl-horizontal'>
+  <dt>duration</dt><dd><p>The duration of the maximum intensity for a specific year</p></dd>
+  <dt>intensity</dt><dd><p>Maximum intensity for a specific year and duration, in
+  mm/hr</p></dd>
+</dl>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>This function checks the validity of precipitation and date values
-and returns an error if:</p><ul>
-<li><p>These vectors don't have the same length,</p></li>
-<li><p>precipitation is not numeric or</p></li>
-<li><p>date  is not POSIXct.</p></li>
-</ul>
+    <p>D. Koutsoyiannis, Statistical Hydrology, Edition 4, 312 pages,
+doi:10.13140/RG.2.1.5118.2325, National Technical University of Athens,
+Athens, 1997.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># create date and precipitation values</span>
-<span class='no'>date</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.POSIXlt'>as.POSIXct</a></span>(<span class='fl'>0</span>, <span class='kw'>origin</span> <span class='kw'>=</span> <span class='st'>"2018-01-01"</span>),
-                  <span class='kw'>length.out</span> <span class='kw'>=</span>  <span class='fl'>100</span>,
-                  <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"mins"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>1</span>)
-<span class='no'>prec</span> <span class='kw'>&lt;-</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Round'>round</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='fl'>100</span>,<span class='fl'>0</span>,<span class='fl'>10</span>),<span class='fl'>1</span>)
-
-<span class='co'># create hyetograph</span>
-<span class='no'>hyet</span> <span class='kw'>&lt;-</span> <span class='fu'>hyet_create</span>(<span class='no'>date</span>, <span class='no'>prec</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#format">Format</a></li>
 
-      <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#source">Source</a></li>
+          </ul>
 
   </div>
 </div>

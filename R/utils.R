@@ -12,9 +12,9 @@ count_check <- function(x, x_name) {
 #' @noRd
 vector_check <- function(time_step) {
   assertthat::assert_that(
-    time_step %in% c(5, 10, 15, 30),
+    time_step %in% c(1, 5, 10, 15, 30, 60, 180),
     msg =
-      "`time_step` must have one of the values 1, 5, 10, 15 or 30 minutes")
+      "`time_step` must have one of the values 1, 5, 10, 15, 30, 60 or 180 minutes")
 
 }
 

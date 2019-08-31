@@ -20,5 +20,5 @@ test_that("functions returns errors", {
   expect_error(en_eq_check("none"))
 
   # not a valid time step for erosivity
-  expect_error(vector_check(60))
+  expect_error(vector_check(600))
 })

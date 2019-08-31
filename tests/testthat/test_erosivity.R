@@ -4,6 +4,7 @@ test_that("erosivity returns correct values for 30 min time step", {
 
   # create time series with 30 mins time step
   time_step <- 30
+  units = "mins"
   len <- 12
   en_equation <- "mcgregor_etal"
 

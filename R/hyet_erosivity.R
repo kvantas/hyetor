@@ -6,7 +6,7 @@
 #' @param hyet an hyetograph from \code{hyet_create} function. Precipitation
 #' values must be in millimeters (mm).
 #' @param time_step hyetograph's time-step in minutes. Valid value is on of
-#' \code{[5, 10, 15, 30]}.
+#' \code{[1, 5, 10, 15, 30, 60]}.
 #' @param en_equation a character string specifying the equation to be used
 #' for calculating kinetic energy of rainfall. Must have one of the values:
 #' "mcgregor_etal", "brown_foster" or "wisch_smith".

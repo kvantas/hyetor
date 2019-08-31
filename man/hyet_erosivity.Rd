@@ -11,7 +11,7 @@ hyet_erosivity(hyet, time_step, en_equation = "mcgregor_etal")
 values must be in millimeters (mm).}
 
 \item{time_step}{hyetograph's time-step in minutes. Valid value is on of
-\code{[5, 10, 15, 30]}.}
+\code{[1, 5, 10, 15, 30, 60]}.}
 
 \item{en_equation}{a character string specifying the equation to be used
 for calculating kinetic energy of rainfall. Must have one of the values:

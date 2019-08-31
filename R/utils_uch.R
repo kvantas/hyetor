@@ -42,7 +42,7 @@ uch <- function(hyet, time_step, ts_unit, nvalues, .simple = FALSE) {
 
   # use .simple to return a tibble with one row
   if (.simple) {
-    res <- tibble::as.tibble(t(approx_hyet$y))
+    res <- tibble::as_tibble(t(approx_hyet$y), name_repair = "minimal")
     tibble::add_column(res,
       .before = TRUE,
       "start" = start_date,

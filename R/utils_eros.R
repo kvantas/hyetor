@@ -17,8 +17,6 @@ rain_energy <- function(intensity, en_equation = "mcgregor_etal") {
   }
 }
 
-
-
 #' Compute erosivity
 #'
 #' @noRd
@@ -43,11 +41,17 @@ erosivity <- function(hyet, time_step, en_equation) {
     hyet$prec15 <- 0
     hyet$prec30 <- util_roll_sum(hyet, 3)$prec
   } else if (time_step == 15) {
-    hyet$prec15 <- 0
+    hyet$prec15 <- hyet$prec
     hyet$prec30 <- util_roll_sum(hyet, 2)$prec
   } else if (time_step == 30) {
-    hyet$prec15 <- 0
+    hyet$prec15 <- hyet$prec / 2
     hyet$prec30 <- hyet$prec
+  } else if (time_step == 60) {
+    hyet$prec15 <- hyet$prec / 4
+    hyet$prec30 <- hyet$prec / 2
+  } else if (time_step == 180) {
+    hyet$prec15 <- hyet$prec / 4
+    hyet$prec30 <- hyet$prec / 2
   }
 
 
